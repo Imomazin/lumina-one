@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import type { ReactNode } from 'react';
 
@@ -8,7 +8,6 @@ interface ProtectedRouteProps {
 
 export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { isAuthenticated, isLoading } = useAuth();
-  const location = useLocation();
 
   if (isLoading) {
     // Show loading state while checking auth
@@ -37,8 +36,10 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   }
 
   if (!isAuthenticated) {
-    // Redirect to login page, but save the attempted URL
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    // In Lumina One, auth is handled by AuthContext with auto-login
+    // This should never trigger, but if it does, redirect to root
+    console.warn('ProtectedRoute: User not authenticated, redirecting to root');
+    return <Navigate to="/" replace />;
   }
 
   return <>{children}</>;
