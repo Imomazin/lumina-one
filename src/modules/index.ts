@@ -33,8 +33,8 @@ export const moduleRegistry: ModuleDefinition[] = [
     baseRoute: '/strategy',
     icon: TrendingUp,
     description: 'Strategic Planning & Execution',
-    enabled: false, // Not yet integrated
-    component: lazy(() => import('../pages/ModulePlaceholder').then(m => ({ default: m.default }))),
+    enabled: true,
+    component: lazy(() => import('./strategy').then(m => ({ default: m.StrategyModule }))),
   },
   {
     id: 'finance',
@@ -42,8 +42,8 @@ export const moduleRegistry: ModuleDefinition[] = [
     baseRoute: '/finance',
     icon: DollarSign,
     description: 'Financial Intelligence & Analysis',
-    enabled: false, // Not yet integrated
-    component: lazy(() => import('../pages/ModulePlaceholder').then(m => ({ default: m.default }))),
+    enabled: true,
+    component: lazy(() => import('./finance').then(m => ({ default: m.FinanceModule }))),
   },
 ];
 
