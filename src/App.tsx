@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Layout from './components/Layout'
+import { Layout } from './core/layout'
 import Overview from './pages/Overview'
 import { moduleRegistry } from './modules'
 

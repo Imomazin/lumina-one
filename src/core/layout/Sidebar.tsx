@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { LayoutGrid } from 'lucide-react'
-import { getAllModules } from '../modules'
+import { getAllModules } from '../../modules'
 
 export default function Sidebar() {
   const modules = getAllModules()
