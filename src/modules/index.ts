@@ -45,7 +45,7 @@ export const moduleRegistry: ModuleDefinition[] = [
     icon: DollarSign,
     description: 'Financial Intelligence & Analysis',
     enabled: true,
-    isDemo: true, // Currently concept preview with mock data
+    // Real domain state - derives from Strategy + Risk
     component: lazy(() => import('./finance').then(m => ({ default: m.FinanceModule }))),
   },
 ];

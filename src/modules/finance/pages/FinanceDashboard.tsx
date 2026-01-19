@@ -1,6 +1,6 @@
-import { DollarSign, TrendingUp, AlertCircle, CheckCircle } from 'lucide-react'
+import { DollarSign, TrendingUp, AlertCircle, CheckCircle, ArrowRight, Shield } from 'lucide-react'
 import { useLumina } from '../../../context/LuminaContext'
-import { PageShell } from '../../../components/ui'
+import { PageShell, Card } from '../../../components/ui'
 
 export function FinanceDashboard() {
   const { strategyScenario, risk, finance } = useLumina()
@@ -9,22 +9,15 @@ export function FinanceDashboard() {
     <PageShell>
       <div>
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 shadow-sm">
-              <DollarSign className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Finance</h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                Financial implications auto-derived from strategy and risk
-              </p>
-            </div>
+        <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 shadow-sm">
+            <DollarSign className="w-6 h-6 text-white" />
           </div>
-          <div className="px-3 py-1.5 bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700 rounded-lg">
-            <span className="text-xs font-semibold text-amber-900 dark:text-amber-300">
-              DEMO / CONCEPT PREVIEW
-            </span>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Finance</h1>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              Financial implications auto-derived from Strategy and Risk
+            </p>
           </div>
         </div>
 
@@ -43,21 +36,72 @@ export function FinanceDashboard() {
           </div>
         )}
 
-        {/* No Data State */}
-        {(!strategyScenario || !risk || !finance) && (
-          <div className="p-8 text-center rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
-            <AlertCircle className="w-12 h-12 text-blue-500 dark:text-blue-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-300 mb-2">
-              Waiting for Strategy Input
-            </h3>
-            <p className="text-sm text-blue-700 dark:text-blue-400 mb-4">
-              Finance automatically derives financial implications from Strategy assumptions and Risk exposure.
-            </p>
-            <p className="text-sm text-blue-700 dark:text-blue-400">
-              Please define a strategy first to see derived financial implications.
-            </p>
-          </div>
-        )}
+        {/* Dependency Guard: Finance requires both Strategy AND Risk */}
+        {!strategyScenario ? (
+          <Card>
+            <div className="text-center py-12">
+              <div className="flex justify-center mb-4">
+                <div className="p-4 rounded-full bg-amber-100 dark:bg-amber-900/30">
+                  <AlertCircle className="w-12 h-12 text-amber-600 dark:text-amber-400" />
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
+                Strategy Required
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-md mx-auto">
+                Finance derives from both Strategy and Risk. Please configure your Strategy first.
+              </p>
+              <a
+                href="/app/strategy"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-lumina-600 hover:bg-lumina-700 text-white font-medium rounded-lg transition-colors shadow-sm"
+              >
+                <TrendingUp className="w-5 h-5" />
+                Configure Strategy
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <div className="mt-8 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 max-w-lg mx-auto">
+                <p className="text-sm text-blue-800 dark:text-blue-300">
+                  <strong>Intelligence Flow:</strong> Strategy → Risk → Finance
+                </p>
+                <p className="text-xs text-blue-700 dark:text-blue-400 mt-1">
+                  Financial implications are automatically calculated from strategic objectives, time horizon, and risk exposure.
+                </p>
+              </div>
+            </div>
+          </Card>
+        ) : !risk ? (
+          <Card>
+            <div className="text-center py-12">
+              <div className="flex justify-center mb-4">
+                <div className="p-4 rounded-full bg-amber-100 dark:bg-amber-900/30">
+                  <AlertCircle className="w-12 h-12 text-amber-600 dark:text-amber-400" />
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
+                Risk Analysis Required
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-md mx-auto">
+                Finance requires both Strategy and Risk. Your Strategy is configured, but Risk analysis is missing.
+              </p>
+              <a
+                href="/app/risk"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-lumina-600 hover:bg-lumina-700 text-white font-medium rounded-lg transition-colors shadow-sm"
+              >
+                <Shield className="w-5 h-5" />
+                View Risk Analysis
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <div className="mt-8 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 max-w-lg mx-auto">
+                <p className="text-sm text-blue-800 dark:text-blue-300">
+                  <strong>Dual Dependency:</strong> Finance consumes both Strategy and Risk
+                </p>
+                <p className="text-xs text-blue-700 dark:text-blue-400 mt-1">
+                  Risk should be automatically derived from your Strategy. Check the Risk module to view exposure analysis.
+                </p>
+              </div>
+            </div>
+          </Card>
+        ) : null}
 
         {/* Active Finance Analysis */}
         {strategyScenario && risk && finance && (
