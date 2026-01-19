@@ -7,6 +7,7 @@ import {
 } from '../components/dashboard';
 import { Card, CardHeader, CardTitle } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
+import { useLumina } from '../../../context/LuminaContext';
 import {
   Shield,
   AlertTriangle,
@@ -580,6 +581,7 @@ function CaseStudyModal({ study, onClose }: { study: CaseStudy | null; onClose: 
 }
 
 export function Dashboard() {
+  const { strategy, risk } = useLumina();
   const [activeTab, setActiveTab] = useState<TabId>('overview');
   const [currentCaseIndex, setCurrentCaseIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -686,6 +688,83 @@ export function Dashboard() {
               iconColor="emerald"
             />
           </div>
+
+          {/* Strategy-Derived Risks Section */}
+          {strategy && risk && (
+            <Card className="mb-6">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Strategy-Derived Risk Exposure</CardTitle>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                      Automatically derived from Strategy assumptions
+                    </p>
+                  </div>
+                  <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+                    risk.overallExposure === 'High'
+                      ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
+                      : risk.overallExposure === 'Medium'
+                      ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400'
+                      : 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                  }`}>
+                    Overall Exposure: {risk.overallExposure}
+                  </div>
+                </div>
+              </CardHeader>
+              <div className="space-y-3">
+                <div className="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
+                  <p className="text-sm font-medium text-blue-800 dark:text-blue-300 mb-1">
+                    Strategy Context
+                  </p>
+                  <p className="text-sm text-blue-700 dark:text-blue-400">
+                    {strategy.objective} • {strategy.timeHorizon} year horizon
+                  </p>
+                </div>
+                {risk.exposureCategories.map((exposure, index) => (
+                  <div
+                    key={index}
+                    className={`p-4 rounded-lg border ${
+                      exposure.level === 'High'
+                        ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
+                        : exposure.level === 'Medium'
+                        ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800'
+                        : 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between mb-2">
+                      <p className={`text-sm font-semibold ${
+                        exposure.level === 'High'
+                          ? 'text-red-800 dark:text-red-300'
+                          : exposure.level === 'Medium'
+                          ? 'text-amber-800 dark:text-amber-300'
+                          : 'text-green-800 dark:text-green-300'
+                      }`}>
+                        {exposure.category}
+                      </p>
+                      <span className={`px-2 py-1 rounded text-xs font-medium ${
+                        exposure.level === 'High'
+                          ? 'bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-200'
+                          : exposure.level === 'Medium'
+                          ? 'bg-amber-200 dark:bg-amber-800 text-amber-800 dark:text-amber-200'
+                          : 'bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200'
+                      }`}>
+                        {exposure.level}
+                      </span>
+                    </div>
+                    <p className={`text-sm ${
+                      exposure.level === 'High'
+                        ? 'text-red-700 dark:text-red-400'
+                        : exposure.level === 'Medium'
+                        ? 'text-amber-700 dark:text-amber-400'
+                        : 'text-green-700 dark:text-green-400'
+                    }`}>
+                      Derived from: "{exposure.derivedFrom}"
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          )}
 
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

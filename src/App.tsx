@@ -2,31 +2,36 @@ import { Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from './core/layout'
 import Overview from './pages/Overview'
+import ControlPlane from './pages/ControlPlane'
 import { moduleRegistry } from './modules'
+import { LuminaProvider } from './context/LuminaContext'
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Layout>
-        <Suspense fallback={<ModuleLoadingFallback />}>
-          <Routes>
-            <Route path="/" element={<Overview />} />
+    <LuminaProvider>
+      <BrowserRouter>
+        <Layout>
+          <Suspense fallback={<ModuleLoadingFallback />}>
+            <Routes>
+              <Route path="/" element={<Overview />} />
+              <Route path="/control-plane" element={<ControlPlane />} />
 
-            {/* Dynamically generate routes from module registry */}
-            {moduleRegistry.map((module) => {
-              const ModuleComponent = module.component
-              return (
-                <Route
-                  key={module.id}
-                  path={`${module.baseRoute}/*`}
-                  element={<ModuleComponent />}
-                />
-              )
-            })}
-          </Routes>
-        </Suspense>
-      </Layout>
-    </BrowserRouter>
+              {/* Dynamically generate routes from module registry */}
+              {moduleRegistry.map((module) => {
+                const ModuleComponent = module.component
+                return (
+                  <Route
+                    key={module.id}
+                    path={`${module.baseRoute}/*`}
+                    element={<ModuleComponent />}
+                  />
+                )
+              })}
+            </Routes>
+          </Suspense>
+        </Layout>
+      </BrowserRouter>
+    </LuminaProvider>
   )
 }
 

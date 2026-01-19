@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { LayoutGrid } from 'lucide-react'
+import { LayoutGrid, Activity } from 'lucide-react'
 import { getAllModules } from '../../modules'
 
 export default function Sidebar() {
@@ -30,6 +30,20 @@ export default function Sidebar() {
           >
             <LayoutGrid className="w-5 h-5" />
             <span>Overview</span>
+          </NavLink>
+
+          <NavLink
+            to="/control-plane"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                isActive
+                  ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400'
+                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'
+              }`
+            }
+          >
+            <Activity className="w-5 h-5" />
+            <span>Control Plane</span>
           </NavLink>
 
           {modules.map((module) => {
