@@ -650,8 +650,43 @@ export function Dashboard() {
         </nav>
       </div>
 
-      {/* ==================== OVERVIEW TAB ==================== */}
-      {activeTab === 'overview' && (
+      {/* Dependency Guard: Risk requires Strategy */}
+      {!strategyScenario ? (
+        <Card>
+          <div className="text-center py-12">
+            <div className="flex justify-center mb-4">
+              <div className="p-4 rounded-full bg-amber-100 dark:bg-amber-900/30">
+                <AlertCircle className="w-12 h-12 text-amber-600 dark:text-amber-400" />
+              </div>
+            </div>
+            <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
+              Strategy Required
+            </h3>
+            <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-md mx-auto">
+              Risk intelligence derives from Strategic assumptions. Please configure your Strategy first to enable Risk analysis.
+            </p>
+            <a
+              href="/app/strategy"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-lumina-600 hover:bg-lumina-700 text-white font-medium rounded-lg transition-colors shadow-sm"
+            >
+              <TrendingUp className="w-5 h-5" />
+              Configure Strategy
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <div className="mt-8 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 max-w-lg mx-auto">
+              <p className="text-sm text-blue-800 dark:text-blue-300">
+                <strong>Intelligence Flow:</strong> Strategy → Risk → Finance
+              </p>
+              <p className="text-xs text-blue-700 dark:text-blue-400 mt-1">
+                Risk exposures are automatically derived from your strategic assumptions and time horizon.
+              </p>
+            </div>
+          </div>
+        </Card>
+      ) : (
+        <>
+          {/* ==================== OVERVIEW TAB ==================== */}
+          {activeTab === 'overview' && (
         <>
           {/* Stats Row */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
@@ -1549,12 +1584,14 @@ export function Dashboard() {
         </Card>
       )}
 
-      {/* Case Study Modal */}
-      {selectedCaseStudy && (
-        <CaseStudyModal
-          study={selectedCaseStudy}
-          onClose={() => setSelectedCaseStudy(null)}
-        />
+          {/* Case Study Modal */}
+          {selectedCaseStudy && (
+            <CaseStudyModal
+              study={selectedCaseStudy}
+              onClose={() => setSelectedCaseStudy(null)}
+            />
+          )}
+        </>
       )}
     </>
   );
