@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import Sidebar from './Sidebar'
 import Topbar from './Topbar'
+import Footer from './Footer'
 
 interface LayoutProps {
   children: ReactNode
@@ -15,6 +16,7 @@ export default function Layout({ children }: LayoutProps) {
         <main className="flex-1 overflow-y-auto">
           {children}
         </main>
+        <Footer />
       </div>
     </div>
   )
