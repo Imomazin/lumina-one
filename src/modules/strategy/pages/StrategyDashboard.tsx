@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { TrendingUp, Plus, X, Save } from 'lucide-react'
-import { useLumina } from '../../../context/LuminaContext'
+import { useStrategyStore } from '../../../store'
 import { PageShell, Section, Card } from '../../../components/ui'
 import { validateStrategyInput } from '../../../domain/strategy'
 
 export function StrategyDashboard() {
-  const { strategyScenario, createStrategy, updateStrategy } = useLumina()
+  const { scenario: strategyScenario, createScenario: createStrategy, updateScenario: updateStrategy } = useStrategyStore()
 
   const [name, setName] = useState('')
   const [objective, setObjective] = useState('')

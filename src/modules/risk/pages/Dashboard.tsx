@@ -7,7 +7,7 @@ import {
 } from '../components/dashboard';
 import { Card, CardHeader, CardTitle } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import { useLumina } from '../../../context/LuminaContext';
+import { useStrategyStore, useRiskStore } from '../../../store';
 import {
   Shield,
   AlertTriangle,
@@ -581,7 +581,8 @@ function CaseStudyModal({ study, onClose }: { study: CaseStudy | null; onClose: 
 }
 
 export function Dashboard() {
-  const { strategyScenario, risk } = useLumina();
+  const strategyScenario = useStrategyStore(state => state.scenario);
+  const risk = useRiskStore(state => state.profile);
   const [activeTab, setActiveTab] = useState<TabId>('overview');
   const [currentCaseIndex, setCurrentCaseIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);

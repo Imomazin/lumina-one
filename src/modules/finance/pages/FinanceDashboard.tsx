@@ -1,9 +1,11 @@
 import { DollarSign, TrendingUp, AlertCircle, CheckCircle, ArrowRight, Shield } from 'lucide-react'
-import { useLumina } from '../../../context/LuminaContext'
+import { useStrategyStore, useRiskStore, useFinanceStore } from '../../../store'
 import { PageShell, Card } from '../../../components/ui'
 
 export function FinanceDashboard() {
-  const { strategyScenario, risk, finance } = useLumina()
+  const strategyScenario = useStrategyStore(state => state.scenario)
+  const risk = useRiskStore(state => state.profile)
+  const finance = useFinanceStore(state => state.model)
 
   return (
     <PageShell>

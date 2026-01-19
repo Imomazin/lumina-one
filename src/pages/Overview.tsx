@@ -2,12 +2,14 @@ import { Link } from 'react-router-dom'
 import { CheckCircle2, ArrowRight, TrendingUp, Shield, DollarSign, LayoutGrid } from 'lucide-react'
 import { getAllModules } from '../modules'
 import { PageContainer } from '../core/layout'
-import { useLumina } from '../context/LuminaContext'
+import { useStrategyStore, useRiskStore, useFinanceStore } from '../store'
 
 export default function Overview() {
   const modules = getAllModules()
   const activeCount = modules.length // All modules are now active
-  const { strategyScenario, risk, finance } = useLumina()
+  const strategyScenario = useStrategyStore(state => state.scenario)
+  const risk = useRiskStore(state => state.profile)
+  const finance = useFinanceStore(state => state.model)
 
   return (
     <PageContainer maxWidth="wide">
