@@ -1,11 +1,13 @@
 import { User, LogOut, LogIn } from 'lucide-react'
 import { useAuth } from '../../auth/AuthContext'
+import { useLumina } from '../../context/LuminaContext'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../routes'
 
 export default function Topbar() {
   const { user, signOut } = useAuth()
+  const { strategyScenario } = useLumina()
   const [showMenu, setShowMenu] = useState(false)
   const navigate = useNavigate()
 
@@ -13,15 +15,13 @@ export default function Topbar() {
     <header className="h-16 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
       <div className="flex items-center justify-between h-full px-6">
         <div className="flex items-center gap-4">
-          {!user && (
-            <div className="px-3 py-1.5 bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700 rounded-lg">
-              <span className="text-xs font-semibold text-amber-900 dark:text-amber-300">
-                DEMO MODE
-              </span>
-            </div>
-          )}
           <div className="text-sm text-gray-600 dark:text-gray-400">
-            <span className="font-medium text-gray-900 dark:text-white">Active Scenario:</span> Demo Workspace
+            <span className="font-medium text-gray-900 dark:text-white">Active Scenario:</span>{' '}
+            {strategyScenario ? (
+              <span className="text-blue-600 dark:text-blue-400 font-medium">{strategyScenario.name}</span>
+            ) : (
+              <span className="text-gray-400 dark:text-gray-500">None configured</span>
+            )}
           </div>
         </div>
 
@@ -36,7 +36,7 @@ export default function Topbar() {
                 <User className="w-5 h-5 text-white" />
               </div>
               <span className="text-sm font-medium text-gray-900 dark:text-white">
-                {user?.email || 'Demo User'}
+                {user?.email || 'Guest'}
               </span>
             </button>
 
@@ -49,10 +49,10 @@ export default function Topbar() {
                 <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl z-20 py-2">
                   <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
                     <p className="text-sm font-medium text-gray-900 dark:text-white">
-                      {user?.email || 'Demo User'}
+                      {user?.email || 'Guest User'}
                     </p>
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                      {user ? 'Authenticated' : 'Demo Mode - Read Only'}
+                      {user ? 'Authenticated' : 'Not signed in'}
                     </p>
                   </div>
                   {user ? (

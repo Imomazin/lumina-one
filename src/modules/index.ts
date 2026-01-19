@@ -9,7 +9,6 @@ export interface ModuleMetadata {
   icon: LucideIcon;
   description?: string;
   enabled: boolean;
-  isDemo?: boolean; // Marks module as demo/concept preview
 }
 
 export interface ModuleDefinition extends ModuleMetadata {
