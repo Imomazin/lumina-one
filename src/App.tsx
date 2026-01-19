@@ -1,37 +1,58 @@
 import { Suspense } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Layout } from './core/layout'
 import Overview from './pages/Overview'
 import ControlPlane from './pages/ControlPlane'
 import { moduleRegistry } from './modules'
 import { LuminaProvider } from './context/LuminaContext'
+import { AuthProvider } from './auth/AuthContext'
+import { ProtectedRoute } from './auth/ProtectedRoute'
+import { LandingPage } from './landing/LandingPage'
+import { LoginPage } from './auth/LoginPage'
 
 export default function App() {
   return (
-    <LuminaProvider>
-      <BrowserRouter>
-        <Layout>
-          <Suspense fallback={<ModuleLoadingFallback />}>
-            <Routes>
-              <Route path="/" element={<Overview />} />
-              <Route path="/control-plane" element={<ControlPlane />} />
+    <AuthProvider>
+      <LuminaProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Public routes */}
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<LoginPage />} />
 
-              {/* Dynamically generate routes from module registry */}
-              {moduleRegistry.map((module) => {
-                const ModuleComponent = module.component
-                return (
-                  <Route
-                    key={module.id}
-                    path={`${module.baseRoute}/*`}
-                    element={<ModuleComponent />}
-                  />
-                )
-              })}
-            </Routes>
-          </Suspense>
-        </Layout>
-      </BrowserRouter>
-    </LuminaProvider>
+            {/* Protected app routes */}
+            <Route
+              path="/app/*"
+              element={
+                <ProtectedRoute>
+                  <Layout>
+                    <Suspense fallback={<ModuleLoadingFallback />}>
+                      <Routes>
+                        <Route path="/" element={<Navigate to="/app/overview" replace />} />
+                        <Route path="/overview" element={<Overview />} />
+                        <Route path="/control-plane" element={<ControlPlane />} />
+
+                        {/* Dynamically generate routes from module registry */}
+                        {moduleRegistry.map((module) => {
+                          const ModuleComponent = module.component
+                          return (
+                            <Route
+                              key={module.id}
+                              path={`${module.baseRoute.replace('/', '')}/*`}
+                              element={<ModuleComponent />}
+                            />
+                          )
+                        })}
+                      </Routes>
+                    </Suspense>
+                  </Layout>
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </LuminaProvider>
+    </AuthProvider>
   )
 }
 

@@ -25,7 +25,7 @@ export default function Sidebar() {
           {/* System Section */}
           <div className="space-y-1">
             <NavLink
-              to="/"
+              to="/app/overview"
               end
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
@@ -40,7 +40,7 @@ export default function Sidebar() {
             </NavLink>
 
             <NavLink
-              to="/control-plane"
+              to="/app/control-plane"
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                   isActive
@@ -66,7 +66,7 @@ export default function Sidebar() {
               return (
                 <NavLink
                   key={module.id}
-                  to={module.baseRoute}
+                  to={`/app${module.baseRoute}`}
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                       isActive
