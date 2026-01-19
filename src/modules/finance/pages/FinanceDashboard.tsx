@@ -1,13 +1,13 @@
 import { DollarSign, TrendingUp, AlertCircle, CheckCircle } from 'lucide-react'
 import { useLumina } from '../../../context/LuminaContext'
-import { PageContainer } from '../../../core/layout'
+import { PageShell } from '../../../components/ui'
 
 export function FinanceDashboard() {
   const { strategy, risk, finance, scenarioId } = useLumina()
 
   return (
-    <PageContainer>
-      <div className="max-w-4xl">
+    <PageShell>
+      <div>
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 shadow-sm">
@@ -191,6 +191,6 @@ export function FinanceDashboard() {
           </div>
         )}
       </div>
-    </PageContainer>
+    </PageShell>
   )
 }
