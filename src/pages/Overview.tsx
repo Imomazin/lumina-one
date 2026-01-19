@@ -7,7 +7,7 @@ import { useLumina } from '../context/LuminaContext'
 export default function Overview() {
   const modules = getAllModules()
   const activeCount = modules.length // All modules are now active
-  const { strategy, risk, finance } = useLumina()
+  const { strategyScenario, risk, finance } = useLumina()
 
   return (
     <PageContainer maxWidth="wide">
@@ -91,7 +91,7 @@ export default function Overview() {
               Live cross-module dependencies and data propagation
             </p>
           </div>
-          {strategy && (
+          {strategyScenario && (
             <div className="px-3 py-1.5 rounded-full bg-green-100 dark:bg-green-900/30 text-xs font-semibold text-green-700 dark:text-green-400 flex items-center gap-1.5">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
               Live
@@ -108,17 +108,17 @@ export default function Overview() {
               </div>
               <span className="text-sm font-bold text-gray-900 dark:text-white">Strategy</span>
             </div>
-            {strategy ? (
+            {strategyScenario ? (
               <div className="space-y-2">
                 <p className="text-sm text-gray-700 dark:text-gray-300 line-clamp-2 font-medium">
-                  {strategy.objective}
+                  {strategyScenario.objective}
                 </p>
                 <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
                   <span className="px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 font-medium">
-                    {strategy.timeHorizon}yr
+                    {strategyScenario.timeHorizon}yr
                   </span>
                   <span>•</span>
-                  <span>{strategy.assumptions.length} assumptions</span>
+                  <span>{strategyScenario.assumptions.length} assumptions</span>
                 </div>
               </div>
             ) : (
@@ -213,7 +213,7 @@ export default function Overview() {
           </div>
         </div>
 
-        {strategy && (
+        {strategyScenario && (
           <div className="mt-6 pt-6 border-t border-blue-200 dark:border-blue-800">
             <Link
               to="/control-plane"
@@ -238,7 +238,7 @@ export default function Overview() {
         </div>
         <div className="p-6 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800">
           <div className="text-3xl font-bold text-blue-700 dark:text-blue-400 mb-1">
-            {strategy ? '1' : '0'}
+            {strategyScenario ? '1' : '0'}
           </div>
           <div className="text-sm font-medium text-blue-600 dark:text-blue-500">
             Active Scenarios

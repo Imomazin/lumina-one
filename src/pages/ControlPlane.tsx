@@ -3,7 +3,7 @@ import { useLumina } from '../context/LuminaContext'
 import { PageContainer } from '../core/layout'
 
 export default function ControlPlane() {
-  const { scenarioId, strategy, risk, finance } = useLumina()
+  const { strategyScenario, risk, finance } = useLumina()
 
   return (
     <PageContainer maxWidth="wide">
@@ -26,9 +26,9 @@ export default function ControlPlane() {
       <div className="mb-8 px-4 py-3 bg-purple-50 dark:bg-purple-900/20 rounded-xl border border-purple-200 dark:border-purple-800">
         <div className="flex items-center justify-between">
           <p className="text-sm text-purple-700 dark:text-purple-400">
-            Active Scenario: <span className="font-mono font-semibold">{scenarioId}</span>
+            Active Scenario: <span className="font-mono font-semibold">{strategyScenario?.id || "No Scenario"}</span>
           </p>
-          {strategy && (
+          {strategyScenario && (
             <div className="px-2.5 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-xs font-semibold text-green-700 dark:text-green-400 flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
               Live
@@ -38,14 +38,14 @@ export default function ControlPlane() {
       </div>
 
       {/* No Data State */}
-      {!strategy && (
+      {!strategyScenario && (
         <div className="p-12 text-center rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
           <AlertCircle className="w-16 h-16 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
             No Active Intelligence Flow
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-            The Control Plane will display live data from Strategy → Risk → Finance once you define a strategy.
+            The Control Plane will display live data from Strategy → Risk → Finance once you define a strategyScenario?.
           </p>
           <a
             href="/strategy"
@@ -57,7 +57,7 @@ export default function ControlPlane() {
       )}
 
       {/* Active Intelligence Flow */}
-      {strategy && (
+      {strategyScenario && (
         <div className="space-y-6">
           {/* Strategy Section */}
           <div className="p-6 rounded-lg bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800">
@@ -76,7 +76,7 @@ export default function ControlPlane() {
                   Strategic Objective
                 </p>
                 <p className="text-sm text-gray-900 dark:text-white font-medium">
-                  {strategy.objective}
+                  {strategyScenario?.objective}
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -85,7 +85,7 @@ export default function ControlPlane() {
                     Time Horizon
                   </p>
                   <p className="text-sm text-gray-900 dark:text-white font-medium">
-                    {strategy.timeHorizon} years
+                    {strategyScenario?.timeHorizon} years
                   </p>
                 </div>
                 <div className="p-3 rounded-lg bg-white dark:bg-gray-800">
@@ -93,7 +93,7 @@ export default function ControlPlane() {
                     Assumptions
                   </p>
                   <p className="text-sm text-gray-900 dark:text-white font-medium">
-                    {strategy.assumptions.length} defined
+                    {strategyScenario?.assumptions.length} defined
                   </p>
                 </div>
               </div>
@@ -102,7 +102,7 @@ export default function ControlPlane() {
                   Key Assumptions
                 </p>
                 <ul className="space-y-1">
-                  {strategy.assumptions.map((assumption, i) => (
+                  {strategyScenario?.assumptions.map((assumption, i) => (
                     <li key={i} className="text-sm text-gray-700 dark:text-gray-300 flex items-start gap-2">
                       <span className="text-blue-600 dark:text-blue-400">•</span>
                       <span>{assumption}</span>

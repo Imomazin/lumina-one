@@ -581,7 +581,7 @@ function CaseStudyModal({ study, onClose }: { study: CaseStudy | null; onClose: 
 }
 
 export function Dashboard() {
-  const { strategy, risk } = useLumina();
+  const { strategyScenario, risk } = useLumina();
   const [activeTab, setActiveTab] = useState<TabId>('overview');
   const [currentCaseIndex, setCurrentCaseIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -690,7 +690,7 @@ export function Dashboard() {
           </div>
 
           {/* Strategy-Derived Risks Section */}
-          {strategy && risk && (
+          {strategyScenario && risk && (
             <Card className="mb-6">
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -717,7 +717,7 @@ export function Dashboard() {
                     Strategy Context
                   </p>
                   <p className="text-sm text-blue-700 dark:text-blue-400">
-                    {strategy.objective} • {strategy.timeHorizon} year horizon
+                    {strategyScenario.objective} • {strategyScenario.timeHorizon} year horizon
                   </p>
                 </div>
                 {risk.exposureCategories.map((exposure, index) => (

@@ -35,7 +35,7 @@ export const moduleRegistry: ModuleDefinition[] = [
     icon: TrendingUp,
     description: 'Strategic Planning & Execution',
     enabled: true,
-    isDemo: true, // Currently concept preview with mock data
+    // Real domain state with localStorage persistence
     component: lazy(() => import('./strategy').then(m => ({ default: m.StrategyModule }))),
   },
   {

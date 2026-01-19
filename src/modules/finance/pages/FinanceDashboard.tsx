@@ -3,7 +3,7 @@ import { useLumina } from '../../../context/LuminaContext'
 import { PageShell } from '../../../components/ui'
 
 export function FinanceDashboard() {
-  const { strategy, risk, finance, scenarioId } = useLumina()
+  const { strategyScenario, risk, finance } = useLumina()
 
   return (
     <PageShell>
@@ -29,20 +29,22 @@ export function FinanceDashboard() {
         </div>
 
         {/* Scenario ID */}
-        <div className="mb-8 px-4 py-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-200 dark:border-emerald-800 flex items-center justify-between">
-          <p className="text-sm text-emerald-700 dark:text-emerald-400">
-            Active Scenario: <span className="font-mono font-semibold">{scenarioId}</span>
-          </p>
-          {finance && (
-            <div className="px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-xs font-semibold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Live
-            </div>
-          )}
-        </div>
+        {strategyScenario && (
+          <div className="mb-8 px-4 py-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-200 dark:border-emerald-800 flex items-center justify-between">
+            <p className="text-sm text-emerald-700 dark:text-emerald-400">
+              Active Scenario: <span className="font-mono font-semibold">{strategyScenario.name}</span>
+            </p>
+            {finance && (
+              <div className="px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-xs font-semibold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Live
+              </div>
+            )}
+          </div>
+        )}
 
         {/* No Data State */}
-        {(!strategy || !risk || !finance) && (
+        {(!strategyScenario || !risk || !finance) && (
           <div className="p-8 text-center rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
             <AlertCircle className="w-12 h-12 text-blue-500 dark:text-blue-400 mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-300 mb-2">
@@ -58,7 +60,7 @@ export function FinanceDashboard() {
         )}
 
         {/* Active Finance Analysis */}
-        {strategy && risk && finance && (
+        {strategyScenario && risk && finance && (
           <div className="space-y-6">
             {/* Strategy Context */}
             <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
@@ -70,14 +72,14 @@ export function FinanceDashboard() {
                   <TrendingUp className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <span className="font-medium text-blue-800 dark:text-blue-300">Objective:</span>
-                    <span className="text-blue-700 dark:text-blue-400 ml-2">{strategy.objective}</span>
+                    <span className="text-blue-700 dark:text-blue-400 ml-2">{strategyScenario?.objective}</span>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <span className="font-medium text-blue-800 dark:text-blue-300">Time Horizon:</span>
-                    <span className="text-blue-700 dark:text-blue-400 ml-2">{strategy.timeHorizon} years</span>
+                    <span className="text-blue-700 dark:text-blue-400 ml-2">{strategyScenario?.timeHorizon} years</span>
                   </div>
                 </div>
               </div>
@@ -145,7 +147,7 @@ export function FinanceDashboard() {
                   </span>
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Based on {risk.overallExposure.toLowerCase()} risk exposure and {strategy.timeHorizon}-year strategic horizon
+                  Based on {risk.overallExposure.toLowerCase()} risk exposure and {strategyScenario?.timeHorizon}-year strategic horizon
                 </p>
               </div>
 
@@ -189,7 +191,7 @@ export function FinanceDashboard() {
                 How This Was Derived
               </h4>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Finance automatically analyzes Strategy time horizon ({strategy.timeHorizon} years) and
+                Finance automatically analyzes Strategy time horizon ({strategyScenario?.timeHorizon} years) and
                 Risk exposure level ({risk.overallExposure}) to determine financial pressure, capital
                 requirements, and liquidity implications. This is a live, reactive calculation that updates
                 whenever Strategy or Risk changes.

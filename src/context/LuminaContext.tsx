@@ -1,11 +1,6 @@
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react'
-
-// Strategy state
-export interface StrategyState {
-  objective: string
-  timeHorizon: string
-  assumptions: string[]
-}
+import { createContext, useContext, useState, useCallback, ReactNode, useEffect } from 'react'
+import { StrategyScenario, StrategyScenarioInput, createStrategyScenario, updateStrategyScenario } from '../domain/strategy'
+import { loadStrategyScenario, saveStrategyScenario, clearStrategyScenario } from '../stores/strategyStore'
 
 // Risk state (derived from Strategy)
 export interface RiskState {
@@ -25,29 +20,39 @@ export interface FinanceState {
 }
 
 interface LuminaContextState {
-  scenarioId: string
-  strategy: StrategyState | null
+  // Real domain state
+  strategyScenario: StrategyScenario | null
+
+  // Derived states
   risk: RiskState | null
   finance: FinanceState | null
-  updateStrategy: (strategy: StrategyState) => void
-  updateRisk: (risk: RiskState) => void
-  updateFinance: (finance: FinanceState) => void
-  resetScenario: () => void
+
+  // Actions
+  createStrategy: (input: StrategyScenarioInput) => void
+  updateStrategy: (updates: Partial<StrategyScenarioInput>) => void
+  deleteStrategy: () => void
 }
 
 const LuminaContext = createContext<LuminaContextState | undefined>(undefined)
 
 export function LuminaProvider({ children }: { children: ReactNode }) {
-  const [scenarioId, setScenarioId] = useState<string>(() => `scenario-${Date.now()}`)
-  const [strategy, setStrategy] = useState<StrategyState | null>(null)
+  const [strategyScenario, setStrategyScenario] = useState<StrategyScenario | null>(null)
   const [risk, setRisk] = useState<RiskState | null>(null)
   const [finance, setFinance] = useState<FinanceState | null>(null)
 
-  const updateStrategy = useCallback((newStrategy: StrategyState) => {
-    setStrategy(newStrategy)
+  // Load strategy from localStorage on mount
+  useEffect(() => {
+    const loaded = loadStrategyScenario()
+    if (loaded) {
+      setStrategyScenario(loaded)
+      deriveRiskAndFinance(loaded)
+    }
+  }, [])
 
-    // Auto-derive Risk from Strategy
-    const exposureCategories = newStrategy.assumptions.map((assumption, index) => ({
+  // Derive Risk and Finance from Strategy
+  const deriveRiskAndFinance = useCallback((scenario: StrategyScenario) => {
+    // Auto-derive Risk from Strategy assumptions
+    const exposureCategories = scenario.assumptions.map((assumption, index) => ({
       category: `Risk ${index + 1}: ${assumption.substring(0, 30)}...`,
       level: (assumption.toLowerCase().includes('aggressive') || assumption.toLowerCase().includes('uncertain'))
         ? 'High' as const
@@ -69,7 +74,7 @@ export function LuminaProvider({ children }: { children: ReactNode }) {
     setRisk(derivedRisk)
 
     // Auto-derive Finance from Strategy + Risk
-    const horizonYears = parseInt(newStrategy.timeHorizon) || 1
+    const horizonYears = scenario.timeHorizon
     let pressureLevel: 'Low' | 'Medium' | 'High' = 'Low'
     let capitalBufferRequirement = '5-10% of capital'
     const implications: string[] = []
@@ -101,32 +106,38 @@ export function LuminaProvider({ children }: { children: ReactNode }) {
     setFinance(derivedFinance)
   }, [])
 
-  const updateRisk = useCallback((newRisk: RiskState) => {
-    setRisk(newRisk)
-  }, [])
+  const createStrategy = useCallback((input: StrategyScenarioInput) => {
+    const newScenario = createStrategyScenario(input)
+    setStrategyScenario(newScenario)
+    saveStrategyScenario(newScenario)
+    deriveRiskAndFinance(newScenario)
+  }, [deriveRiskAndFinance])
 
-  const updateFinance = useCallback((newFinance: FinanceState) => {
-    setFinance(newFinance)
-  }, [])
+  const updateStrategy = useCallback((updates: Partial<StrategyScenarioInput>) => {
+    if (!strategyScenario) return
 
-  const resetScenario = useCallback(() => {
-    setScenarioId(`scenario-${Date.now()}`)
-    setStrategy(null)
+    const updated = updateStrategyScenario(strategyScenario, updates)
+    setStrategyScenario(updated)
+    saveStrategyScenario(updated)
+    deriveRiskAndFinance(updated)
+  }, [strategyScenario, deriveRiskAndFinance])
+
+  const deleteStrategy = useCallback(() => {
+    setStrategyScenario(null)
     setRisk(null)
     setFinance(null)
+    clearStrategyScenario()
   }, [])
 
   return (
     <LuminaContext.Provider
       value={{
-        scenarioId,
-        strategy,
+        strategyScenario,
         risk,
         finance,
+        createStrategy,
         updateStrategy,
-        updateRisk,
-        updateFinance,
-        resetScenario,
+        deleteStrategy,
       }}
     >
       {children}
