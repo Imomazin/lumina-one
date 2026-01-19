@@ -8,25 +8,32 @@ export default function ControlPlane() {
   return (
     <PageContainer maxWidth="wide">
       {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <Activity className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Control Plane</h1>
+      <div className="mb-10">
+        <div className="flex items-center gap-4 mb-3">
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-sm">
+            <Activity className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Control Plane</h1>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              Real-time intelligence flow visualization
+            </p>
+          </div>
         </div>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          Live intelligence flow across all modules
-        </p>
       </div>
 
       {/* Scenario ID */}
-      <div className="mb-6 px-4 py-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+      <div className="mb-8 px-4 py-3 bg-purple-50 dark:bg-purple-900/20 rounded-xl border border-purple-200 dark:border-purple-800">
         <div className="flex items-center justify-between">
-          <p className="text-sm text-blue-700 dark:text-blue-400">
+          <p className="text-sm text-purple-700 dark:text-purple-400">
             Active Scenario: <span className="font-mono font-semibold">{scenarioId}</span>
           </p>
-          <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
-            Live
-          </span>
+          {strategy && (
+            <div className="px-2.5 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-xs font-semibold text-green-700 dark:text-green-400 flex items-center gap-1.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              Live
+            </div>
+          )}
         </div>
       </div>
 

@@ -9,23 +9,29 @@ export function FinanceDashboard() {
     <PageContainer>
       <div className="max-w-4xl">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/20">
-            <DollarSign className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+        <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 shadow-sm">
+            <DollarSign className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Finance</h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Financial implications derived from strategy and risk
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Finance</h1>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              Financial implications auto-derived from strategy and risk
             </p>
           </div>
         </div>
 
         {/* Scenario ID */}
-        <div className="mb-6 px-4 py-2 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            Scenario: <span className="font-mono text-gray-700 dark:text-gray-300">{scenarioId}</span>
+        <div className="mb-8 px-4 py-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-200 dark:border-emerald-800 flex items-center justify-between">
+          <p className="text-sm text-emerald-700 dark:text-emerald-400">
+            Active Scenario: <span className="font-mono font-semibold">{scenarioId}</span>
           </p>
+          {finance && (
+            <div className="px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-xs font-semibold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Live
+            </div>
+          )}
         </div>
 
         {/* No Data State */}

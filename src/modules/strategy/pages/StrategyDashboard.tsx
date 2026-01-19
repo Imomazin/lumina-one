@@ -53,25 +53,29 @@ export function StrategyDashboard() {
 
   return (
     <PageContainer>
-      <div className="max-w-3xl">
+      <div className="max-w-4xl">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/20">
-            <TrendingUp className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+        <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-sm">
+            <TrendingUp className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Strategy</h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Define strategic objectives and assumptions
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Strategy</h1>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              Define strategic objectives and key assumptions
             </p>
           </div>
         </div>
 
         {/* Scenario ID */}
-        <div className="mb-6 px-4 py-2 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            Scenario: <span className="font-mono text-gray-700 dark:text-gray-300">{scenarioId}</span>
+        <div className="mb-8 px-4 py-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800 flex items-center justify-between">
+          <p className="text-sm text-blue-700 dark:text-blue-400">
+            Active Scenario: <span className="font-mono font-semibold">{scenarioId}</span>
           </p>
+          <div className="px-2.5 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-xs font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+            Live
+          </div>
         </div>
 
         {/* Form */}
