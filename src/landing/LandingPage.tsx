@@ -1,10 +1,31 @@
-import { ArrowRight, Target, Shield, DollarSign } from 'lucide-react'
+import { ArrowRight, Target, Shield, DollarSign, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useStrategyStore } from '../store'
 import { ROUTES } from '../routes'
 
 export function LandingPage() {
   const navigate = useNavigate()
+  const createScenario = useStrategyStore(state => state.createScenario)
+
+  const handleTryDemo = () => {
+    // Inject real demo scenario into state
+    createScenario({
+      name: 'Demo: Asia-Pacific Expansion',
+      objective: 'Establish market leadership in APAC region through strategic partnerships and localized product offerings',
+      timeHorizon: 5,
+      assumptions: [
+        'APAC market will grow 12% annually over next 5 years',
+        'Strategic partnerships reduce market entry costs by 40%',
+        'Localized products increase customer acquisition by 60%',
+        'Competitive landscape remains stable with 3 major players',
+        'Regulatory environment favorable for foreign investment'
+      ]
+    })
+
+    // Navigate to app - Risk and Finance will auto-derive
+    navigate(ROUTES.app.overview)
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
@@ -41,10 +62,11 @@ export function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
-              onClick={() => navigate(ROUTES.app.overview)}
-              className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center gap-2 group"
+              onClick={handleTryDemo}
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all flex items-center gap-2 group"
             >
-              Try Demo
+              <Sparkles className="w-5 h-5" />
+              Try Live Demo
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <button
@@ -217,10 +239,11 @@ export function LandingPage() {
             Experience the platform where strategy, risk, and finance become one.
           </p>
           <button
-            onClick={() => navigate(ROUTES.app.overview)}
-            className="px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center gap-2 mx-auto group"
+            onClick={handleTryDemo}
+            className="px-10 py-5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white text-lg font-semibold rounded-xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all flex items-center gap-2 mx-auto group"
           >
-            Get Started
+            <Sparkles className="w-6 h-6" />
+            Try Live Demo
             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </button>
         </motion.div>
