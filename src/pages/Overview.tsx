@@ -45,10 +45,16 @@ export default function Overview() {
                 <div className="p-3 rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-800 group-hover:from-blue-50 group-hover:to-indigo-50 dark:group-hover:from-blue-900/20 dark:group-hover:to-indigo-900/20 transition-all">
                   <Icon className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
                 </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-50 dark:bg-green-900/20 text-xs font-medium text-green-700 dark:text-green-400">
-                  <StatusIcon className="w-3.5 h-3.5" />
-                  Active
-                </div>
+                {module.isDemo ? (
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-900/20 text-xs font-medium text-amber-700 dark:text-amber-400">
+                    Demo
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-50 dark:bg-green-900/20 text-xs font-medium text-green-700 dark:text-green-400">
+                    <StatusIcon className="w-3.5 h-3.5" />
+                    Active
+                  </div>
+                )}
               </div>
 
               {/* Content */}

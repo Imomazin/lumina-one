@@ -54,15 +54,22 @@ export function StrategyDashboard() {
   return (
     <PageShell>
       {/* Page Header */}
-      <div className="flex items-center gap-4">
-        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-sm">
-          <TrendingUp className="w-6 h-6 text-white" />
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-sm">
+            <TrendingUp className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Strategy</h1>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              Define strategic objectives and key assumptions
+            </p>
+          </div>
         </div>
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Strategy</h1>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-            Define strategic objectives and key assumptions
-          </p>
+        <div className="px-3 py-1.5 bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700 rounded-lg">
+          <span className="text-xs font-semibold text-amber-900 dark:text-amber-300">
+            DEMO / CONCEPT PREVIEW
+          </span>
         </div>
       </div>
 

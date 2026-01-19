@@ -9,6 +9,7 @@ export interface ModuleMetadata {
   icon: LucideIcon;
   description?: string;
   enabled: boolean;
+  isDemo?: boolean; // Marks module as demo/concept preview
 }
 
 export interface ModuleDefinition extends ModuleMetadata {
@@ -34,6 +35,7 @@ export const moduleRegistry: ModuleDefinition[] = [
     icon: TrendingUp,
     description: 'Strategic Planning & Execution',
     enabled: true,
+    isDemo: true, // Currently concept preview with mock data
     component: lazy(() => import('./strategy').then(m => ({ default: m.StrategyModule }))),
   },
   {
@@ -43,6 +45,7 @@ export const moduleRegistry: ModuleDefinition[] = [
     icon: DollarSign,
     description: 'Financial Intelligence & Analysis',
     enabled: true,
+    isDemo: true, // Currently concept preview with mock data
     component: lazy(() => import('./finance').then(m => ({ default: m.FinanceModule }))),
   },
 ];
