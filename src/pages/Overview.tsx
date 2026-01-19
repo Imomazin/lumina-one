@@ -1,110 +1,98 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, CheckCircle2, Clock } from 'lucide-react'
+import { CheckCircle2, Clock, ArrowRight } from 'lucide-react'
 import { getAllModules } from '../modules'
+import { PageContainer } from '../core/layout'
 
 export default function Overview() {
   const modules = getAllModules()
-
-  const getModuleStatus = (moduleId: string) => {
-    if (moduleId === 'risk') {
-      return { label: 'Operational', color: 'text-green-600 dark:text-green-400', icon: CheckCircle2 }
-    }
-    return { label: 'Coming Soon', color: 'text-blue-600 dark:text-blue-400', icon: Clock }
-  }
+  const activeCount = modules.filter(m => m.id === 'risk').length
+  const inDevCount = modules.length - activeCount
 
   return (
-    <div className="min-h-full bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Lumina One
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-2">
-            Unified Intelligence Control Plane
-          </p>
-          <p className="text-sm text-gray-500 dark:text-gray-500">
-            Strategy, Risk & Financial Intelligence in one platform
-          </p>
-        </div>
+    <PageContainer maxWidth="wide">
+      {/* System Header */}
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+          System Overview
+        </h1>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          Intelligence modules • {activeCount} operational • {inDevCount} in development
+        </p>
+      </div>
 
-        {/* Module Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {modules.map((module) => {
-            const Icon = module.icon
-            const status = getModuleStatus(module.id)
-            const StatusIcon = status.icon
+      {/* Module Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {modules.map((module) => {
+          const Icon = module.icon
+          const isActive = module.id === 'risk'
+          const StatusIcon = isActive ? CheckCircle2 : Clock
 
-            return (
-              <Link
-                key={module.id}
-                to={module.baseRoute}
-                className="group relative bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-200 dark:border-gray-700 p-8 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-200 hover:shadow-xl"
-              >
-                {/* Module Icon */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="p-4 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    <Icon className="w-8 h-8" />
-                  </div>
-                  <div className={`flex items-center gap-2 text-sm font-medium ${status.color}`}>
-                    <StatusIcon className="w-4 h-4" />
-                    {status.label}
-                  </div>
+          return (
+            <Link
+              key={module.id}
+              to={module.baseRoute}
+              className="group p-6 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-gray-300 dark:hover:border-gray-700 transition-colors"
+            >
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
+                  <Icon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
                 </div>
-
-                {/* Module Info */}
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                  {module.label}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  {module.description}
-                </p>
-
-                {/* Action */}
-                <div className="flex items-center text-blue-600 dark:text-blue-400 font-medium group-hover:translate-x-1 transition-transform">
-                  {module.id === 'risk' ? 'Open module' : 'Learn more'}
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                <div className={`flex items-center gap-1.5 text-xs font-medium ${
+                  isActive
+                    ? 'text-green-700 dark:text-green-400'
+                    : 'text-blue-700 dark:text-blue-400'
+                }`}>
+                  <StatusIcon className="w-3.5 h-3.5" />
+                  {isActive ? 'Operational' : 'Coming Soon'}
                 </div>
-              </Link>
-            )
-          })}
-        </div>
+              </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-            <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-              {modules.filter(m => m.id === 'risk').length}
-            </div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">
-              Active Modules
-            </div>
+              {/* Content */}
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                {module.label}
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                {module.description}
+              </p>
+
+              {/* Action */}
+              <div className="flex items-center text-sm text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                {isActive ? 'Open module' : 'View status'}
+                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            </Link>
+          )
+        })}
+      </div>
+
+      {/* System Stats */}
+      <div className="mt-8 grid grid-cols-3 gap-6">
+        <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-800">
+          <div className="text-2xl font-bold text-gray-900 dark:text-white">
+            {activeCount}
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-            <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-              {modules.filter(m => m.id !== 'risk').length}
-            </div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">
-              In Development
-            </div>
-          </div>
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-            <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-              {modules.length}
-            </div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">
-              Total Intelligence Modules
-            </div>
+          <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+            Active
           </div>
         </div>
-
-        {/* Footer Note */}
-        <div className="text-center mt-12">
-          <p className="text-sm text-gray-500 dark:text-gray-500">
-            Select a module from the sidebar or cards above to get started
-          </p>
+        <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-800">
+          <div className="text-2xl font-bold text-gray-900 dark:text-white">
+            {inDevCount}
+          </div>
+          <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+            In Development
+          </div>
+        </div>
+        <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-800">
+          <div className="text-2xl font-bold text-gray-900 dark:text-white">
+            {modules.length}
+          </div>
+          <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+            Total Modules
+          </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   )
 }
