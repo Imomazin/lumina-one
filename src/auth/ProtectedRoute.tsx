@@ -1,5 +1,4 @@
 import { ReactNode } from 'react'
-import { Navigate } from 'react-router-dom'
 import { useAuth } from './AuthContext'
 import { Loader2 } from 'lucide-react'
 
@@ -7,8 +6,19 @@ interface ProtectedRouteProps {
   children: ReactNode
 }
 
+/**
+ * ProtectedRoute - Allows demo access without authentication
+ *
+ * Previously: Redirected to /login if not authenticated
+ * Now: Allows access in demo mode (read-only)
+ *
+ * This enables:
+ * - Landing page CTAs to work without auth
+ * - Users can explore the platform before signing in
+ * - Demo mode indicator shows when not authenticated
+ */
 export function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { user, loading } = useAuth()
+  const { loading } = useAuth()
 
   if (loading) {
     return (
@@ -21,9 +31,6 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
     )
   }
 
-  if (!user) {
-    return <Navigate to="/login" replace />
-  }
-
+  // Allow access regardless of auth state (demo mode)
   return <>{children}</>
 }

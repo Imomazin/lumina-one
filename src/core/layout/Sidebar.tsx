@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { LayoutGrid, Activity } from 'lucide-react'
 import { getAllModules } from '../../modules'
+import { ROUTES } from '../../routes'
 
 export default function Sidebar() {
   const modules = getAllModules()
@@ -25,7 +26,7 @@ export default function Sidebar() {
           {/* System Section */}
           <div className="space-y-1">
             <NavLink
-              to="/app/overview"
+              to={ROUTES.app.overview}
               end
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
@@ -40,7 +41,7 @@ export default function Sidebar() {
             </NavLink>
 
             <NavLink
-              to="/app/control-plane"
+              to={ROUTES.app.controlPlane}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                   isActive

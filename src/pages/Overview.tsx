@@ -37,7 +37,7 @@ export default function Overview() {
           return (
             <Link
               key={module.id}
-              to={module.baseRoute}
+              to={`/app${module.baseRoute}`}
               className="group relative p-6 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-lg transition-all duration-200"
             >
               {/* Header */}

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Mail, ArrowLeft, Loader2 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from './AuthContext'
+import { ROUTES } from '../routes'
 
 export function LoginPage() {
   const navigate = useNavigate()
@@ -33,7 +34,7 @@ export function LoginPage() {
       <header className="border-b border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate(ROUTES.landing)}
             className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
