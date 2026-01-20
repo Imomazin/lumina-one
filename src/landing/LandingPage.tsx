@@ -1,8 +1,9 @@
-import { ArrowRight, Target, Shield, DollarSign, Sparkles } from 'lucide-react'
+import { ArrowRight, Target, Shield, DollarSign, Sparkles, CheckCircle, Lock, Activity, FileText, BarChart3, Zap } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useStrategyStore } from '../store'
 import { ROUTES } from '../routes'
+import { getBuildStamp } from '../utils/buildInfo'
 
 export function LandingPage() {
   const navigate = useNavigate()
@@ -28,237 +29,375 @@ export function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <div className="min-h-screen bg-slate-900">
       {/* Header */}
-      <header className="border-b border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-slate-800 bg-slate-900/95 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600" />
-            <span className="text-xl font-bold text-slate-900 dark:text-white">Lumina One</span>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600 shadow-lg" />
+            <div>
+              <span className="text-2xl font-bold text-white">Lumina One</span>
+              <div className="text-xs text-slate-400 font-mono">{getBuildStamp()}</div>
+            </div>
           </div>
           <button
             onClick={() => navigate(ROUTES.login)}
-            className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+            className="px-6 py-2.5 text-sm font-semibold text-white hover:text-blue-400 transition-colors"
           >
             Sign In
           </button>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-6 py-20 md:py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-4xl mx-auto"
+      {/* Hero Section with Background Image */}
+      <section className="relative overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
         >
-          <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
-            Unified Strategy, Risk &<br />Financial Intelligence
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed">
-            Where strategy assumptions automatically flow into risk exposures and financial projections.
-            One platform. One truth. Continuous intelligence.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={handleTryDemo}
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all flex items-center gap-2 group"
-            >
-              <Sparkles className="w-5 h-5" />
-              Try Live Demo
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button
-              onClick={() => navigate(ROUTES.login)}
-              className="px-8 py-4 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-900 dark:text-white font-semibold rounded-lg hover:border-slate-400 dark:hover:border-slate-500 transition-colors"
-            >
-              Sign In
-            </button>
-          </div>
-        </motion.div>
-      </section>
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-blue-900/90 to-indigo-900/95" />
+        </div>
 
-      {/* 3 Module Cards */}
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Strategy Card */}
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 md:py-40">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            onClick={() => navigate(ROUTES.app.strategy)}
-            className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all hover:shadow-xl group cursor-pointer"
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl"
           >
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <Target className="w-6 h-6 text-white" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/20 backdrop-blur-sm mb-6">
+              <Sparkles className="w-4 h-4 text-blue-400" />
+              <span className="text-sm font-semibold text-blue-300">Enterprise Intelligence Platform</span>
             </div>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
-              Lumina S
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400 mb-4">
-              Define strategic objectives, time horizons, and key assumptions. Your strategy becomes the source of truth.
-            </p>
-            <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
-              <li className="flex items-start gap-2">
-                <span className="text-blue-500 mt-0.5">→</span>
-                <span>Strategic objectives & KPIs</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-blue-500 mt-0.5">→</span>
-                <span>Growth assumptions</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-blue-500 mt-0.5">→</span>
-                <span>Time horizon planning</span>
-              </li>
-            </ul>
-          </motion.div>
 
-          {/* Risk Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            onClick={() => navigate(ROUTES.app.risk)}
-            className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 hover:border-amber-300 dark:hover:border-amber-600 transition-all hover:shadow-xl group cursor-pointer"
-          >
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <Shield className="w-6 h-6 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
-              Lumina R
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400 mb-4">
-              Automatically derive risk exposures from strategy. See what could go wrong before it does.
-            </p>
-            <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
-              <li className="flex items-start gap-2">
-                <span className="text-amber-500 mt-0.5">→</span>
-                <span>Derived risk exposures</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-500 mt-0.5">→</span>
-                <span>Key Risk Indicators (KRIs)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-500 mt-0.5">→</span>
-                <span>Risk appetite monitoring</span>
-              </li>
-            </ul>
-          </motion.div>
+            <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+              Unified Strategy, Risk &<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+                Financial Intelligence
+              </span>
+            </h1>
 
-          {/* Finance Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            onClick={() => navigate(ROUTES.app.finance)}
-            className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 hover:border-emerald-300 dark:hover:border-emerald-600 transition-all hover:shadow-xl group cursor-pointer"
-          >
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <DollarSign className="w-6 h-6 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
-              Lumina F
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400 mb-4">
-              Financial projections that react to strategy changes in real-time. No more spreadsheet reconciliation.
+            <p className="text-xl md:text-2xl text-slate-300 mb-10 leading-relaxed max-w-3xl">
+              Where strategic assumptions automatically propagate into risk exposures and financial projections.
+              <span className="block mt-2 text-blue-300 font-semibold">One platform. One truth. Continuous intelligence.</span>
             </p>
-            <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
-              <li className="flex items-start gap-2">
-                <span className="text-emerald-500 mt-0.5">→</span>
-                <span>Auto-generated projections</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-emerald-500 mt-0.5">→</span>
-                <span>Capital requirements</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-emerald-500 mt-0.5">→</span>
-                <span>Liquidity analysis</span>
-              </li>
-            </ul>
+
+            <div className="flex flex-col sm:flex-row items-start gap-4">
+              <button
+                onClick={handleTryDemo}
+                className="group px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:via-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-2xl hover:shadow-blue-500/50 hover:scale-105 transition-all flex items-center gap-3"
+              >
+                <Sparkles className="w-5 h-5" />
+                Try Live Demo
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              <button
+                onClick={() => navigate(ROUTES.login)}
+                className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm border-2 border-white/20 hover:border-white/40 text-white font-bold rounded-xl transition-all"
+              >
+                Sign In
+              </button>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Visual Flow Diagram */}
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="bg-gradient-to-br from-slate-100 to-blue-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-12 border border-slate-200 dark:border-slate-700"
-        >
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">
-            Intelligence Flow
-          </h2>
-          <div className="flex items-center justify-center gap-4 flex-wrap">
-            <div className="flex items-center gap-4">
-              <div className="text-center">
-                <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-2">
-                  <Target className="w-10 h-10 text-white" />
-                </div>
-                <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Strategy</p>
-              </div>
-              <ArrowRight className="w-8 h-8 text-slate-400" />
-              <div className="text-center">
-                <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mb-2">
-                  <Shield className="w-10 h-10 text-white" />
-                </div>
-                <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Risk</p>
-              </div>
-              <ArrowRight className="w-8 h-8 text-slate-400" />
-              <div className="text-center">
-                <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center mb-2">
-                  <DollarSign className="w-10 h-10 text-white" />
-                </div>
-                <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Finance</p>
-              </div>
+      {/* Enterprise Value Pillars */}
+      <section className="bg-slate-950 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Enterprise-Grade Intelligence
+            </h2>
+            <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+              Built for organizations that demand governance, traceability, and auditability
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Lock,
+                title: 'Governance',
+                description: 'Role-based access control, approval workflows, and compliance tracking ensure enterprise security standards.',
+                gradient: 'from-blue-500 to-indigo-600'
+              },
+              {
+                icon: Activity,
+                title: 'Traceability',
+                description: 'Every assumption, exposure, and projection is linked to its source. Full audit trail from strategy to finance.',
+                gradient: 'from-indigo-500 to-purple-600'
+              },
+              {
+                icon: FileText,
+                title: 'Auditability',
+                description: 'Timestamped changes, version history, and derivation logic make compliance reviews effortless.',
+                gradient: 'from-purple-500 to-pink-600'
+              }
+            ].map((pillar, idx) => {
+              const Icon = pillar.icon
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="group p-8 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-slate-600 transition-all hover:scale-105"
+                >
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${pillar.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
+                    <Icon className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-3">{pillar.title}</h3>
+                  <p className="text-slate-400 leading-relaxed">{pillar.description}</p>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* How Lumina One Works */}
+      <section className="bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              How Lumina One Works
+            </h2>
+            <p className="text-xl text-blue-200 max-w-3xl mx-auto">
+              Intelligence flows automatically from strategy through risk to finance
+            </p>
+          </motion.div>
+
+          {/* Flow Visualization */}
+          <div className="relative">
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  step: '01',
+                  icon: Target,
+                  title: 'Lumina S',
+                  subtitle: 'Strategy',
+                  description: 'Define strategic objectives, time horizons, and key assumptions. Your strategy becomes the authoritative source of truth.',
+                  features: ['Strategic objectives', 'Market assumptions', 'Time horizon planning'],
+                  gradient: 'from-blue-500 to-cyan-600'
+                },
+                {
+                  step: '02',
+                  icon: Shield,
+                  title: 'Lumina R',
+                  subtitle: 'Risk',
+                  description: 'Risk exposures automatically derive from strategic assumptions. No manual input required.',
+                  features: ['Auto-derived exposures', 'Likelihood & impact', 'Mitigation tracking'],
+                  gradient: 'from-purple-500 to-indigo-600'
+                },
+                {
+                  step: '03',
+                  icon: DollarSign,
+                  title: 'Lumina F',
+                  subtitle: 'Finance',
+                  description: 'Financial projections react to strategy and risk in real-time. No spreadsheet reconciliation.',
+                  features: ['Auto-generated projections', 'Capital requirements', 'Sensitivity analysis'],
+                  gradient: 'from-emerald-500 to-green-600'
+                }
+              ].map((module, idx) => {
+                const Icon = module.icon
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.15 }}
+                    className="relative"
+                  >
+                    {/* Connector Arrow */}
+                    {idx < 2 && (
+                      <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
+                        <ArrowRight className="w-8 h-8 text-blue-400" />
+                      </div>
+                    )}
+
+                    <div className="relative p-8 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 hover:border-blue-500/50 transition-all group">
+                      {/* Step Number */}
+                      <div className="absolute -top-4 -left-4 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center font-bold text-white shadow-lg">
+                        {module.step}
+                      </div>
+
+                      {/* Icon */}
+                      <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${module.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-xl`}>
+                        <Icon className="w-8 h-8 text-white" />
+                      </div>
+
+                      <h3 className="text-2xl font-bold text-white mb-1">{module.title}</h3>
+                      <p className="text-blue-300 text-sm font-semibold mb-4">{module.subtitle}</p>
+                      <p className="text-slate-300 mb-6 leading-relaxed">{module.description}</p>
+
+                      <ul className="space-y-2">
+                        {module.features.map((feature, fidx) => (
+                          <li key={fidx} className="flex items-center gap-2 text-sm text-slate-400">
+                            <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                )
+              })}
             </div>
           </div>
-          <p className="text-center text-slate-600 dark:text-slate-400 mt-8 max-w-2xl mx-auto">
-            Define your strategy once. Watch as risk exposures and financial projections update automatically.
-            No manual reconciliation. No version conflicts. One source of truth.
-          </p>
-        </motion.div>
+
+          {/* Key Insight */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16 p-8 rounded-2xl bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-400/30 backdrop-blur-sm"
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center flex-shrink-0">
+                <Zap className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-white mb-2">Real-Time Intelligence Propagation</h4>
+                <p className="text-blue-100 leading-relaxed">
+                  Change a strategic assumption and watch risk exposures and financial projections update instantly.
+                  No manual reconciliation. No version conflicts. One source of truth flowing through your entire organization.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Feature Highlights */}
+      <section className="bg-slate-950 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Built for Decision Makers
+            </h2>
+            <p className="text-xl text-slate-400">
+              Features that matter for strategic planning
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: Target, title: 'Scenario Planning', description: 'Model multiple futures' },
+              { icon: BarChart3, title: 'Live Dashboards', description: 'Real-time insights' },
+              { icon: Lock, title: 'Access Control', description: 'Role-based security' },
+              { icon: FileText, title: 'Audit Trails', description: 'Full traceability' },
+            ].map((feature, idx) => {
+              const Icon = feature.icon
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.05 }}
+                  className="p-6 rounded-xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 hover:bg-slate-800 transition-all group"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <Icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="text-lg font-bold text-white mb-2">{feature.title}</h4>
+                  <p className="text-sm text-slate-400">{feature.description}</p>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
       </section>
 
       {/* Final CTA */}
-      <section className="max-w-7xl mx-auto px-6 py-20 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+      <section className="relative overflow-hidden py-24">
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
         >
-          <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-6">
-            Ready to unify your intelligence?
-          </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-8">
-            Experience the platform where strategy, risk, and finance become one.
-          </p>
-          <button
-            onClick={handleTryDemo}
-            className="px-10 py-5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white text-lg font-semibold rounded-xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all flex items-center gap-2 mx-auto group"
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-indigo-900/90 to-purple-900/95" />
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
-            <Sparkles className="w-6 h-6" />
-            Try Live Demo
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </motion.div>
+            <h2 className="text-5xl font-bold text-white mb-6">
+              Ready to Unify Your Intelligence?
+            </h2>
+            <p className="text-xl text-blue-100 mb-10">
+              Experience the platform where strategy, risk, and finance become one continuous flow.
+            </p>
+            <button
+              onClick={handleTryDemo}
+              className="px-12 py-5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:via-indigo-500 hover:to-purple-500 text-white text-lg font-bold rounded-xl shadow-2xl hover:shadow-blue-500/50 hover:scale-105 transition-all flex items-center gap-3 mx-auto group"
+            >
+              <Sparkles className="w-6 h-6" />
+              Try Live Demo Now
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </motion.div>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600" />
-              <span className="font-semibold text-slate-900 dark:text-white">Lumina One</span>
+      <footer className="border-t border-slate-800 bg-slate-950 py-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600" />
+              <div>
+                <span className="text-xl font-bold text-white block">Lumina One</span>
+                <span className="text-xs text-slate-400">Unified Intelligence Platform</span>
+              </div>
             </div>
-            <p className="text-sm text-slate-600 dark:text-slate-400">
-              © 2026 Lumina One. Unified Intelligence Platform.
+
+            <div className="flex items-center gap-8 text-sm text-slate-400">
+              <span>Enterprise</span>
+              <span>•</span>
+              <span>Governance</span>
+              <span>•</span>
+              <span>Auditability</span>
+            </div>
+          </div>
+
+          <div className="pt-6 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-slate-400">
+              © 2026 Lumina One. All rights reserved.
+            </p>
+            <p className="text-xs text-slate-500 font-mono">
+              {getBuildStamp()}
             </p>
           </div>
         </div>
