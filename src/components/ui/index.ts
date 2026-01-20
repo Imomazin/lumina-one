@@ -9,6 +9,7 @@ export { Badge } from './Badge'
 export { StatCard } from './StatCard'
 export { EmptyState } from './EmptyState'
 export { Skeleton, SkeletonText, SkeletonCard } from './Skeleton'
+export { ActivityFeed } from './ActivityFeed'
 
 // Types
 export type { ButtonProps } from './Button'
@@ -16,3 +17,4 @@ export type { BadgeProps } from './Badge'
 export type { StatCardProps } from './StatCard'
 export type { EmptyStateProps } from './EmptyState'
 export type { SkeletonProps } from './Skeleton'
+export type { ActivityItem } from './ActivityFeed'

@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react'
 import { TrendingUp, Plus, X, Save } from 'lucide-react'
 import { useStrategyStore } from '../../../store'
-import { PageShell, Section, Card } from '../../../components/ui'
+import { PageShell, Section, Card, ActivityFeed } from '../../../components/ui'
 import { validateStrategyInput } from '../../../domain/strategy'
 
 export function StrategyDashboard() {
-  const { scenario: strategyScenario, createScenario: createStrategy, updateScenario: updateStrategy } = useStrategyStore()
+  const {
+    scenario: strategyScenario,
+    createScenario: createStrategy,
+    updateScenario: updateStrategy,
+    getRecentActivity
+  } = useStrategyStore()
 
   const [name, setName] = useState('')
   const [objective, setObjective] = useState('')
@@ -287,6 +292,17 @@ export function StrategyDashboard() {
           </Card>
         </Section>
       )}
+
+      {/* Activity Feed */}
+      <Section
+        title="Activity Log"
+        description="Recent changes and updates to strategy scenarios"
+      >
+        <ActivityFeed
+          activities={getRecentActivity(10)}
+          emptyMessage="No activity yet. Create a strategy scenario to get started."
+        />
+      </Section>
     </PageShell>
   )
 }

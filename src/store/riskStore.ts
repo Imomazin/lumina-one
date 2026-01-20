@@ -16,13 +16,23 @@ export interface RiskProfile {
   sourceScenarioId: string
 }
 
+export interface RiskActivityLog {
+  id: string
+  action: string
+  description: string
+  timestamp: string
+}
+
 interface RiskState {
   profile: RiskProfile | null
   isComputing: boolean
+  activityLog: RiskActivityLog[]
 
   // Actions
   computeRiskFromStrategy: () => void
   clearRisk: () => void
+  getRecentActivity: (limit?: number) => RiskActivityLog[]
+  logActivity: (action: string, description: string) => void
 }
 
 // Risk derivation logic
@@ -115,9 +125,26 @@ function deriveRiskProfile(strategyScenario: any): RiskProfile {
   }
 }
 
-export const useRiskStore = create<RiskState>()((set) => ({
+export const useRiskStore = create<RiskState>()((set, get) => ({
   profile: null,
   isComputing: false,
+  activityLog: [],
+
+  logActivity: (action: string, description: string) => {
+    const activity: RiskActivityLog = {
+      id: crypto.randomUUID(),
+      action,
+      description,
+      timestamp: new Date().toISOString(),
+    }
+    set((state) => ({
+      activityLog: [activity, ...state.activityLog].slice(0, 50), // Keep last 50 activities
+    }))
+  },
+
+  getRecentActivity: (limit = 10) => {
+    return get().activityLog.slice(0, limit)
+  },
 
   computeRiskFromStrategy: () => {
     const strategyScenario = useStrategyStore.getState().scenario
@@ -133,11 +160,20 @@ export const useRiskStore = create<RiskState>()((set) => ({
     setTimeout(() => {
       const profile = deriveRiskProfile(strategyScenario)
       set({ profile, isComputing: false })
+
+      get().logActivity(
+        'risk_computed',
+        `Risk auto-derived from strategy "${strategyScenario.name}" (${profile.overallExposure} exposure, ${profile.exposureCategories.length} categories)`
+      )
     }, 100)
   },
 
   clearRisk: () => {
     set({ profile: null, isComputing: false })
+    get().logActivity(
+      'risk_cleared',
+      'Risk profile cleared due to strategy removal'
+    )
   },
 }))
 

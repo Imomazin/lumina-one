@@ -11,13 +11,23 @@ export interface FinancialModel {
   sourceRiskProfileId: string
 }
 
+export interface FinanceActivityLog {
+  id: string
+  action: string
+  description: string
+  timestamp: string
+}
+
 interface FinanceState {
   model: FinancialModel | null
   isComputing: boolean
+  activityLog: FinanceActivityLog[]
 
   // Actions
   computeFinanceFromStrategyAndRisk: () => void
   clearFinance: () => void
+  getRecentActivity: (limit?: number) => FinanceActivityLog[]
+  logActivity: (action: string, description: string) => void
 }
 
 // Finance derivation logic
@@ -78,9 +88,26 @@ function deriveFinancialModel(strategyScenario: any, riskProfile: any): Financia
   }
 }
 
-export const useFinanceStore = create<FinanceState>()((set) => ({
+export const useFinanceStore = create<FinanceState>()((set, get) => ({
   model: null,
   isComputing: false,
+  activityLog: [],
+
+  logActivity: (action: string, description: string) => {
+    const activity: FinanceActivityLog = {
+      id: crypto.randomUUID(),
+      action,
+      description,
+      timestamp: new Date().toISOString(),
+    }
+    set((state) => ({
+      activityLog: [activity, ...state.activityLog].slice(0, 50), // Keep last 50 activities
+    }))
+  },
+
+  getRecentActivity: (limit = 10) => {
+    return get().activityLog.slice(0, limit)
+  },
 
   computeFinanceFromStrategyAndRisk: () => {
     const strategyScenario = useStrategyStore.getState().scenario
@@ -97,11 +124,20 @@ export const useFinanceStore = create<FinanceState>()((set) => ({
     setTimeout(() => {
       const model = deriveFinancialModel(strategyScenario, riskProfile)
       set({ model, isComputing: false })
+
+      get().logActivity(
+        'finance_computed',
+        `Finance auto-derived from strategy + risk (${model.pressureLevel} pressure, ${model.capitalBufferRequirement} buffer)`
+      )
     }, 100)
   },
 
   clearFinance: () => {
     set({ model: null, isComputing: false })
+    get().logActivity(
+      'finance_cleared',
+      'Financial model cleared due to upstream changes'
+    )
   },
 }))
 

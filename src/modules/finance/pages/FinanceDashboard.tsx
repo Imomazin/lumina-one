@@ -1,11 +1,12 @@
 import { DollarSign, TrendingUp, AlertCircle, CheckCircle, ArrowRight, Shield } from 'lucide-react'
 import { useStrategyStore, useRiskStore, useFinanceStore } from '../../../store'
-import { PageShell, Card } from '../../../components/ui'
+import { PageShell, Card, ActivityFeed, Section } from '../../../components/ui'
 
 export function FinanceDashboard() {
   const strategyScenario = useStrategyStore(state => state.scenario)
   const risk = useRiskStore(state => state.profile)
   const finance = useFinanceStore(state => state.model)
+  const getRecentActivity = useFinanceStore(state => state.getRecentActivity)
 
   return (
     <PageShell>
@@ -244,6 +245,19 @@ export function FinanceDashboard() {
               </p>
             </div>
           </div>
+        )}
+
+        {/* Activity Feed */}
+        {strategyScenario && risk && (
+          <Section
+            title="Activity Log"
+            description="Recent financial model computations and updates"
+          >
+            <ActivityFeed
+              activities={getRecentActivity(10)}
+              emptyMessage="No activity yet"
+            />
+          </Section>
         )}
       </div>
     </PageShell>
