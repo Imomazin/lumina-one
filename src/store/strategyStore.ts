@@ -1,6 +1,27 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+// Workflow step types from Lumina S
+export type WorkflowStep = 'discover' | 'diagnose' | 'design' | 'decide' | 'deliver'
+
+// Organization profile
+export interface OrganizationProfile {
+  name: string
+  industry: string
+  size: 'startup' | 'small' | 'medium' | 'large' | 'enterprise'
+  challenges: string[]
+  goals: string[]
+}
+
+// KPI tracking
+export interface KPI {
+  id: string
+  name: string
+  target: string
+  current?: string
+  unit?: string
+}
+
 export interface StrategyScenario {
   id: string
   name: string
@@ -10,6 +31,14 @@ export interface StrategyScenario {
   createdAt: string
   updatedAt: string
   status: 'draft' | 'active' | 'archived'
+
+  // Enhanced fields from Lumina S
+  currentStep?: WorkflowStep
+  completedSteps?: WorkflowStep[]
+  confidenceIndex?: number // 0-100
+  riskGauge?: number // 0-100
+  organization?: OrganizationProfile
+  kpis?: KPI[]
 }
 
 export interface StrategyInput {
@@ -44,6 +73,16 @@ interface StrategyState {
   getAllScenarios: () => StrategyScenario[]
   getRecentActivity: (limit?: number) => ActivityLog[]
   logActivity: (action: string, description: string, scenarioId?: string) => void
+
+  // Enhanced actions from Lumina S
+  updateOrganization: (org: OrganizationProfile) => void
+  addKPI: (kpi: Omit<KPI, 'id'>) => void
+  updateKPI: (id: string, updates: Partial<KPI>) => void
+  deleteKPI: (id: string) => void
+  setWorkflowStep: (step: WorkflowStep) => void
+  completeWorkflowStep: (step: WorkflowStep) => void
+  updateConfidenceIndex: (value: number) => void
+  updateRiskGauge: (value: number) => void
 }
 
 export const useStrategyStore = create<StrategyState>()(
@@ -180,6 +219,181 @@ export const useStrategyStore = create<StrategyState>()(
 
       getAllScenarios: () => {
         return get().scenarios
+      },
+
+      // Enhanced actions from Lumina S
+      updateOrganization: (org: OrganizationProfile) => {
+        set((state) => {
+          if (!state.scenario) return state
+
+          const updatedScenario = {
+            ...state.scenario,
+            organization: org,
+            updatedAt: new Date().toISOString(),
+          }
+
+          return {
+            scenario: updatedScenario,
+            scenarios: state.scenarios.map(s =>
+              s.id === state.scenario!.id ? updatedScenario : s
+            ),
+          }
+        })
+
+        get().logActivity('organization_updated', `Updated organization profile for "${org.name}"`)
+      },
+
+      addKPI: (kpi: Omit<KPI, 'id'>) => {
+        set((state) => {
+          if (!state.scenario) return state
+
+          const newKPI: KPI = {
+            ...kpi,
+            id: crypto.randomUUID(),
+          }
+
+          const updatedScenario = {
+            ...state.scenario,
+            kpis: [...(state.scenario.kpis || []), newKPI],
+            updatedAt: new Date().toISOString(),
+          }
+
+          return {
+            scenario: updatedScenario,
+            scenarios: state.scenarios.map(s =>
+              s.id === state.scenario!.id ? updatedScenario : s
+            ),
+          }
+        })
+
+        get().logActivity('kpi_added', `Added KPI "${kpi.name}"`)
+      },
+
+      updateKPI: (id: string, updates: Partial<KPI>) => {
+        set((state) => {
+          if (!state.scenario || !state.scenario.kpis) return state
+
+          const updatedScenario = {
+            ...state.scenario,
+            kpis: state.scenario.kpis.map(k =>
+              k.id === id ? { ...k, ...updates } : k
+            ),
+            updatedAt: new Date().toISOString(),
+          }
+
+          return {
+            scenario: updatedScenario,
+            scenarios: state.scenarios.map(s =>
+              s.id === state.scenario!.id ? updatedScenario : s
+            ),
+          }
+        })
+
+        get().logActivity('kpi_updated', `Updated KPI`)
+      },
+
+      deleteKPI: (id: string) => {
+        set((state) => {
+          if (!state.scenario || !state.scenario.kpis) return state
+
+          const updatedScenario = {
+            ...state.scenario,
+            kpis: state.scenario.kpis.filter(k => k.id !== id),
+            updatedAt: new Date().toISOString(),
+          }
+
+          return {
+            scenario: updatedScenario,
+            scenarios: state.scenarios.map(s =>
+              s.id === state.scenario!.id ? updatedScenario : s
+            ),
+          }
+        })
+
+        get().logActivity('kpi_deleted', `Deleted KPI`)
+      },
+
+      setWorkflowStep: (step: WorkflowStep) => {
+        set((state) => {
+          if (!state.scenario) return state
+
+          const updatedScenario = {
+            ...state.scenario,
+            currentStep: step,
+            updatedAt: new Date().toISOString(),
+          }
+
+          return {
+            scenario: updatedScenario,
+            scenarios: state.scenarios.map(s =>
+              s.id === state.scenario!.id ? updatedScenario : s
+            ),
+          }
+        })
+
+        get().logActivity('workflow_step_changed', `Moved to ${step} step`)
+      },
+
+      completeWorkflowStep: (step: WorkflowStep) => {
+        set((state) => {
+          if (!state.scenario) return state
+
+          const completedSteps = state.scenario.completedSteps || []
+          if (completedSteps.includes(step)) return state
+
+          const updatedScenario = {
+            ...state.scenario,
+            completedSteps: [...completedSteps, step],
+            updatedAt: new Date().toISOString(),
+          }
+
+          return {
+            scenario: updatedScenario,
+            scenarios: state.scenarios.map(s =>
+              s.id === state.scenario!.id ? updatedScenario : s
+            ),
+          }
+        })
+
+        get().logActivity('workflow_step_completed', `Completed ${step} step`)
+      },
+
+      updateConfidenceIndex: (value: number) => {
+        set((state) => {
+          if (!state.scenario) return state
+
+          const updatedScenario = {
+            ...state.scenario,
+            confidenceIndex: Math.min(100, Math.max(0, value)),
+            updatedAt: new Date().toISOString(),
+          }
+
+          return {
+            scenario: updatedScenario,
+            scenarios: state.scenarios.map(s =>
+              s.id === state.scenario!.id ? updatedScenario : s
+            ),
+          }
+        })
+      },
+
+      updateRiskGauge: (value: number) => {
+        set((state) => {
+          if (!state.scenario) return state
+
+          const updatedScenario = {
+            ...state.scenario,
+            riskGauge: Math.min(100, Math.max(0, value)),
+            updatedAt: new Date().toISOString(),
+          }
+
+          return {
+            scenario: updatedScenario,
+            scenarios: state.scenarios.map(s =>
+              s.id === state.scenario!.id ? updatedScenario : s
+            ),
+          }
+        })
       },
     }),
     {

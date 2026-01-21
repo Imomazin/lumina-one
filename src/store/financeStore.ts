@@ -2,6 +2,26 @@ import { create } from 'zustand'
 import { useStrategyStore } from './strategyStore'
 import { useRiskStore } from './riskStore'
 
+// Year-by-year financial projection
+export interface YearProjection {
+  year: number
+  revenue: number
+  costs: number
+  profit: number
+  margin: number
+  riskAdjustmentFactor: number
+}
+
+// Company financials from Lumina F
+export interface CompanyFinancials {
+  companyName?: string
+  industry?: string
+  currentRevenue: number
+  currentCOGS: number
+  currentOpex: number
+  yearsForward: number
+}
+
 export interface FinancialModel {
   pressureLevel: 'Low' | 'Medium' | 'High'
   capitalBufferRequirement: string
@@ -9,6 +29,10 @@ export interface FinancialModel {
   lastComputed: string
   sourceScenarioId: string
   sourceRiskProfileId: string
+
+  // Enhanced from Lumina F
+  projections?: YearProjection[]
+  companyFinancials?: CompanyFinancials
 }
 
 export interface FinanceActivityLog {
@@ -77,6 +101,43 @@ function deriveFinancialModel(strategyScenario: any, riskProfile: any): Financia
     }
   })
 
+  // Generate year-by-year projections
+  const projections: YearProjection[] = []
+  const baseRevenue = 100 // Starting at $100M
+  const revenueGrowthRate = 0.15 // 15% baseline growth
+  const costRatio = 0.7 // Costs are 70% of revenue
+
+  // Risk adjustment factor
+  const riskAdjustment = riskProfile.overallExposure === 'High' ? 0.75
+    : riskProfile.overallExposure === 'Medium' ? 0.90
+    : 1.0
+
+  for (let year = 1; year <= Math.min(strategyScenario.timeHorizon, 5); year++) {
+    const revenue = baseRevenue * Math.pow(1 + revenueGrowthRate, year - 1) * riskAdjustment
+    const costs = revenue * costRatio
+    const profit = revenue - costs
+    const margin = (profit / revenue) * 100
+
+    projections.push({
+      year,
+      revenue: Math.round(revenue * 10) / 10,
+      costs: Math.round(costs * 10) / 10,
+      profit: Math.round(profit * 10) / 10,
+      margin: Math.round(margin * 10) / 10,
+      riskAdjustmentFactor: riskAdjustment,
+    })
+  }
+
+  // Add company financials placeholder
+  const companyFinancials: CompanyFinancials = {
+    companyName: strategyScenario.organization?.name || strategyScenario.name,
+    industry: strategyScenario.organization?.industry || 'General',
+    currentRevenue: baseRevenue,
+    currentCOGS: baseRevenue * 0.5,
+    currentOpex: baseRevenue * 0.2,
+    yearsForward: Math.min(strategyScenario.timeHorizon, 5),
+  }
+
   // Limit to 5 implications
   return {
     pressureLevel,
@@ -85,6 +146,8 @@ function deriveFinancialModel(strategyScenario: any, riskProfile: any): Financia
     lastComputed: new Date().toISOString(),
     sourceScenarioId: strategyScenario.id,
     sourceRiskProfileId: riskProfile.lastComputed,
+    projections,
+    companyFinancials,
   }
 }
 
