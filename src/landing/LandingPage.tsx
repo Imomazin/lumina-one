@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useStrategyStore } from '../store'
 import { ROUTES } from '../routes'
-import { getBuildStamp } from '../utils/buildInfo'
+import { BuildStamp } from '../components/BuildStamp'
 
 export function LandingPage() {
   const navigate = useNavigate()
@@ -37,7 +37,7 @@ export function LandingPage() {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600 shadow-lg" />
             <div>
               <span className="text-2xl font-bold text-white">Lumina One</span>
-              <div className="text-xs text-slate-400 font-mono">{getBuildStamp()}</div>
+              <BuildStamp className="text-slate-400" />
             </div>
           </div>
           <button
@@ -396,9 +396,7 @@ export function LandingPage() {
             <p className="text-sm text-slate-400">
               © 2026 Lumina One. All rights reserved.
             </p>
-            <p className="text-xs text-slate-500 font-mono">
-              {getBuildStamp()}
-            </p>
+            <BuildStamp className="text-slate-500" />
           </div>
         </div>
       </footer>
