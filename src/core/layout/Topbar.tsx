@@ -1,13 +1,13 @@
 import { User, LogOut, LogIn } from 'lucide-react'
 import { useAuth } from '../../auth/AuthContext'
-import { useLumina } from '../../context/LuminaContext'
+import { useStrategyStore } from '../../store'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../routes'
 
 export default function Topbar() {
   const { user, signOut } = useAuth()
-  const { strategyScenario } = useLumina()
+  const strategyScenario = useStrategyStore(state => state.scenario)
   const [showMenu, setShowMenu] = useState(false)
   const navigate = useNavigate()
 

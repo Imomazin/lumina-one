@@ -7,18 +7,16 @@ import {
 } from '../components/dashboard';
 import { Card, CardHeader, CardTitle } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import { useLumina } from '../../../context/LuminaContext';
+import { useStrategyStore, useRiskStore } from '../../../store';
 import {
   Shield,
   AlertTriangle,
   CheckCircle2,
-  Clock,
   LayoutGrid,
   Activity,
   Calendar,
   Target,
   TrendingUp,
-  Users,
   FileText,
   Gauge,
   BarChart3,
@@ -435,15 +433,6 @@ const platformIntegrations = [
   },
 ];
 
-const recentActivities = [
-  { id: 1, type: 'risk_added', title: 'New risk identified', description: 'API Security Vulnerability added by Mike Johnson', time: '2 hours ago', icon: Shield },
-  { id: 2, type: 'status_change', title: 'Status updated', description: 'Supply Chain Disruption moved to "Mitigating"', time: '4 hours ago', icon: Activity },
-  { id: 3, type: 'comment', title: 'Comment added', description: 'Sarah Chen commented on Cybersecurity Breach', time: '6 hours ago', icon: FileText },
-  { id: 4, type: 'owner_assigned', title: 'Owner assigned', description: 'Lisa Wang assigned to Regulatory Compliance Gap', time: '1 day ago', icon: Users },
-  { id: 5, type: 'risk_resolved', title: 'Risk resolved', description: 'Legacy System Migration marked as resolved', time: '2 days ago', icon: CheckCircle2 },
-  { id: 6, type: 'due_date', title: 'Due date approaching', description: 'Cybersecurity Breach mitigation due in 3 days', time: '2 days ago', icon: Clock },
-];
-
 const mitigationActions = [
   { id: 1, risk: 'Cybersecurity Breach', action: 'Complete penetration testing', assignee: 'Mike Johnson', dueDate: 'Dec 18', progress: 75, status: 'in_progress' },
   { id: 2, risk: 'Supply Chain Disruption', action: 'Identify backup suppliers', assignee: 'Sarah Chen', dueDate: 'Dec 20', progress: 40, status: 'in_progress' },
@@ -581,7 +570,9 @@ function CaseStudyModal({ study, onClose }: { study: CaseStudy | null; onClose: 
 }
 
 export function Dashboard() {
-  const { strategyScenario, risk } = useLumina();
+  const strategyScenario = useStrategyStore(state => state.scenario);
+  const risk = useRiskStore(state => state.profile);
+  const getRiskActivity = useRiskStore(state => state.getRecentActivity);
   const [activeTab, setActiveTab] = useState<TabId>('overview');
   const [currentCaseIndex, setCurrentCaseIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -1465,21 +1456,42 @@ export function Dashboard() {
             <CardTitle>Recent Activity</CardTitle>
           </CardHeader>
           <div className="divide-y divide-slate-100 dark:divide-slate-700">
-            {recentActivities.map((activity) => {
-              const Icon = activity.icon;
-              return (
-                <div key={activity.id} className="py-4 flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400">
-                    <Icon className="w-5 h-5" />
+            {getRiskActivity(20).length === 0 ? (
+              <div className="py-12 text-center">
+                <Activity className="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-3" />
+                <p className="text-sm text-slate-500 dark:text-slate-400">No activity yet</p>
+              </div>
+            ) : (
+              getRiskActivity(20).map((activity) => {
+                const getRelativeTime = (timestamp: string) => {
+                  const now = new Date()
+                  const then = new Date(timestamp)
+                  const diffInSeconds = Math.floor((now.getTime() - then.getTime()) / 1000)
+
+                  if (diffInSeconds < 60) return 'Just now'
+                  if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`
+                  if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`
+                  return `${Math.floor(diffInSeconds / 86400)}d ago`
+                }
+
+                return (
+                  <div key={activity.id} className="py-4 flex items-start gap-4">
+                    <div className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400">
+                      <Shield className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-slate-900 dark:text-white capitalize">
+                        {activity.action.replace('_', ' ')}
+                      </p>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">{activity.description}</p>
+                    </div>
+                    <span className="text-xs text-slate-400 dark:text-slate-500 whitespace-nowrap">
+                      {getRelativeTime(activity.timestamp)}
+                    </span>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-medium text-slate-900 dark:text-white">{activity.title}</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">{activity.description}</p>
-                  </div>
-                  <span className="text-xs text-slate-400 dark:text-slate-500 whitespace-nowrap">{activity.time}</span>
-                </div>
-              );
-            })}
+                )
+              })
+            )}
           </div>
         </Card>
       )}
