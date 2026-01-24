@@ -1,6 +1,6 @@
 /**
- * ModuleCube - Translucent revolving 3D cube
- * Exact replica of Lumina S cube design with glass-morphism
+ * ModuleCube - 100% Transparent revolving 3D cube
+ * Very deep colors with high transparency matching Lumina S screenshot
  */
 
 interface ModuleCubeProps {
@@ -11,28 +11,28 @@ interface ModuleCubeProps {
 }
 
 export function ModuleCube({ color, size = 200, className = '', href }: ModuleCubeProps) {
-  // Exact colors with translucency
+  // 100% transparent with very deep colors (matching Lumina S screenshot)
   const colorMap = {
     strategy: {
-      // Dark purple for Lumina S
-      main: 'rgba(91, 33, 182, 0.4)',
-      light: 'rgba(124, 58, 237, 0.5)',
-      dark: 'rgba(76, 29, 149, 0.6)',
-      border: 'rgba(124, 58, 237, 0.3)'
+      // Very deep purple - matching the screenshot exactly
+      main: 'rgba(30, 15, 70, 0.12)',
+      light: 'rgba(45, 25, 90, 0.18)',
+      dark: 'rgba(20, 10, 50, 0.20)',
+      border: 'rgba(80, 50, 150, 0.25)'
     },
     risk: {
-      // Red for Risk
-      main: 'rgba(220, 38, 38, 0.4)',
-      light: 'rgba(239, 68, 68, 0.5)',
-      dark: 'rgba(153, 27, 27, 0.6)',
-      border: 'rgba(239, 68, 68, 0.3)'
+      // Dark red - 100% transparent
+      main: 'rgba(100, 15, 15, 0.12)',
+      light: 'rgba(140, 25, 25, 0.18)',
+      dark: 'rgba(80, 10, 10, 0.20)',
+      border: 'rgba(200, 50, 50, 0.25)'
     },
     finance: {
-      // Yellow for Finance
-      main: 'rgba(234, 179, 8, 0.4)',
-      light: 'rgba(250, 204, 21, 0.5)',
-      dark: 'rgba(161, 98, 7, 0.6)',
-      border: 'rgba(250, 204, 21, 0.3)'
+      // Dark gold/yellow - 100% transparent
+      main: 'rgba(130, 100, 15, 0.12)',
+      light: 'rgba(180, 140, 25, 0.18)',
+      dark: 'rgba(100, 75, 10, 0.20)',
+      border: 'rgba(220, 180, 50, 0.25)'
     }
   }
 
@@ -52,79 +52,79 @@ export function ModuleCube({ color, size = 200, className = '', href }: ModuleCu
       >
         {/* Front face */}
         <div
-          className="absolute backdrop-blur-md"
+          className="absolute backdrop-blur-sm"
           style={{
             width: cubeSize,
             height: cubeSize,
             background: `linear-gradient(135deg, ${colors.light} 0%, ${colors.main} 100%)`,
             transform: `translateZ(${cubeSize / 2}px)`,
             border: `1px solid ${colors.border}`,
-            boxShadow: `inset 0 0 60px rgba(255, 255, 255, 0.1)`,
+            boxShadow: `inset 0 0 80px rgba(255, 255, 255, 0.08)`,
           }}
         />
 
         {/* Back face */}
         <div
-          className="absolute backdrop-blur-md"
+          className="absolute backdrop-blur-sm"
           style={{
             width: cubeSize,
             height: cubeSize,
             background: colors.dark,
             transform: `translateZ(-${cubeSize / 2}px) rotateY(180deg)`,
             border: `1px solid ${colors.border}`,
-            boxShadow: `inset 0 0 60px rgba(255, 255, 255, 0.05)`,
+            boxShadow: `inset 0 0 80px rgba(255, 255, 255, 0.03)`,
           }}
         />
 
         {/* Right face */}
         <div
-          className="absolute backdrop-blur-md"
+          className="absolute backdrop-blur-sm"
           style={{
             width: cubeSize,
             height: cubeSize,
             background: `linear-gradient(to bottom, ${colors.main} 0%, ${colors.dark} 100%)`,
             transform: `rotateY(90deg) translateZ(${cubeSize / 2}px)`,
             border: `1px solid ${colors.border}`,
-            boxShadow: `inset 0 0 60px rgba(255, 255, 255, 0.08)`,
+            boxShadow: `inset 0 0 80px rgba(255, 255, 255, 0.05)`,
           }}
         />
 
         {/* Left face */}
         <div
-          className="absolute backdrop-blur-md"
+          className="absolute backdrop-blur-sm"
           style={{
             width: cubeSize,
             height: cubeSize,
             background: colors.dark,
             transform: `rotateY(-90deg) translateZ(${cubeSize / 2}px)`,
             border: `1px solid ${colors.border}`,
-            boxShadow: `inset 0 0 60px rgba(255, 255, 255, 0.05)`,
+            boxShadow: `inset 0 0 80px rgba(255, 255, 255, 0.03)`,
           }}
         />
 
         {/* Top face */}
         <div
-          className="absolute backdrop-blur-md"
+          className="absolute backdrop-blur-sm"
           style={{
             width: cubeSize,
             height: cubeSize,
             background: `linear-gradient(to right, ${colors.light} 0%, ${colors.main} 100%)`,
             transform: `rotateX(90deg) translateZ(${cubeSize / 2}px)`,
             border: `1px solid ${colors.border}`,
-            boxShadow: `inset 0 0 60px rgba(255, 255, 255, 0.12)`,
+            boxShadow: `inset 0 0 80px rgba(255, 255, 255, 0.10)`,
           }}
         />
 
         {/* Bottom face */}
         <div
-          className="absolute backdrop-blur-md"
+          className="absolute backdrop-blur-sm"
           style={{
             width: cubeSize,
             height: cubeSize,
             background: colors.dark,
             transform: `rotateX(-90deg) translateZ(${cubeSize / 2}px)`,
             border: `1px solid ${colors.border}`,
-            boxShadow: `inset 0 0 60px rgba(255, 255, 255, 0.05)`,
+            boxShadow: `inset 0 0 80px rgba(255, 255, 255, 0.03)`,
           }}
         />
       </div>
