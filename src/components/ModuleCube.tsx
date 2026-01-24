@@ -1,128 +1,121 @@
-import { LucideIcon } from 'lucide-react'
+/**
+ * ModuleCube - Exact replica of Lumina S cube design
+ * Professional 3D cube with proper perspective and shading
+ */
 
 interface ModuleCubeProps {
-  label: string
-  icon: LucideIcon
-  color: 'blue' | 'indigo' | 'purple'
-  size?: 'small' | 'medium' | 'large'
+  color: 'strategy' | 'risk' | 'finance'
+  size?: number
+  className?: string
 }
 
-export function ModuleCube({ label, icon: Icon, color, size = 'medium' }: ModuleCubeProps) {
-  const sizeClasses = {
-    small: 'w-32 h-32',
-    medium: 'w-48 h-48',
-    large: 'w-64 h-64'
-  }
-
-  const colorClasses = {
-    blue: {
-      bg: 'bg-blue-900/20',
-      border: 'border-blue-500/30',
-      glow: 'shadow-blue-500/20',
-      grid: 'border-blue-400/20',
-      icon: 'text-blue-400'
+export function ModuleCube({ color, size = 200, className = '' }: ModuleCubeProps) {
+  // Exact colors from requirements
+  const colorMap = {
+    strategy: {
+      // Keep Lumina S purple/indigo
+      main: '#5B21B6',
+      light: '#7C3AED',
+      dark: '#4C1D95'
     },
-    indigo: {
-      bg: 'bg-indigo-900/20',
-      border: 'border-indigo-500/30',
-      glow: 'shadow-indigo-500/20',
-      grid: 'border-indigo-400/20',
-      icon: 'text-indigo-400'
+    risk: {
+      // Red for Risk
+      main: '#DC2626',
+      light: '#EF4444',
+      dark: '#991B1B'
     },
-    purple: {
-      bg: 'bg-purple-900/20',
-      border: 'border-purple-500/30',
-      glow: 'shadow-purple-500/20',
-      grid: 'border-purple-400/20',
-      icon: 'text-purple-400'
+    finance: {
+      // Yellow for Finance
+      main: '#EAB308',
+      light: '#FACC15',
+      dark: '#A16207'
     }
   }
 
-  const colors = colorClasses[color]
+  const colors = colorMap[color]
+  const cubeSize = size
 
   return (
-    <div className={`${sizeClasses[size]} mx-auto perspective-1000`}>
+    <div className={`inline-block ${className}`} style={{ perspective: '1000px' }}>
       <div
-        className="relative w-full h-full preserve-3d hover:rotate-y-12 hover:rotate-x-6 transition-transform duration-700"
+        className="relative"
         style={{
+          width: cubeSize,
+          height: cubeSize,
           transformStyle: 'preserve-3d',
-          transform: 'rotateX(10deg) rotateY(-15deg)'
+          transform: 'rotateX(-20deg) rotateY(-30deg)',
         }}
       >
-        {/* Main cube face */}
+        {/* Front face */}
         <div
-          className={`
-            absolute inset-0
-            ${colors.bg}
-            backdrop-blur-md
-            border-2 ${colors.border}
-            ${colors.glow}
-            shadow-2xl
-          `}
+          className="absolute"
           style={{
-            transform: 'translateZ(30px)',
-            borderRadius: '4px'
+            width: cubeSize,
+            height: cubeSize,
+            background: `linear-gradient(135deg, ${colors.light} 0%, ${colors.main} 100%)`,
+            transform: `translateZ(${cubeSize / 2}px)`,
+            border: `1px solid ${colors.dark}`,
           }}
-        >
-          {/* Internal grid pattern */}
-          <div className="absolute inset-0 grid grid-cols-4 grid-rows-4 opacity-40">
-            {Array.from({ length: 16 }).map((_, i) => (
-              <div key={i} className={`border ${colors.grid}`} />
-            ))}
-          </div>
+        />
 
-          {/* Icon */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Icon className={`w-16 h-16 ${colors.icon} opacity-90`} strokeWidth={1.5} />
-          </div>
-
-          {/* Label badge */}
-          <div className="absolute top-3 right-3">
-            <div className={`
-              w-10 h-10 rounded-lg
-              ${colors.bg}
-              border ${colors.border}
-              flex items-center justify-center
-              font-bold text-white text-sm
-              backdrop-blur-sm
-            `}>
-              {label}
-            </div>
-          </div>
-        </div>
-
-        {/* Top face */}
+        {/* Back face */}
         <div
-          className={`
-            absolute inset-0
-            ${colors.bg}
-            border ${colors.border}
-            opacity-60
-          `}
+          className="absolute"
           style={{
-            transform: 'rotateX(90deg) translateZ(30px)',
-            transformOrigin: 'top'
+            width: cubeSize,
+            height: cubeSize,
+            background: colors.dark,
+            transform: `translateZ(-${cubeSize / 2}px) rotateY(180deg)`,
+            border: `1px solid ${colors.dark}`,
           }}
         />
 
         {/* Right face */}
         <div
-          className={`
-            absolute inset-0
-            ${colors.bg}
-            border ${colors.border}
-            opacity-50
-          `}
+          className="absolute"
           style={{
-            transform: 'rotateY(90deg) translateZ(30px)',
-            transformOrigin: 'right'
+            width: cubeSize,
+            height: cubeSize,
+            background: `linear-gradient(to bottom, ${colors.main} 0%, ${colors.dark} 100%)`,
+            transform: `rotateY(90deg) translateZ(${cubeSize / 2}px)`,
+            border: `1px solid ${colors.dark}`,
           }}
         />
 
-        {/* Shadow/glow */}
+        {/* Left face */}
         <div
-          className={`absolute inset-0 ${colors.glow} blur-3xl opacity-30 -z-10`}
-          style={{ transform: 'translateZ(0px)' }}
+          className="absolute"
+          style={{
+            width: cubeSize,
+            height: cubeSize,
+            background: colors.dark,
+            transform: `rotateY(-90deg) translateZ(${cubeSize / 2}px)`,
+            border: `1px solid ${colors.dark}`,
+          }}
+        />
+
+        {/* Top face */}
+        <div
+          className="absolute"
+          style={{
+            width: cubeSize,
+            height: cubeSize,
+            background: `linear-gradient(to right, ${colors.light} 0%, ${colors.main} 100%)`,
+            transform: `rotateX(90deg) translateZ(${cubeSize / 2}px)`,
+            border: `1px solid ${colors.dark}`,
+          }}
+        />
+
+        {/* Bottom face */}
+        <div
+          className="absolute"
+          style={{
+            width: cubeSize,
+            height: cubeSize,
+            background: colors.dark,
+            transform: `rotateX(-90deg) translateZ(${cubeSize / 2}px)`,
+            border: `1px solid ${colors.dark}`,
+          }}
         />
       </div>
     </div>

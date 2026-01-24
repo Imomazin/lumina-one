@@ -1,4 +1,4 @@
-import { ArrowRight, TrendingUp, Shield, DollarSign } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useStrategyStore } from '../store'
 import { ROUTES } from '../routes'
@@ -92,10 +92,10 @@ export function LandingPageNew() {
               </p>
             </div>
 
-            {/* Right: Large featured cube */}
+            {/* Right: Large featured cube - Strategy */}
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
-                <ModuleCube label="S" icon={TrendingUp} color="blue" size="large" />
+                <ModuleCube color="strategy" size={320} />
               </div>
             </div>
           </div>
@@ -118,7 +118,7 @@ export function LandingPageNew() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {/* Strategy Module */}
             <div>
-              <ModuleCube label="S" icon={TrendingUp} color="blue" size="medium" />
+              <ModuleCube color="strategy" size={200} className="mx-auto" />
 
               <div className="mt-8 text-center">
                 <h3 className="text-xl font-bold mb-3">Strategy</h3>
@@ -127,13 +127,13 @@ export function LandingPageNew() {
                   The foundation for all analysis.
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <span className="px-3 py-1 bg-blue-500/10 text-blue-400 text-xs rounded border border-blue-500/20">
+                  <span className="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs rounded border border-purple-500/20">
                     Scenarios
                   </span>
-                  <span className="px-3 py-1 bg-blue-500/10 text-blue-400 text-xs rounded border border-blue-500/20">
+                  <span className="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs rounded border border-purple-500/20">
                     Assumptions
                   </span>
-                  <span className="px-3 py-1 bg-blue-500/10 text-blue-400 text-xs rounded border border-blue-500/20">
+                  <span className="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs rounded border border-purple-500/20">
                     KPIs
                   </span>
                 </div>
@@ -142,7 +142,7 @@ export function LandingPageNew() {
 
             {/* Risk Module */}
             <div>
-              <ModuleCube label="R" icon={Shield} color="indigo" size="medium" />
+              <ModuleCube color="risk" size={200} className="mx-auto" />
 
               <div className="mt-8 text-center">
                 <h3 className="text-xl font-bold mb-3">Risk</h3>
@@ -151,13 +151,13 @@ export function LandingPageNew() {
                   Identifies exposures and scores impact.
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <span className="px-3 py-1 bg-indigo-500/10 text-indigo-400 text-xs rounded border border-indigo-500/20">
+                  <span className="px-3 py-1 bg-red-500/10 text-red-400 text-xs rounded border border-red-500/20">
                     Auto-derived
                   </span>
-                  <span className="px-3 py-1 bg-indigo-500/10 text-indigo-400 text-xs rounded border border-indigo-500/20">
+                  <span className="px-3 py-1 bg-red-500/10 text-red-400 text-xs rounded border border-red-500/20">
                     Exposure scoring
                   </span>
-                  <span className="px-3 py-1 bg-indigo-500/10 text-indigo-400 text-xs rounded border border-indigo-500/20">
+                  <span className="px-3 py-1 bg-red-500/10 text-red-400 text-xs rounded border border-red-500/20">
                     Impact analysis
                   </span>
                 </div>
@@ -166,7 +166,7 @@ export function LandingPageNew() {
 
             {/* Finance Module */}
             <div>
-              <ModuleCube label="F" icon={DollarSign} color="purple" size="medium" />
+              <ModuleCube color="finance" size={200} className="mx-auto" />
 
               <div className="mt-8 text-center">
                 <h3 className="text-xl font-bold mb-3">Finance</h3>
@@ -175,13 +175,13 @@ export function LandingPageNew() {
                   Year-by-year forecasts with risk adjustments.
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <span className="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs rounded border border-purple-500/20">
+                  <span className="px-3 py-1 bg-yellow-500/10 text-yellow-400 text-xs rounded border border-yellow-500/20">
                     Projections
                   </span>
-                  <span className="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs rounded border border-purple-500/20">
+                  <span className="px-3 py-1 bg-yellow-500/10 text-yellow-400 text-xs rounded border border-yellow-500/20">
                     Risk-adjusted
                   </span>
-                  <span className="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs rounded border border-purple-500/20">
+                  <span className="px-3 py-1 bg-yellow-500/10 text-yellow-400 text-xs rounded border border-yellow-500/20">
                     Multi-year
                   </span>
                 </div>
@@ -201,7 +201,7 @@ export function LandingPageNew() {
 
             <div className="space-y-8">
               <div className="flex gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 font-bold">
+                <div className="flex-shrink-0 w-12 h-12 bg-purple-500/10 border border-purple-500/20 rounded-lg flex items-center justify-center text-purple-400 font-bold">
                   1
                 </div>
                 <div>
@@ -214,7 +214,7 @@ export function LandingPageNew() {
               </div>
 
               <div className="flex gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-indigo-500/10 border border-indigo-500/20 rounded-lg flex items-center justify-center text-indigo-400 font-bold">
+                <div className="flex-shrink-0 w-12 h-12 bg-red-500/10 border border-red-500/20 rounded-lg flex items-center justify-center text-red-400 font-bold">
                   2
                 </div>
                 <div>
@@ -227,7 +227,7 @@ export function LandingPageNew() {
               </div>
 
               <div className="flex gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-purple-500/10 border border-purple-500/20 rounded-lg flex items-center justify-center text-purple-400 font-bold">
+                <div className="flex-shrink-0 w-12 h-12 bg-yellow-500/10 border border-yellow-500/20 rounded-lg flex items-center justify-center text-yellow-400 font-bold">
                   3
                 </div>
                 <div>
@@ -267,22 +267,6 @@ export function LandingPageNew() {
           </div>
         </div>
       </footer>
-
-      {/* Add custom CSS for perspective */}
-      <style>{`
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        .preserve-3d {
-          transform-style: preserve-3d;
-        }
-        .hover\\:rotate-y-12:hover {
-          transform: rotateX(10deg) rotateY(-3deg);
-        }
-        .hover\\:rotate-x-6:hover {
-          transform: rotateX(16deg) rotateY(-15deg);
-        }
-      `}</style>
     </div>
   )
 }
