@@ -73,7 +73,7 @@ export function LandingPage() {
                 </span>
               </div>
 
-              <h1 className="text-sm md:text-base font-bold leading-[1.1] tracking-tight">
+              <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight">
                 One platform.
                 <br />
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -81,7 +81,7 @@ export function LandingPage() {
                 </span>
               </h1>
 
-              <p className="text-base font-normal text-white/70 max-w-lg leading-relaxed">
+              <p className="text-lg font-normal text-white/70 max-w-lg leading-relaxed">
                 Strategy, Risk, and Finance in perfect sync. Auto-derived intelligence that updates in real-time.
                 No spreadsheets. No silos. Just clarity.
               </p>
@@ -139,10 +139,10 @@ export function LandingPage() {
             <div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-sm text-blue-400 font-semibold mb-6 tracking-wide">
               THREE POWERFUL MODULES
             </div>
-            <h2 className="text-base md:text-sm font-bold mb-6 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
               Click any module to explore
             </h2>
-            <p className="text-base font-normal text-white/60 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg font-normal text-white/60 max-w-3xl mx-auto leading-relaxed">
               Each module is a complete platform on its own. Together, they create an unstoppable
               intelligence system that keeps your entire organization aligned.
             </p>
@@ -164,7 +164,7 @@ export function LandingPage() {
                 <div>
                   <div className="inline-flex items-center gap-2 mb-3">
                     <TrendingUp className="w-5 h-5 text-purple-400" />
-                    <h3 className="text-sm font-bold tracking-tight">Lumina S</h3>
+                    <h3 className="text-xl font-bold tracking-tight">Lumina S</h3>
                   </div>
                   <p className="text-white/60 mb-6 leading-relaxed font-normal">
                     Strategic planning workspace. Define scenarios, set objectives, track KPIs.
@@ -214,7 +214,7 @@ export function LandingPage() {
                 <div>
                   <div className="inline-flex items-center gap-2 mb-3">
                     <Shield className="w-5 h-5 text-red-400" />
-                    <h3 className="text-sm font-bold tracking-tight">Lumina R</h3>
+                    <h3 className="text-xl font-bold tracking-tight">Lumina R</h3>
                   </div>
                   <p className="text-white/60 mb-6 leading-relaxed font-normal">
                     Risk intelligence engine. Auto-derived threat analysis and exposure scoring
@@ -264,7 +264,7 @@ export function LandingPage() {
                 <div>
                   <div className="inline-flex items-center gap-2 mb-3">
                     <BarChart3 className="w-5 h-5 text-yellow-400" />
-                    <h3 className="text-sm font-bold tracking-tight">Lumina F</h3>
+                    <h3 className="text-xl font-bold tracking-tight">Lumina F</h3>
                   </div>
                   <p className="text-white/60 mb-6 leading-relaxed font-normal">
                     Financial modeling suite. Risk-adjusted projections and multi-year forecasts
@@ -334,10 +334,10 @@ export function LandingPage() {
             <div className="inline-block px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-sm text-purple-400 font-semibold mb-6 tracking-wide">
               CUSTOMER STORIES
             </div>
-            <h2 className="text-base md:text-sm font-bold mb-6 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
               Real results. Real companies.
             </h2>
-            <p className="text-base font-normal text-white/60 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg font-normal text-white/60 max-w-3xl mx-auto leading-relaxed">
               See how leading enterprises use Lumina ONE to transform complexity into clarity.
             </p>
           </div>
@@ -355,10 +355,10 @@ export function LandingPage() {
                           <Building2 className="w-3.5 h-3.5" />
                           ENTERPRISE SOFTWARE
                         </div>
-                        <h3 className="text-sm font-bold tracking-tight leading-tight">
+                        <h3 className="text-2xl font-bold tracking-tight leading-tight">
                           TechCorp slashed planning cycles from 6 weeks to 3 days
                         </h3>
-                        <p className="text-sm text-white/60 leading-relaxed font-normal">
+                        <p className="text-base text-white/60 leading-relaxed font-normal">
                           Before Lumina ONE, TechCorp's quarterly planning involved dozens of spreadsheets,
                           endless email chains, and constant version conflicts. Now their executive team sees
                           real-time intelligence across Strategy, Risk, and Finance in one unified view.
@@ -366,11 +366,11 @@ export function LandingPage() {
 
                         <div className="grid grid-cols-2 gap-6 pt-4">
                           <div className="space-y-2">
-                            <div className="text-sm font-bold text-blue-400">95%</div>
+                            <div className="text-3xl font-bold text-blue-400">95%</div>
                             <div className="text-sm font-medium text-white/60">Faster decision making</div>
                           </div>
                           <div className="space-y-2">
-                            <div className="text-sm font-bold text-purple-400">$2.4M</div>
+                            <div className="text-3xl font-bold text-purple-400">$2.4M</div>
                             <div className="text-sm font-medium text-white/60">Saved annually</div>
                           </div>
                         </div>
@@ -422,11 +422,11 @@ export function LandingPage() {
                               <div className="text-sm text-white/80 font-medium mb-2">Currency: High • Regulatory: Medium</div>
                               <div className="grid grid-cols-3 gap-2">
                                 <div className="bg-red-500/10 rounded px-2 py-1 text-center">
-                                  <div className="text-sm font-bold text-red-400">47</div>
+                                  <div className="text-3xl font-bold text-red-400">47</div>
                                   <div className="text-xs text-red-300">Risks</div>
                                 </div>
                                 <div className="bg-yellow-500/10 rounded px-2 py-1 text-center">
-                                  <div className="text-sm font-bold text-yellow-400">$18M</div>
+                                  <div className="text-3xl font-bold text-yellow-400">$18M</div>
                                   <div className="text-xs text-yellow-300">Exposure</div>
                                 </div>
                                 <div className="bg-emerald-500/10 rounded px-2 py-1 text-center">
@@ -489,12 +489,12 @@ export function LandingPage() {
 
                             <div className="grid grid-cols-3 gap-4">
                               <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-center">
-                                <div className="text-sm font-bold text-red-400 mb-1">148</div>
+                                <div className="text-3xl font-bold text-red-400 mb-1">148</div>
                                 <div className="text-xs text-white/60 font-medium">Risk factors</div>
                                 <div className="text-xs text-red-400/60 mt-1">↑ 12 new</div>
                               </div>
                               <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-center">
-                                <div className="text-sm font-bold text-yellow-400 mb-1">$45M</div>
+                                <div className="text-3xl font-bold text-yellow-400 mb-1">$45M</div>
                                 <div className="text-xs text-white/60 font-medium">Impact range</div>
                                 <div className="text-xs text-yellow-400/60 mt-1">↓ $8M lower</div>
                               </div>
@@ -565,10 +565,10 @@ export function LandingPage() {
                           <Shield className="w-3.5 h-3.5" />
                           FINANCIAL SERVICES
                         </div>
-                        <h3 className="text-sm font-bold tracking-tight leading-tight">
+                        <h3 className="text-2xl font-bold tracking-tight leading-tight">
                           FinanceFirst automated risk compliance across 47 countries
                         </h3>
-                        <p className="text-sm text-white/60 leading-relaxed font-normal">
+                        <p className="text-base text-white/60 leading-relaxed font-normal">
                           Managing regulatory risk across multiple jurisdictions was a nightmare of
                           manual tracking and constant updates. Lumina ONE's auto-derived risk analysis
                           now flags potential compliance issues before they become problems.
@@ -576,11 +576,11 @@ export function LandingPage() {
 
                         <div className="grid grid-cols-2 gap-6 pt-4">
                           <div className="space-y-2">
-                            <div className="text-sm font-bold text-red-400">87%</div>
+                            <div className="text-3xl font-bold text-red-400">87%</div>
                             <div className="text-sm font-medium text-white/60">Fewer compliance incidents</div>
                           </div>
                           <div className="space-y-2">
-                            <div className="text-sm font-bold text-yellow-400">24hr</div>
+                            <div className="text-3xl font-bold text-yellow-400">24hr</div>
                             <div className="text-sm font-medium text-white/60">Risk assessment time</div>
                           </div>
                         </div>
@@ -611,10 +611,10 @@ export function LandingPage() {
                           <Rocket className="w-3.5 h-3.5" />
                           RETAIL & E-COMMERCE
                         </div>
-                        <h3 className="text-sm font-bold tracking-tight leading-tight">
+                        <h3 className="text-2xl font-bold tracking-tight leading-tight">
                           RetailMax launched 12 new product lines with perfect forecasts
                         </h3>
-                        <p className="text-sm text-white/60 leading-relaxed font-normal">
+                        <p className="text-base text-white/60 leading-relaxed font-normal">
                           Product launch planning used to involve gut feelings and historical data that
                           was always outdated. Now RetailMax models every launch with integrated strategy,
                           risk, and financial projections that update as market conditions change.
@@ -622,11 +622,11 @@ export function LandingPage() {
 
                         <div className="grid grid-cols-2 gap-6 pt-4">
                           <div className="space-y-2">
-                            <div className="text-sm font-bold text-purple-400">92%</div>
+                            <div className="text-3xl font-bold text-purple-400">92%</div>
                             <div className="text-sm font-medium text-white/60">Forecast accuracy</div>
                           </div>
                           <div className="space-y-2">
-                            <div className="text-sm font-bold text-pink-400">3x</div>
+                            <div className="text-3xl font-bold text-pink-400">3x</div>
                             <div className="text-sm font-medium text-white/60">ROI improvement</div>
                           </div>
                         </div>
@@ -753,28 +753,28 @@ export function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="text-center space-y-4">
-              <div className="text-base font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent tracking-tight">
+              <div className="text-6xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent tracking-tight">
                 85%
               </div>
-              <div className="text-white/60 text-sm leading-relaxed font-normal">
+              <div className="text-white/60 text-base leading-relaxed font-normal">
                 Faster planning cycles with automatic derivation
               </div>
             </div>
 
             <div className="text-center space-y-4">
-              <div className="text-base font-bold bg-gradient-to-br from-red-400 to-red-600 bg-clip-text text-transparent tracking-tight">
+              <div className="text-6xl font-bold bg-gradient-to-br from-red-400 to-red-600 bg-clip-text text-transparent tracking-tight">
                 100%
               </div>
-              <div className="text-white/60 text-sm leading-relaxed font-normal">
+              <div className="text-white/60 text-base leading-relaxed font-normal">
                 Consistency across Strategy, Risk, and Finance
               </div>
             </div>
 
             <div className="text-center space-y-4">
-              <div className="text-base font-bold bg-gradient-to-br from-yellow-400 to-yellow-600 bg-clip-text text-transparent tracking-tight">
+              <div className="text-6xl font-bold bg-gradient-to-br from-yellow-400 to-yellow-600 bg-clip-text text-transparent tracking-tight">
                 24/7
               </div>
-              <div className="text-white/60 text-sm leading-relaxed font-normal">
+              <div className="text-white/60 text-base leading-relaxed font-normal">
                 Real-time updates as your strategy evolves
               </div>
             </div>
@@ -786,10 +786,10 @@ export function LandingPage() {
       <section id="features" className="py-32 px-6 bg-gradient-to-b from-black via-purple-950/10 to-black">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-sm md:text-base font-bold mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
               How it works
             </h2>
-            <p className="text-base text-white/60 font-normal">
+            <p className="text-lg text-white/60 font-normal">
               Intelligence that flows automatically. No manual data entry. No reconciliation.
             </p>
           </div>
@@ -803,9 +803,9 @@ export function LandingPage() {
                   <div className="w-16 h-16 mx-auto bg-purple-500/10 border border-purple-500/20 rounded-2xl flex items-center justify-center">
                     <TrendingUp className="w-8 h-8 text-purple-400" />
                   </div>
-                  <div className="text-sm font-bold text-purple-400 tracking-tight">1</div>
-                  <h3 className="text-base font-semibold tracking-tight">Define Strategy</h3>
-                  <p className="text-white/60 text-sm leading-relaxed font-normal">
+                  <div className="text-3xl font-bold text-purple-400 tracking-tight">1</div>
+                  <h3 className="text-lg font-semibold tracking-tight">Define Strategy</h3>
+                  <p className="text-white/60 text-base leading-relaxed font-normal">
                     Create your scenario with objectives, assumptions, and KPIs. This is your single source of truth.
                   </p>
                 </div>
@@ -818,9 +818,9 @@ export function LandingPage() {
                   <div className="w-16 h-16 mx-auto bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center justify-center">
                     <Shield className="w-8 h-8 text-red-400" />
                   </div>
-                  <div className="text-sm font-bold text-red-400 tracking-tight">2</div>
-                  <h3 className="text-base font-semibold tracking-tight">Risk Auto-Derives</h3>
-                  <p className="text-white/60 text-sm leading-relaxed font-normal">
+                  <div className="text-3xl font-bold text-red-400 tracking-tight">2</div>
+                  <h3 className="text-lg font-semibold tracking-tight">Risk Auto-Derives</h3>
+                  <p className="text-white/60 text-base leading-relaxed font-normal">
                     Lumina analyzes your strategy and automatically identifies risks, scores exposures, and calculates threat levels.
                   </p>
                 </div>
@@ -834,8 +834,8 @@ export function LandingPage() {
                 <div className="w-16 h-16 mx-auto bg-yellow-500/10 border border-yellow-500/20 rounded-2xl flex items-center justify-center">
                   <BarChart3 className="w-8 h-8 text-yellow-400" />
                 </div>
-                <div className="text-sm font-bold text-yellow-400 tracking-tight">3</div>
-                <h3 className="text-base font-semibold tracking-tight">Finance Models Build</h3>
+                <div className="text-3xl font-bold text-yellow-400 tracking-tight">3</div>
+                <h3 className="text-lg font-semibold tracking-tight">Finance Models Build</h3>
                 <p className="text-white/60 text-sm leading-relaxed max-w-md mx-auto font-normal">
                   Financial projections are generated from your strategy and adjusted for the identified risks. See year-by-year forecasts instantly.
                 </p>
@@ -861,7 +861,7 @@ export function LandingPage() {
         <div className="absolute inset-0 bg-black/60" />
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-base md:text-sm font-bold mb-6 leading-tight tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight tracking-tight">
             Turn complexity into
             <br />
             <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
