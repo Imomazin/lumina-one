@@ -1,5 +1,7 @@
-import { ArrowRight, Shield, TrendingUp, BarChart3, ChevronRight, DollarSign } from 'lucide-react'
+import { ArrowRight, Shield, TrendingUp, BarChart3, ChevronRight, DollarSign, X, ZoomIn, ChevronLeft } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useStrategyStore } from '../store'
 import { ROUTES } from '../routes'
 import { LuminaOneWordmark } from '../components/LuminaOneLogo'
@@ -10,6 +12,38 @@ import { Footer } from '../components/Footer'
 export function LandingPage() {
   const navigate = useNavigate()
   const createScenario = useStrategyStore(state => state.createScenario)
+  const [selectedImage, setSelectedImage] = useState<number | null>(null)
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const dashboardPreviews = [
+    {
+      id: 'strategy',
+      title: 'Strategy Dashboard',
+      description: 'Define objectives, track KPIs, and model scenarios in real-time',
+      icon: TrendingUp,
+      color: 'from-purple-500/20 to-blue-500/20',
+      iconColor: 'text-purple-400',
+      features: ['Scenario modeling', 'KPI tracking', 'Assumption management']
+    },
+    {
+      id: 'risk',
+      title: 'Risk Analysis',
+      description: 'Automatically derived risk factors with exposure scoring',
+      icon: Shield,
+      color: 'from-red-500/20 to-orange-500/20',
+      iconColor: 'text-red-400',
+      features: ['Auto-derived risks', 'Exposure scoring', 'Impact analysis']
+    },
+    {
+      id: 'finance',
+      title: 'Financial Forecast',
+      description: 'Risk-adjusted multi-year projections with scenario comparison',
+      icon: BarChart3,
+      color: 'from-yellow-500/20 to-orange-500/20',
+      iconColor: 'text-yellow-400',
+      features: ['Multi-year forecasts', 'Risk adjustments', 'Scenario comparison']
+    }
+  ]
 
   const handleGetStarted = () => {
     createScenario({
@@ -243,6 +277,246 @@ export function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Platform Preview Section - NEW */}
+      <section className="py-32 px-6 bg-gradient-to-b from-black to-black/95">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <div className="inline-block px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs font-medium text-white/60 uppercase tracking-wider mb-8">
+              Platform Preview
+            </div>
+            <h2 className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight text-white/95">
+              See it in action
+            </h2>
+            <p className="text-lg font-normal text-white/60 max-w-2xl mx-auto leading-relaxed">
+              Experience how Lumina ONE brings Strategy, Risk, and Finance together in powerful, intuitive dashboards.
+            </p>
+          </div>
+
+          {/* Carousel Navigation */}
+          <div className="flex justify-center gap-4 mb-12">
+            {dashboardPreviews.map((preview, index) => (
+              <button
+                key={preview.id}
+                onClick={() => setCurrentSlide(index)}
+                className={`px-6 py-3 rounded-lg font-medium text-sm transition-all ${
+                  currentSlide === index
+                    ? 'bg-white/10 text-white border border-white/20'
+                    : 'bg-white/5 text-white/60 border border-white/10 hover:bg-white/[0.07]'
+                }`}
+              >
+                {preview.title}
+              </button>
+            ))}
+          </div>
+
+          {/* Carousel Content */}
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+              >
+                {/* Left: Dashboard Preview Image */}
+                <motion.div
+                  className="relative group cursor-pointer"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  onClick={() => setSelectedImage(currentSlide)}
+                >
+                  <div className={`aspect-video bg-gradient-to-br ${dashboardPreviews[currentSlide].color} rounded-xl border border-white/20 flex items-center justify-center relative overflow-hidden`}>
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <div className="flex items-center gap-2 text-white">
+                        <ZoomIn className="w-6 h-6" />
+                        <span className="text-sm font-medium">Click to expand</span>
+                      </div>
+                    </div>
+
+                    {/* Placeholder content */}
+                    <div className="text-center z-10">
+                      {(() => {
+                        const Icon = dashboardPreviews[currentSlide].icon
+                        return <Icon className={`w-16 h-16 ${dashboardPreviews[currentSlide].iconColor} mx-auto mb-3 opacity-60`} />
+                      })()}
+                      <div className="text-sm text-white/50">{dashboardPreviews[currentSlide].title}</div>
+                    </div>
+
+                    {/* Decorative grid overlay */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="grid grid-cols-12 grid-rows-6 h-full w-full">
+                        {Array.from({ length: 72 }).map((_, i) => (
+                          <div key={i} className="border border-white/20" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Interactive badge */}
+                  <div className="absolute top-4 right-4 px-3 py-1.5 bg-black/60 backdrop-blur-sm border border-white/20 rounded-lg text-xs text-white/90 font-medium">
+                    Interactive
+                  </div>
+                </motion.div>
+
+                {/* Right: Details */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3">
+                    {(() => {
+                      const Icon = dashboardPreviews[currentSlide].icon
+                      return <Icon className={`w-6 h-6 ${dashboardPreviews[currentSlide].iconColor}`} />
+                    })()}
+                    <h3 className="text-2xl font-semibold text-white/90">
+                      {dashboardPreviews[currentSlide].title}
+                    </h3>
+                  </div>
+
+                  <p className="text-base text-white/70 leading-relaxed">
+                    {dashboardPreviews[currentSlide].description}
+                  </p>
+
+                  <div className="space-y-3 pt-4">
+                    <div className="text-sm font-medium text-white/60 uppercase tracking-wider">
+                      Key Features
+                    </div>
+                    {dashboardPreviews[currentSlide].features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-3">
+                        <div className={`w-1.5 h-1.5 rounded-full ${dashboardPreviews[currentSlide].iconColor.replace('text-', 'bg-')}`} />
+                        <span className="text-sm text-white/80">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="pt-6 flex gap-3">
+                    <button
+                      onClick={() => setCurrentSlide((prev) => (prev === 0 ? dashboardPreviews.length - 1 : prev - 1))}
+                      className="p-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors"
+                      aria-label="Previous slide"
+                    >
+                      <ChevronLeft className="w-5 h-5 text-white/60" />
+                    </button>
+                    <button
+                      onClick={() => setCurrentSlide((prev) => (prev === dashboardPreviews.length - 1 ? 0 : prev + 1))}
+                      className="p-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors"
+                      aria-label="Next slide"
+                    >
+                      <ArrowRight className="w-5 h-5 text-white/60" />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Thumbnail Grid Below */}
+          <div className="grid grid-cols-3 gap-6 mt-16 pt-16 border-t border-white/10">
+            {dashboardPreviews.map((preview, index) => (
+              <motion.button
+                key={preview.id}
+                onClick={() => setCurrentSlide(index)}
+                whileHover={{ y: -4 }}
+                className={`text-left p-6 rounded-lg border transition-all ${
+                  currentSlide === index
+                    ? 'bg-white/[0.07] border-white/20'
+                    : 'bg-white/[0.02] border-white/10 hover:bg-white/[0.04]'
+                }`}
+              >
+                <div className={`aspect-video bg-gradient-to-br ${preview.color} rounded-lg border border-white/10 mb-4 flex items-center justify-center`}>
+                  {(() => {
+                    const Icon = preview.icon
+                    return <Icon className={`w-8 h-8 ${preview.iconColor} opacity-60`} />
+                  })()}
+                </div>
+                <h4 className="text-sm font-semibold text-white/90 mb-1">{preview.title}</h4>
+                <p className="text-xs text-white/50 line-clamp-2">{preview.description}</p>
+              </motion.button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImage !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-6"
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              className="relative max-w-6xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute -top-12 right-0 p-2 text-white/60 hover:text-white transition-colors"
+                aria-label="Close lightbox"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              {/* Lightbox content */}
+              <div className={`aspect-video bg-gradient-to-br ${dashboardPreviews[selectedImage].color} rounded-xl border-2 border-white/30 flex items-center justify-center relative overflow-hidden`}>
+                <div className="text-center z-10">
+                  {(() => {
+                    const Icon = dashboardPreviews[selectedImage].icon
+                    return <Icon className={`w-24 h-24 ${dashboardPreviews[selectedImage].iconColor} mx-auto mb-4 opacity-60`} />
+                  })()}
+                  <div className="text-lg text-white/70 mb-2">{dashboardPreviews[selectedImage].title}</div>
+                  <div className="text-sm text-white/50">{dashboardPreviews[selectedImage].description}</div>
+                </div>
+
+                {/* Decorative grid overlay */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="grid grid-cols-16 grid-rows-9 h-full w-full">
+                    {Array.from({ length: 144 }).map((_, i) => (
+                      <div key={i} className="border border-white/20" />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation buttons */}
+              <div className="flex justify-between mt-6">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setSelectedImage((prev) => (prev === 0 ? dashboardPreviews.length - 1 : prev! - 1))
+                  }}
+                  className="px-6 py-3 bg-white/10 border border-white/20 rounded-lg hover:bg-white/20 transition-colors text-white flex items-center gap-2"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Previous
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setSelectedImage((prev) => (prev === dashboardPreviews.length - 1 ? 0 : prev! + 1))
+                  }}
+                  className="px-6 py-3 bg-white/10 border border-white/20 rounded-lg hover:bg-white/20 transition-colors text-white flex items-center gap-2"
+                >
+                  Next
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Image info */}
+              <div className="text-center mt-4 text-white/60 text-sm">
+                {selectedImage + 1} / {dashboardPreviews.length}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Customer Stories */}
       <section id="customers" className="py-32 px-6 overflow-hidden">
