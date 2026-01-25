@@ -512,42 +512,6 @@ export function LandingPage() {
               </motion.div>
             </AnimatePresence>
           </div>
-
-          {/* Thumbnail Grid Below */}
-          <div className={`grid grid-cols-3 gap-6 mt-16 pt-16 border-t ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-200'}`}>
-            {dashboardPreviews.map((preview, index) => (
-              <motion.button
-                key={preview.id}
-                onClick={() => setCurrentSlide(index)}
-                whileHover={{ y: -4 }}
-                className={`text-left p-6 rounded-lg border transition-all ${
-                  currentSlide === index
-                    ? resolvedTheme === 'dark'
-                      ? 'bg-white/[0.07] border-white/20'
-                      : 'bg-gray-100 border-gray-300'
-                    : resolvedTheme === 'dark'
-                    ? 'bg-white/[0.02] border-white/10 hover:bg-white/[0.04]'
-                    : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
-                }`}
-              >
-                <div className={`aspect-video rounded-lg border ${resolvedTheme === 'dark' ? 'border-white/10 bg-black' : 'border-gray-200 bg-gray-100'} mb-4 overflow-hidden`}>
-                  <img
-                    src={
-                      index === 0
-                        ? '/images/dashboard-strategy-preview.jpg'
-                        : index === 1
-                        ? '/images/dashboard-risk-preview.jpg'
-                        : '/images/dashboard-finance-preview.jpg'
-                    }
-                    alt={preview.title}
-                    className="w-full h-full object-cover opacity-90"
-                  />
-                </div>
-                <h4 className={`text-sm font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'} mb-1`}>{preview.title}</h4>
-                <p className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} line-clamp-2`}>{preview.description}</p>
-              </motion.button>
-            ))}
-          </div>
         </div>
       </section>
 

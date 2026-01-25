@@ -129,7 +129,7 @@ export function WorldCitiesSkyline({ theme = 'dark' }: { theme?: 'dark' | 'white
       <div className={`absolute top-0 left-0 right-0 h-40 ${theme === 'dark' ? 'bg-gradient-to-b from-black via-black/50 to-transparent' : 'bg-gradient-to-b from-white via-white/50 to-transparent'} z-10 pointer-events-none`} />
 
       {/* Scrolling cities container */}
-      <div className="absolute -bottom-32 left-0 right-0 flex items-end">
+      <div className="absolute bottom-0 left-0 right-0 flex items-end pb-8">
         <div className="cities-scroll flex items-end gap-8 will-change-transform">
           {/* Render cities twice for seamless infinite loop */}
           {[...citySkylines, ...citySkylines].map((city, index) => (
