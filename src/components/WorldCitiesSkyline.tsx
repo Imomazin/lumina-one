@@ -57,7 +57,18 @@ const citySkylines: CitySkyline[] = [
   }
 ]
 
-function CityImage({ city, index }: { city: CitySkyline; index: number }) {
+function CityImage({ city, index, theme }: { city: CitySkyline; index: number; theme: 'dark' | 'white' }) {
+  // For dark theme: more subtle and transparent for premium look
+  // For white theme: solid and visible
+  const imageOpacity = theme === 'dark' ? 'opacity-40' : 'opacity-90'
+  const hoverOpacity = theme === 'dark' ? 'group-hover:opacity-60' : 'group-hover:opacity-100'
+  const borderColor = theme === 'dark' ? 'border-white/10' : 'border-gray-300'
+  const textColor = theme === 'dark' ? 'text-white' : 'text-gray-900'
+  const textSecondary = theme === 'dark' ? 'text-white/70' : 'text-gray-600'
+  const gradientOverlay = theme === 'dark'
+    ? 'bg-gradient-to-t from-black/40 via-black/10 to-transparent'
+    : 'bg-gradient-to-t from-white/80 via-white/40 to-transparent'
+
   return (
     <div
       className="relative flex-shrink-0 h-[280px] w-[500px] group"
@@ -66,23 +77,23 @@ function CityImage({ city, index }: { city: CitySkyline; index: number }) {
       }}
     >
       {/* City image with premium effects */}
-      <div className="relative h-full w-full rounded-lg overflow-hidden border border-white/20 shadow-2xl">
+      <div className={`relative h-full w-full rounded-lg overflow-hidden border ${borderColor} shadow-2xl`}>
         <img
           src={city.imageUrl}
           alt={city.alt}
-          className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+          className={`w-full h-full object-cover ${imageOpacity} ${hoverOpacity} group-hover:scale-105 transition-all duration-500`}
           loading="lazy"
         />
 
         {/* Gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+        <div className={`absolute inset-0 ${gradientOverlay}`} />
 
         {/* City label */}
         <div className="absolute bottom-0 left-0 right-0 p-6">
-          <div className="text-white text-xl font-semibold tracking-tight drop-shadow-lg">
+          <div className={`${textColor} text-xl font-semibold tracking-tight drop-shadow-lg`}>
             {city.name}
           </div>
-          <div className="text-white/70 text-sm mt-1 drop-shadow">
+          <div className={`${textSecondary} text-sm mt-1 drop-shadow`}>
             Global Business Hub
           </div>
         </div>
@@ -121,7 +132,7 @@ export function WorldCitiesSkyline({ theme = 'dark' }: { theme?: 'dark' | 'white
         <div className="cities-scroll flex items-end gap-8 will-change-transform">
           {/* Render cities twice for seamless infinite loop */}
           {[...citySkylines, ...citySkylines].map((city, index) => (
-            <CityImage key={`${city.name}-${index}`} city={city} index={index} />
+            <CityImage key={`${city.name}-${index}`} city={city} index={index} theme={theme} />
           ))}
         </div>
       </div>

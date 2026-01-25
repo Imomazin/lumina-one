@@ -255,13 +255,13 @@ export function LandingPage() {
       <section id="modules" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-24">
-            <div className="inline-block px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs font-medium text-white/60 uppercase tracking-wider mb-8">
+            <div className={`inline-block px-3 py-1.5 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 text-white/60' : 'bg-gray-100 border-gray-300 text-gray-600'} border rounded-md text-xs font-medium uppercase tracking-wider mb-8`}>
               Intelligence Modules
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight text-white/95">
+            <h2 className={`text-3xl md:text-4xl font-semibold mb-6 tracking-tight ${resolvedTheme === 'dark' ? 'text-white/95' : 'text-gray-900'}`}>
               Three modules. One system.
             </h2>
-            <p className="text-lg font-normal text-white/60 max-w-2xl mx-auto leading-relaxed">
+            <p className={`text-lg font-normal ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} max-w-2xl mx-auto leading-relaxed`}>
               Each module serves a distinct function. All modules share a single source of truth.
             </p>
           </div>
@@ -279,13 +279,13 @@ export function LandingPage() {
               <div>
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <TrendingUp className="w-4 h-4 text-purple-400" />
-                  <h3 className="text-lg font-semibold tracking-tight text-white/90">Lumina S</h3>
+                  <h3 className={`text-lg font-semibold tracking-tight ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>Lumina S</h3>
                 </div>
-                <p className="text-sm text-white/50 mb-6 leading-relaxed">
+                <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} mb-6 leading-relaxed`}>
                   Strategic planning and scenario modeling. Single source of truth.
                 </p>
 
-                <div className="space-y-1.5 mb-6 text-sm text-white/40">
+                <div className={`space-y-1.5 mb-6 text-sm ${resolvedTheme === 'dark' ? 'text-white/40' : 'text-gray-500'}`}>
                   <div>Scenario modeling</div>
                   <div>KPI tracking</div>
                   <div>Assumption management</div>
@@ -315,13 +315,13 @@ export function LandingPage() {
               <div>
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <Shield className="w-4 h-4 text-red-400" />
-                  <h3 className="text-lg font-semibold tracking-tight text-white/90">Lumina R</h3>
+                  <h3 className={`text-lg font-semibold tracking-tight ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>Lumina R</h3>
                 </div>
-                <p className="text-sm text-white/50 mb-6 leading-relaxed">
+                <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} mb-6 leading-relaxed`}>
                   Automatically derived risk analysis from strategic plans.
                 </p>
 
-                <div className="space-y-1.5 mb-6 text-sm text-white/40">
+                <div className={`space-y-1.5 mb-6 text-sm ${resolvedTheme === 'dark' ? 'text-white/40' : 'text-gray-500'}`}>
                   <div>Auto-derived risks</div>
                   <div>Exposure scoring</div>
                   <div>Impact analysis</div>
@@ -351,13 +351,13 @@ export function LandingPage() {
               <div>
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <BarChart3 className="w-4 h-4 text-yellow-400" />
-                  <h3 className="text-lg font-semibold tracking-tight text-white/90">Lumina F</h3>
+                  <h3 className={`text-lg font-semibold tracking-tight ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>Lumina F</h3>
                 </div>
-                <p className="text-sm text-white/50 mb-6 leading-relaxed">
+                <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} mb-6 leading-relaxed`}>
                   Risk-adjusted financial models derived from strategy.
                 </p>
 
-                <div className="space-y-1.5 mb-6 text-sm text-white/40">
+                <div className={`space-y-1.5 mb-6 text-sm ${resolvedTheme === 'dark' ? 'text-white/40' : 'text-gray-500'}`}>
                   <div>Multi-year forecasts</div>
                   <div>Risk adjustments</div>
                   <div>Scenario comparison</div>
@@ -379,16 +379,16 @@ export function LandingPage() {
       </section>
 
       {/* Platform Preview Section - NEW */}
-      <section className="py-32 px-6 bg-gradient-to-b from-black to-black/95">
+      <section className={`py-32 px-6 ${resolvedTheme === 'dark' ? 'bg-gradient-to-b from-black to-black/95' : 'bg-gradient-to-b from-gray-50 to-white'}`}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <div className="inline-block px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs font-medium text-white/60 uppercase tracking-wider mb-8">
+            <div className={`inline-block px-3 py-1.5 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 text-white/60' : 'bg-gray-100 border-gray-300 text-gray-600'} border rounded-md text-xs font-medium uppercase tracking-wider mb-8`}>
               Platform Preview
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight text-white/95">
+            <h2 className={`text-3xl md:text-4xl font-semibold mb-6 tracking-tight ${resolvedTheme === 'dark' ? 'text-white/95' : 'text-gray-900'}`}>
               See it in action
             </h2>
-            <p className="text-lg font-normal text-white/60 max-w-2xl mx-auto leading-relaxed">
+            <p className={`text-lg font-normal ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} max-w-2xl mx-auto leading-relaxed`}>
               Experience how Lumina ONE brings Strategy, Risk, and Finance together in powerful, intuitive dashboards.
             </p>
           </div>
@@ -401,8 +401,12 @@ export function LandingPage() {
                 onClick={() => setCurrentSlide(index)}
                 className={`px-6 py-3 rounded-lg font-medium text-sm transition-all ${
                   currentSlide === index
-                    ? 'bg-white/10 text-white border border-white/20'
-                    : 'bg-white/5 text-white/60 border border-white/10 hover:bg-white/[0.07]'
+                    ? resolvedTheme === 'dark'
+                      ? 'bg-white/10 text-white border border-white/20'
+                      : 'bg-gray-200 text-gray-900 border border-gray-300'
+                    : resolvedTheme === 'dark'
+                    ? 'bg-white/5 text-white/60 border border-white/10 hover:bg-white/[0.07]'
+                    : 'bg-gray-100 text-gray-600 border border-gray-200 hover:bg-gray-150'
                 }`}
               >
                 {preview.title}
@@ -428,7 +432,7 @@ export function LandingPage() {
                   transition={{ duration: 0.2 }}
                   onClick={() => setSelectedImage(currentSlide)}
                 >
-                  <div className={`aspect-video rounded-xl border border-white/20 relative overflow-hidden bg-black`}>
+                  <div className={`aspect-video rounded-xl border ${resolvedTheme === 'dark' ? 'border-white/20 bg-black' : 'border-gray-300 bg-gray-100'} relative overflow-hidden`}>
                     {/* Real Dashboard Image */}
                     <img
                       src={
@@ -443,19 +447,19 @@ export function LandingPage() {
                     />
 
                     {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <div className="flex items-center gap-2 text-white">
+                    <div className={`absolute inset-0 ${resolvedTheme === 'dark' ? 'bg-black/40' : 'bg-white/40'} opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center`}>
+                      <div className={`flex items-center gap-2 ${resolvedTheme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
                         <ZoomIn className="w-6 h-6" />
                         <span className="text-sm font-medium">Click to expand</span>
                       </div>
                     </div>
 
                     {/* Subtle gradient overlay for depth */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                    <div className={`absolute inset-0 ${resolvedTheme === 'dark' ? 'bg-gradient-to-t from-black/40' : 'bg-gradient-to-t from-white/40'} via-transparent to-transparent pointer-events-none`} />
                   </div>
 
                   {/* Interactive badge */}
-                  <div className="absolute top-4 right-4 px-3 py-1.5 bg-black/60 backdrop-blur-sm border border-white/20 rounded-lg text-xs text-white/90 font-medium">
+                  <div className={`absolute top-4 right-4 px-3 py-1.5 ${resolvedTheme === 'dark' ? 'bg-black/60 border-white/20 text-white/90' : 'bg-white/80 border-gray-300 text-gray-900'} backdrop-blur-sm border rounded-lg text-xs font-medium`}>
                     Interactive
                   </div>
                 </motion.div>
@@ -467,23 +471,23 @@ export function LandingPage() {
                       const Icon = dashboardPreviews[currentSlide].icon
                       return <Icon className={`w-6 h-6 ${dashboardPreviews[currentSlide].iconColor}`} />
                     })()}
-                    <h3 className="text-2xl font-semibold text-white/90">
+                    <h3 className={`text-2xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>
                       {dashboardPreviews[currentSlide].title}
                     </h3>
                   </div>
 
-                  <p className="text-base text-white/70 leading-relaxed">
+                  <p className={`text-base ${resolvedTheme === 'dark' ? 'text-white/70' : 'text-gray-600'} leading-relaxed`}>
                     {dashboardPreviews[currentSlide].description}
                   </p>
 
                   <div className="space-y-3 pt-4">
-                    <div className="text-sm font-medium text-white/60 uppercase tracking-wider">
+                    <div className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} uppercase tracking-wider`}>
                       Key Features
                     </div>
                     {dashboardPreviews[currentSlide].features.map((feature, idx) => (
                       <div key={idx} className="flex items-center gap-3">
                         <div className={`w-1.5 h-1.5 rounded-full ${dashboardPreviews[currentSlide].iconColor.replace('text-', 'bg-')}`} />
-                        <span className="text-sm text-white/80">{feature}</span>
+                        <span className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-700'}`}>{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -491,17 +495,17 @@ export function LandingPage() {
                   <div className="pt-6 flex gap-3">
                     <button
                       onClick={() => setCurrentSlide((prev) => (prev === 0 ? dashboardPreviews.length - 1 : prev - 1))}
-                      className="p-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors"
+                      className={`p-2 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-gray-100 border-gray-300 hover:bg-gray-200'} border rounded-lg transition-colors`}
                       aria-label="Previous slide"
                     >
-                      <ChevronLeft className="w-5 h-5 text-white/60" />
+                      <ChevronLeft className={`w-5 h-5 ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'}`} />
                     </button>
                     <button
                       onClick={() => setCurrentSlide((prev) => (prev === dashboardPreviews.length - 1 ? 0 : prev + 1))}
-                      className="p-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors"
+                      className={`p-2 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-gray-100 border-gray-300 hover:bg-gray-200'} border rounded-lg transition-colors`}
                       aria-label="Next slide"
                     >
-                      <ArrowRight className="w-5 h-5 text-white/60" />
+                      <ArrowRight className={`w-5 h-5 ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'}`} />
                     </button>
                   </div>
                 </div>
@@ -510,7 +514,7 @@ export function LandingPage() {
           </div>
 
           {/* Thumbnail Grid Below */}
-          <div className="grid grid-cols-3 gap-6 mt-16 pt-16 border-t border-white/10">
+          <div className={`grid grid-cols-3 gap-6 mt-16 pt-16 border-t ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-200'}`}>
             {dashboardPreviews.map((preview, index) => (
               <motion.button
                 key={preview.id}
@@ -518,11 +522,15 @@ export function LandingPage() {
                 whileHover={{ y: -4 }}
                 className={`text-left p-6 rounded-lg border transition-all ${
                   currentSlide === index
-                    ? 'bg-white/[0.07] border-white/20'
-                    : 'bg-white/[0.02] border-white/10 hover:bg-white/[0.04]'
+                    ? resolvedTheme === 'dark'
+                      ? 'bg-white/[0.07] border-white/20'
+                      : 'bg-gray-100 border-gray-300'
+                    : resolvedTheme === 'dark'
+                    ? 'bg-white/[0.02] border-white/10 hover:bg-white/[0.04]'
+                    : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
                 }`}
               >
-                <div className={`aspect-video rounded-lg border border-white/10 mb-4 overflow-hidden bg-black`}>
+                <div className={`aspect-video rounded-lg border ${resolvedTheme === 'dark' ? 'border-white/10 bg-black' : 'border-gray-200 bg-gray-100'} mb-4 overflow-hidden`}>
                   <img
                     src={
                       index === 0
@@ -535,8 +543,8 @@ export function LandingPage() {
                     className="w-full h-full object-cover opacity-90"
                   />
                 </div>
-                <h4 className="text-sm font-semibold text-white/90 mb-1">{preview.title}</h4>
-                <p className="text-xs text-white/50 line-clamp-2">{preview.description}</p>
+                <h4 className={`text-sm font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'} mb-1`}>{preview.title}</h4>
+                <p className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} line-clamp-2`}>{preview.description}</p>
               </motion.button>
             ))}
           </div>
@@ -647,13 +655,13 @@ export function LandingPage() {
 
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
-            <div className="inline-block px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs font-medium text-white/60 uppercase tracking-wider mb-8">
+            <div className={`inline-block px-3 py-1.5 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 text-white/60' : 'bg-gray-100 border-gray-300 text-gray-600'} border rounded-md text-xs font-medium uppercase tracking-wider mb-8`}>
               Case Studies
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight text-white/95">
+            <h2 className={`text-3xl md:text-4xl font-semibold mb-6 tracking-tight ${resolvedTheme === 'dark' ? 'text-white/95' : 'text-gray-900'}`}>
               Deployed at scale
             </h2>
-            <p className="text-lg font-normal text-white/60 max-w-2xl mx-auto leading-relaxed">
+            <p className={`text-lg font-normal ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} max-w-2xl mx-auto leading-relaxed`}>
               Enterprise teams use Lumina ONE to maintain consistency across strategic planning, risk assessment, and financial modeling.
             </p>
           </div>
@@ -665,27 +673,27 @@ export function LandingPage() {
                 {[1, 2].map((i) => (
                   <div key={i} className="flex-shrink-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                     <div className="space-y-4">
-                      <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-xs font-medium text-white/50 uppercase tracking-wider">
+                      <div className={`inline-flex items-center gap-2 px-2.5 py-1 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 text-white/50' : 'bg-gray-100 border-gray-300 text-gray-600'} border rounded text-xs font-medium uppercase tracking-wider`}>
                         Enterprise Software
                       </div>
-                      <h3 className="text-xl font-semibold tracking-tight text-white/90">
+                      <h3 className={`text-xl font-semibold tracking-tight ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>
                         TechCorp reduced planning cycles from 6 weeks to 3 days
                       </h3>
-                      <p className="text-sm text-white/60 leading-relaxed">
+                      <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} leading-relaxed`}>
                         Quarterly planning now uses a single scenario model. Risk and finance update automatically from strategy changes.
                       </p>
                       <div className="grid grid-cols-2 gap-4 pt-2">
                         <div>
-                          <div className="text-2xl font-semibold text-white/80">95%</div>
-                          <div className="text-xs text-white/50">Faster planning</div>
+                          <div className={`text-2xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>95%</div>
+                          <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Faster planning</div>
                         </div>
                         <div>
-                          <div className="text-2xl font-semibold text-white/80">$2.4M</div>
-                          <div className="text-xs text-white/50">Annual savings</div>
+                          <div className={`text-2xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>$2.4M</div>
+                          <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Annual savings</div>
                         </div>
                       </div>
                       {/* Real Dashboard Image */}
-                      <div className="mt-4 aspect-video rounded-lg border border-white/10 overflow-hidden">
+                      <div className={`mt-4 aspect-video rounded-lg border ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} overflow-hidden`}>
                         <img
                           src="/images/customer-techcorp-dashboard.jpg"
                           alt="Strategy Dashboard showing KPIs and metrics"
@@ -693,26 +701,26 @@ export function LandingPage() {
                         />
                       </div>
                     </div>
-                    <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6 space-y-4">
-                      <div className="text-xs text-white/50 uppercase tracking-wider">Scenario Flow</div>
+                    <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-gray-50 border-gray-300'} border rounded-lg p-6 space-y-4`}>
+                      <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} uppercase tracking-wider`}>Scenario Flow</div>
                       <div className="space-y-3">
-                        <div className="bg-white/[0.02] border border-white/10 rounded p-3">
-                          <div className="text-xs text-white/50">Strategy Input</div>
-                          <div className="text-sm text-white/80">$180M revenue • 12 markets</div>
+                        <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-white border-gray-200'} border rounded p-3`}>
+                          <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Strategy Input</div>
+                          <div className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>$180M revenue • 12 markets</div>
                         </div>
                         <div className="flex justify-center">
-                          <ChevronRight className="w-4 h-4 text-white/20" />
+                          <ChevronRight className={`w-4 h-4 ${resolvedTheme === 'dark' ? 'text-white/20' : 'text-gray-400'}`} />
                         </div>
-                        <div className="bg-white/[0.02] border border-white/10 rounded p-3">
-                          <div className="text-xs text-white/50">Auto-Derived Risks</div>
-                          <div className="text-sm text-white/80">47 risks • $18M exposure</div>
+                        <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-white border-gray-200'} border rounded p-3`}>
+                          <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Auto-Derived Risks</div>
+                          <div className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>47 risks • $18M exposure</div>
                         </div>
                         <div className="flex justify-center">
-                          <ChevronRight className="w-4 h-4 text-white/20" />
+                          <ChevronRight className={`w-4 h-4 ${resolvedTheme === 'dark' ? 'text-white/20' : 'text-gray-400'}`} />
                         </div>
-                        <div className="bg-white/[0.02] border border-white/10 rounded p-3">
-                          <div className="text-xs text-white/50">Financial Model</div>
-                          <div className="text-sm text-white/80">NPV: $142M • IRR: 22%</div>
+                        <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-white border-gray-200'} border rounded p-3`}>
+                          <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Financial Model</div>
+                          <div className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>NPV: $142M • IRR: 22%</div>
                         </div>
                       </div>
                     </div>
@@ -727,25 +735,25 @@ export function LandingPage() {
                 {[1, 2].map((i) => (
                   <div key={i} className="flex-shrink-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                     <div className="space-y-4 order-2 lg:order-1">
-                      <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6">
-                        <div className="text-xs text-white/50 uppercase tracking-wider mb-4">Risk Dashboard</div>
+                      <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-gray-50 border-gray-300'} border rounded-lg p-6`}>
+                        <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} uppercase tracking-wider mb-4`}>Risk Dashboard</div>
                         <div className="grid grid-cols-3 gap-3 mb-4">
                           <div className="text-center">
-                            <div className="text-xl font-semibold text-white/80">148</div>
-                            <div className="text-xs text-white/40">Factors</div>
+                            <div className={`text-xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>148</div>
+                            <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/40' : 'text-gray-500'}`}>Factors</div>
                           </div>
                           <div className="text-center">
-                            <div className="text-xl font-semibold text-white/80">$45M</div>
-                            <div className="text-xs text-white/40">Impact</div>
+                            <div className={`text-xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>$45M</div>
+                            <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/40' : 'text-gray-500'}`}>Impact</div>
                           </div>
                           <div className="text-center">
-                            <div className="text-xl font-semibold text-white/80">98%</div>
-                            <div className="text-xs text-white/40">Confidence</div>
+                            <div className={`text-xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>98%</div>
+                            <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/40' : 'text-gray-500'}`}>Confidence</div>
                           </div>
                         </div>
                       </div>
                       {/* Real Dashboard Image */}
-                      <div className="aspect-video rounded-lg border border-white/10 overflow-hidden">
+                      <div className={`aspect-video rounded-lg border ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} overflow-hidden`}>
                         <img
                           src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop&q=80"
                           alt="Risk Analysis Dashboard with exposure metrics"
@@ -754,23 +762,23 @@ export function LandingPage() {
                       </div>
                     </div>
                     <div className="space-y-4 order-1 lg:order-2">
-                      <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-xs font-medium text-white/50 uppercase tracking-wider">
+                      <div className={`inline-flex items-center gap-2 px-2.5 py-1 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 text-white/50' : 'bg-gray-100 border-gray-300 text-gray-600'} border rounded text-xs font-medium uppercase tracking-wider`}>
                         Financial Services
                       </div>
-                      <h3 className="text-xl font-semibold tracking-tight text-white/90">
+                      <h3 className={`text-xl font-semibold tracking-tight ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>
                         FinanceFirst automated risk compliance across 47 countries
                       </h3>
-                      <p className="text-sm text-white/60 leading-relaxed">
+                      <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} leading-relaxed`}>
                         Regulatory risk now tracked automatically. Compliance issues flagged before they escalate.
                       </p>
                       <div className="grid grid-cols-2 gap-4 pt-2">
                         <div>
-                          <div className="text-2xl font-semibold text-white/80">87%</div>
-                          <div className="text-xs text-white/50">Fewer incidents</div>
+                          <div className={`text-2xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>87%</div>
+                          <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Fewer incidents</div>
                         </div>
                         <div>
-                          <div className="text-2xl font-semibold text-white/80">24hr</div>
-                          <div className="text-xs text-white/50">Assessment time</div>
+                          <div className={`text-2xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>24hr</div>
+                          <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Assessment time</div>
                         </div>
                       </div>
                     </div>
@@ -785,27 +793,27 @@ export function LandingPage() {
                 {[1, 2].map((i) => (
                   <div key={i} className="flex-shrink-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                     <div className="space-y-4">
-                      <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-xs font-medium text-white/50 uppercase tracking-wider">
+                      <div className={`inline-flex items-center gap-2 px-2.5 py-1 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 text-white/50' : 'bg-gray-100 border-gray-300 text-gray-600'} border rounded text-xs font-medium uppercase tracking-wider`}>
                         Retail
                       </div>
-                      <h3 className="text-xl font-semibold tracking-tight text-white/90">
+                      <h3 className={`text-xl font-semibold tracking-tight ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>
                         RetailMax launched 12 product lines with integrated forecasts
                       </h3>
-                      <p className="text-sm text-white/60 leading-relaxed">
+                      <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} leading-relaxed`}>
                         Product launches now model strategy, risk, and finance together. Market conditions update projections in real time.
                       </p>
                       <div className="grid grid-cols-2 gap-4 pt-2">
                         <div>
-                          <div className="text-2xl font-semibold text-white/80">92%</div>
-                          <div className="text-xs text-white/50">Forecast accuracy</div>
+                          <div className={`text-2xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>92%</div>
+                          <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Forecast accuracy</div>
                         </div>
                         <div>
-                          <div className="text-2xl font-semibold text-white/80">3x</div>
-                          <div className="text-xs text-white/50">ROI improvement</div>
+                          <div className={`text-2xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>3x</div>
+                          <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>ROI improvement</div>
                         </div>
                       </div>
                       {/* Real Dashboard Image */}
-                      <div className="mt-4 aspect-video rounded-lg border border-white/10 overflow-hidden">
+                      <div className={`mt-4 aspect-video rounded-lg border ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} overflow-hidden`}>
                         <img
                           src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&h=450&fit=crop&q=80"
                           alt="Financial Forecast Dashboard with projections"
@@ -813,28 +821,28 @@ export function LandingPage() {
                         />
                       </div>
                     </div>
-                    <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6">
-                      <div className="text-xs text-white/50 uppercase tracking-wider mb-4">Launch Timeline</div>
+                    <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-gray-50 border-gray-300'} border rounded-lg p-6`}>
+                      <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} uppercase tracking-wider mb-4`}>Launch Timeline</div>
                       <div className="space-y-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-2 h-2 bg-white/40 rounded-full" />
+                          <div className={`w-2 h-2 ${resolvedTheme === 'dark' ? 'bg-white/40' : 'bg-gray-400'} rounded-full`} />
                           <div className="flex-1">
-                            <div className="text-xs text-white/50">Q1: Strategy</div>
-                            <div className="text-sm text-white/80">$12M opportunity</div>
+                            <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Q1: Strategy</div>
+                            <div className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>$12M opportunity</div>
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
-                          <div className="w-2 h-2 bg-white/40 rounded-full" />
+                          <div className={`w-2 h-2 ${resolvedTheme === 'dark' ? 'bg-white/40' : 'bg-gray-400'} rounded-full`} />
                           <div className="flex-1">
-                            <div className="text-xs text-white/50">Q2: Risk Assessment</div>
-                            <div className="text-sm text-white/80">Medium exposure</div>
+                            <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Q2: Risk Assessment</div>
+                            <div className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>Medium exposure</div>
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
-                          <div className="w-2 h-2 bg-white/40 rounded-full" />
+                          <div className={`w-2 h-2 ${resolvedTheme === 'dark' ? 'bg-white/40' : 'bg-gray-400'} rounded-full`} />
                           <div className="flex-1">
-                            <div className="text-xs text-white/50">Q3-Q4: Launch</div>
-                            <div className="text-sm text-white/80">$8.2M projected</div>
+                            <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Q3-Q4: Launch</div>
+                            <div className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>$8.2M projected</div>
                           </div>
                         </div>
                       </div>
@@ -851,28 +859,28 @@ export function LandingPage() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             <div className="text-center space-y-3">
-              <div className="text-5xl font-semibold text-white/90 tracking-tight">
+              <div className={`text-5xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'} tracking-tight`}>
                 85%
               </div>
-              <div className="text-white/50 text-sm leading-relaxed">
+              <div className={`${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} text-sm leading-relaxed`}>
                 Faster planning cycles
               </div>
             </div>
 
             <div className="text-center space-y-3">
-              <div className="text-5xl font-semibold text-white/90 tracking-tight">
+              <div className={`text-5xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'} tracking-tight`}>
                 100%
               </div>
-              <div className="text-white/50 text-sm leading-relaxed">
+              <div className={`${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} text-sm leading-relaxed`}>
                 Cross-module consistency
               </div>
             </div>
 
             <div className="text-center space-y-3">
-              <div className="text-5xl font-semibold text-white/90 tracking-tight">
+              <div className={`text-5xl font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'} tracking-tight`}>
                 Real-time
               </div>
-              <div className="text-white/50 text-sm leading-relaxed">
+              <div className={`${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} text-sm leading-relaxed`}>
                 Automatic updates
               </div>
             </div>
@@ -884,49 +892,49 @@ export function LandingPage() {
       <section id="features" className="py-32 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight text-white/95">
+            <h2 className={`text-3xl md:text-4xl font-semibold mb-6 tracking-tight ${resolvedTheme === 'dark' ? 'text-white/95' : 'text-gray-900'}`}>
               How it works
             </h2>
-            <p className="text-base text-white/60">
+            <p className={`text-base ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'}`}>
               Define strategy. Risk and finance derive automatically.
             </p>
           </div>
 
-          <div className="bg-white/[0.02] border border-white/10 rounded-lg p-10">
+          <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-gray-50 border-gray-300'} border rounded-lg p-10`}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="space-y-3">
-                <div className="w-12 h-12 bg-white/5 border border-white/10 rounded flex items-center justify-center">
-                  <TrendingUp className="w-5 h-5 text-white/60" />
+                <div className={`w-12 h-12 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-white border-gray-300'} border rounded flex items-center justify-center`}>
+                  <TrendingUp className={`w-5 h-5 ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'}`} />
                 </div>
-                <div className="text-lg font-semibold text-white/90">1. Define Strategy</div>
-                <p className="text-sm text-white/60 leading-relaxed">
+                <div className={`text-lg font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>1. Define Strategy</div>
+                <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} leading-relaxed`}>
                   Create scenarios with objectives, assumptions, and KPIs.
                 </p>
               </div>
 
               <div className="space-y-3">
-                <div className="w-12 h-12 bg-white/5 border border-white/10 rounded flex items-center justify-center">
-                  <Shield className="w-5 h-5 text-white/60" />
+                <div className={`w-12 h-12 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-white border-gray-300'} border rounded flex items-center justify-center`}>
+                  <Shield className={`w-5 h-5 ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'}`} />
                 </div>
-                <div className="text-lg font-semibold text-white/90">2. Risk Derives</div>
-                <p className="text-sm text-white/60 leading-relaxed">
+                <div className={`text-lg font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>2. Risk Derives</div>
+                <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} leading-relaxed`}>
                   Risk analysis generates automatically from strategy inputs.
                 </p>
               </div>
 
               <div className="space-y-3">
-                <div className="w-12 h-12 bg-white/5 border border-white/10 rounded flex items-center justify-center">
-                  <BarChart3 className="w-5 h-5 text-white/60" />
+                <div className={`w-12 h-12 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-white border-gray-300'} border rounded flex items-center justify-center`}>
+                  <BarChart3 className={`w-5 h-5 ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'}`} />
                 </div>
-                <div className="text-lg font-semibold text-white/90">3. Finance Builds</div>
-                <p className="text-sm text-white/60 leading-relaxed">
+                <div className={`text-lg font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>3. Finance Builds</div>
+                <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} leading-relaxed`}>
                   Financial projections adjust for identified risks.
                 </p>
               </div>
             </div>
 
-            <div className="mt-10 pt-8 border-t border-white/10 text-center">
-              <p className="text-sm text-white/50">
+            <div className={`mt-10 pt-8 border-t ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} text-center`}>
+              <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>
                 Strategy changes cascade automatically across all modules.
               </p>
             </div>
@@ -938,32 +946,32 @@ export function LandingPage() {
       <section className="py-32 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
-            <div className="inline-block px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs font-medium text-white/60 uppercase tracking-wider mb-8">
+            <div className={`inline-block px-3 py-1.5 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 text-white/60' : 'bg-gray-100 border-gray-300 text-gray-600'} border rounded-md text-xs font-medium uppercase tracking-wider mb-8`}>
               Trusted by Leaders
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight text-white/95">
+            <h2 className={`text-3xl md:text-4xl font-semibold mb-6 tracking-tight ${resolvedTheme === 'dark' ? 'text-white/95' : 'text-gray-900'}`}>
               What our customers say
             </h2>
-            <p className="text-lg font-normal text-white/60 max-w-2xl mx-auto leading-relaxed">
+            <p className={`text-lg font-normal ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} max-w-2xl mx-auto leading-relaxed`}>
               Join thousands of satisfied professionals transforming their strategic planning process.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Testimonial 1 */}
-            <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6 space-y-4">
+            <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-gray-50 border-gray-300'} border rounded-lg p-6 space-y-4`}>
               <div className="flex items-center gap-4">
                 <img
                   src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=faces"
                   alt="Customer"
-                  className="w-14 h-14 rounded-full object-cover border-2 border-white/10"
+                  className={`w-14 h-14 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'}`}
                 />
                 <div>
-                  <div className="text-sm font-semibold text-white/90">Michael Chen</div>
-                  <div className="text-xs text-white/50">CFO, TechCorp</div>
+                  <div className={`text-sm font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>Michael Chen</div>
+                  <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>CFO, TechCorp</div>
                 </div>
               </div>
-              <p className="text-sm text-white/70 leading-relaxed">
+              <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/70' : 'text-gray-600'} leading-relaxed`}>
                 "Lumina ONE transformed our planning process. What used to take weeks now happens in days, with complete visibility across all departments."
               </p>
               <div className="flex gap-1">
@@ -976,19 +984,19 @@ export function LandingPage() {
             </div>
 
             {/* Testimonial 2 */}
-            <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6 space-y-4">
+            <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-gray-50 border-gray-300'} border rounded-lg p-6 space-y-4`}>
               <div className="flex items-center gap-4">
                 <img
                   src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=faces"
                   alt="Customer"
-                  className="w-14 h-14 rounded-full object-cover border-2 border-white/10"
+                  className={`w-14 h-14 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'}`}
                 />
                 <div>
-                  <div className="text-sm font-semibold text-white/90">Sarah Martinez</div>
-                  <div className="text-xs text-white/50">VP Strategy, FinanceFirst</div>
+                  <div className={`text-sm font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>Sarah Martinez</div>
+                  <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>VP Strategy, FinanceFirst</div>
                 </div>
               </div>
-              <p className="text-sm text-white/70 leading-relaxed">
+              <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/70' : 'text-gray-600'} leading-relaxed`}>
                 "The automatic risk derivation is a game-changer. Our compliance team now has real-time visibility into strategic decisions."
               </p>
               <div className="flex gap-1">
@@ -1001,19 +1009,19 @@ export function LandingPage() {
             </div>
 
             {/* Testimonial 3 */}
-            <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6 space-y-4">
+            <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-gray-50 border-gray-300'} border rounded-lg p-6 space-y-4`}>
               <div className="flex items-center gap-4">
                 <img
                   src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=faces"
                   alt="Customer"
-                  className="w-14 h-14 rounded-full object-cover border-2 border-white/10"
+                  className={`w-14 h-14 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'}`}
                 />
                 <div>
-                  <div className="text-sm font-semibold text-white/90">David Thompson</div>
-                  <div className="text-xs text-white/50">Head of Finance, RetailMax</div>
+                  <div className={`text-sm font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>David Thompson</div>
+                  <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Head of Finance, RetailMax</div>
                 </div>
               </div>
-              <p className="text-sm text-white/70 leading-relaxed">
+              <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/70' : 'text-gray-600'} leading-relaxed`}>
                 "Financial forecasting is now seamlessly integrated with our strategy. The ROI improvement has been remarkable."
               </p>
               <div className="flex gap-1">
@@ -1027,16 +1035,16 @@ export function LandingPage() {
           </div>
 
           {/* Additional row of satisfied customers */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-16 border-t border-white/10">
+          <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-16 border-t ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-200'}`}>
             <div className="text-center space-y-3">
               <img
                 src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop&crop=faces"
                 alt="Satisfied customer"
-                className="w-20 h-20 rounded-full object-cover border-2 border-white/10 mx-auto"
+                className={`w-20 h-20 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} mx-auto`}
               />
               <div>
-                <div className="text-sm font-medium text-white/80">Emma Wilson</div>
-                <div className="text-xs text-white/50">Risk Manager</div>
+                <div className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>Emma Wilson</div>
+                <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Risk Manager</div>
               </div>
             </div>
 
@@ -1044,11 +1052,11 @@ export function LandingPage() {
               <img
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=faces"
                 alt="Satisfied customer"
-                className="w-20 h-20 rounded-full object-cover border-2 border-white/10 mx-auto"
+                className={`w-20 h-20 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} mx-auto`}
               />
               <div>
-                <div className="text-sm font-medium text-white/80">James Parker</div>
-                <div className="text-xs text-white/50">Strategy Director</div>
+                <div className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>James Parker</div>
+                <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Strategy Director</div>
               </div>
             </div>
 
@@ -1056,11 +1064,11 @@ export function LandingPage() {
               <img
                 src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=120&h=120&fit=crop&crop=faces"
                 alt="Satisfied customer"
-                className="w-20 h-20 rounded-full object-cover border-2 border-white/10 mx-auto"
+                className={`w-20 h-20 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} mx-auto`}
               />
               <div>
-                <div className="text-sm font-medium text-white/80">Rachel Kim</div>
-                <div className="text-xs text-white/50">Financial Analyst</div>
+                <div className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>Rachel Kim</div>
+                <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Financial Analyst</div>
               </div>
             </div>
 
@@ -1068,11 +1076,11 @@ export function LandingPage() {
               <img
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop&crop=faces"
                 alt="Satisfied customer"
-                className="w-20 h-20 rounded-full object-cover border-2 border-white/10 mx-auto"
+                className={`w-20 h-20 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} mx-auto`}
               />
               <div>
-                <div className="text-sm font-medium text-white/80">Alex Johnson</div>
-                <div className="text-xs text-white/50">COO</div>
+                <div className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>Alex Johnson</div>
+                <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>COO</div>
               </div>
             </div>
           </div>
@@ -1085,10 +1093,10 @@ export function LandingPage() {
         <WorldCitiesSkyline theme={resolvedTheme} />
 
         <div className="max-w-3xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-6 leading-tight tracking-tight text-white/95">
+          <h2 className={`text-3xl md:text-4xl font-semibold mb-6 leading-tight tracking-tight ${resolvedTheme === 'dark' ? 'text-white/95' : 'text-gray-900'}`}>
             Maintain consistency across<br />Strategy, Risk, and Finance
           </h2>
-          <p className="text-base text-white/60 mb-10 max-w-xl mx-auto leading-relaxed">
+          <p className={`text-base ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} mb-10 max-w-xl mx-auto leading-relaxed`}>
             Single source of truth. Automatic derivation. Real-time updates.
           </p>
 
@@ -1103,7 +1111,7 @@ export function LandingPage() {
 
             <button
               onClick={() => navigate(ROUTES.login)}
-              className="px-8 py-3.5 bg-white/5 border border-white/10 text-white/90 font-medium rounded-lg hover:bg-white/10 transition-colors"
+              className={`px-8 py-3.5 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 text-white/90 hover:bg-white/10' : 'bg-gray-100 border-gray-300 text-gray-900 hover:bg-gray-200'} border font-medium rounded-lg transition-colors`}
             >
               Sign In
             </button>
