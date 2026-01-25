@@ -45,7 +45,7 @@ export default function Topbar() {
               className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               aria-label="Toggle theme"
             >
-              <ThemeIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+              <ThemeIcon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
             </button>
 
             {showThemeMenu && (

@@ -58,15 +58,16 @@ const citySkylines: CitySkyline[] = [
 ]
 
 function CityImage({ city, index, theme }: { city: CitySkyline; index: number; theme: 'dark' | 'white' }) {
-  // For dark theme: more subtle and transparent for premium look
-  // For white theme: solid and visible
-  const imageOpacity = theme === 'dark' ? 'opacity-40' : 'opacity-90'
-  const hoverOpacity = theme === 'dark' ? 'group-hover:opacity-60' : 'group-hover:opacity-100'
-  const borderColor = theme === 'dark' ? 'border-white/10' : 'border-gray-300'
+  // Improved visibility for both themes with better contrast
+  // Dark theme: increased opacity for better visibility on dark backgrounds
+  // White theme: solid and visible
+  const imageOpacity = theme === 'dark' ? 'opacity-70' : 'opacity-90'
+  const hoverOpacity = theme === 'dark' ? 'group-hover:opacity-85' : 'group-hover:opacity-100'
+  const borderColor = theme === 'dark' ? 'border-white/20' : 'border-gray-300'
   const textColor = theme === 'dark' ? 'text-white' : 'text-gray-900'
-  const textSecondary = theme === 'dark' ? 'text-white/70' : 'text-gray-600'
+  const textSecondary = theme === 'dark' ? 'text-white/90' : 'text-gray-600'
   const gradientOverlay = theme === 'dark'
-    ? 'bg-gradient-to-t from-black/40 via-black/10 to-transparent'
+    ? 'bg-gradient-to-t from-black/60 via-black/20 to-transparent'
     : 'bg-gradient-to-t from-white/80 via-white/40 to-transparent'
 
   return (

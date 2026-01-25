@@ -901,34 +901,64 @@ export function LandingPage() {
           </div>
 
           <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-gray-50 border-gray-300'} border rounded-lg p-10`}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <div className="space-y-3">
-                <div className={`w-12 h-12 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-white border-gray-300'} border rounded flex items-center justify-center`}>
-                  <TrendingUp className={`w-5 h-5 ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'}`} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="space-y-4">
+                <div className="relative h-48 rounded-lg overflow-hidden">
+                  <img
+                    src="/images/presentation-blue.jpg"
+                    alt="Strategy Planning"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className={`absolute inset-0 ${resolvedTheme === 'dark' ? 'bg-gradient-to-t from-black/80 via-black/40' : 'bg-gradient-to-t from-white/80 via-white/40'}`} />
+                  <div className="absolute bottom-4 left-4">
+                    <div className={`w-10 h-10 ${resolvedTheme === 'dark' ? 'bg-white/10 border-white/20' : 'bg-white border-gray-300'} border rounded flex items-center justify-center backdrop-blur-sm`}>
+                      <TrendingUp className={`w-5 h-5 ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`} />
+                    </div>
+                  </div>
                 </div>
                 <div className={`text-lg font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>1. Define Strategy</div>
                 <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} leading-relaxed`}>
-                  Create scenarios with objectives, assumptions, and KPIs.
+                  Create scenarios with objectives, assumptions, and KPIs in collaborative sessions.
                 </p>
               </div>
 
-              <div className="space-y-3">
-                <div className={`w-12 h-12 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-white border-gray-300'} border rounded flex items-center justify-center`}>
-                  <Shield className={`w-5 h-5 ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'}`} />
+              <div className="space-y-4">
+                <div className="relative h-48 rounded-lg overflow-hidden">
+                  <img
+                    src="/images/data-analysis.jpg"
+                    alt="Risk Analysis"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className={`absolute inset-0 ${resolvedTheme === 'dark' ? 'bg-gradient-to-t from-black/80 via-black/40' : 'bg-gradient-to-t from-white/80 via-white/40'}`} />
+                  <div className="absolute bottom-4 left-4">
+                    <div className={`w-10 h-10 ${resolvedTheme === 'dark' ? 'bg-white/10 border-white/20' : 'bg-white border-gray-300'} border rounded flex items-center justify-center backdrop-blur-sm`}>
+                      <Shield className={`w-5 h-5 ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`} />
+                    </div>
+                  </div>
                 </div>
                 <div className={`text-lg font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>2. Risk Derives</div>
                 <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} leading-relaxed`}>
-                  Risk analysis generates automatically from strategy inputs.
+                  Risk analysis generates automatically from strategy inputs with real-time data.
                 </p>
               </div>
 
-              <div className="space-y-3">
-                <div className={`w-12 h-12 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-white border-gray-300'} border rounded flex items-center justify-center`}>
-                  <BarChart3 className={`w-5 h-5 ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'}`} />
+              <div className="space-y-4">
+                <div className="relative h-48 rounded-lg overflow-hidden">
+                  <img
+                    src="/images/stock-trading.jpg"
+                    alt="Financial Forecasting"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className={`absolute inset-0 ${resolvedTheme === 'dark' ? 'bg-gradient-to-t from-black/80 via-black/40' : 'bg-gradient-to-t from-white/80 via-white/40'}`} />
+                  <div className="absolute bottom-4 left-4">
+                    <div className={`w-10 h-10 ${resolvedTheme === 'dark' ? 'bg-white/10 border-white/20' : 'bg-white border-gray-300'} border rounded flex items-center justify-center backdrop-blur-sm`}>
+                      <BarChart3 className={`w-5 h-5 ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`} />
+                    </div>
+                  </div>
                 </div>
                 <div className={`text-lg font-semibold ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>3. Finance Builds</div>
                 <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} leading-relaxed`}>
-                  Financial projections adjust for identified risks.
+                  Financial projections adjust for identified risks with market intelligence.
                 </p>
               </div>
             </div>
@@ -962,7 +992,7 @@ export function LandingPage() {
             <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-gray-50 border-gray-300'} border rounded-lg p-6 space-y-4`}>
               <div className="flex items-center gap-4">
                 <img
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=faces"
+                  src="/images/conference-speaker.jpg"
                   alt="Customer"
                   className={`w-14 h-14 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'}`}
                 />
@@ -987,7 +1017,7 @@ export function LandingPage() {
             <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-gray-50 border-gray-300'} border rounded-lg p-6 space-y-4`}>
               <div className="flex items-center gap-4">
                 <img
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=faces"
+                  src="/images/coffee-discussion.jpg"
                   alt="Customer"
                   className={`w-14 h-14 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'}`}
                 />
@@ -1012,7 +1042,7 @@ export function LandingPage() {
             <div className={`${resolvedTheme === 'dark' ? 'bg-white/[0.02] border-white/10' : 'bg-gray-50 border-gray-300'} border rounded-lg p-6 space-y-4`}>
               <div className="flex items-center gap-4">
                 <img
-                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=faces"
+                  src="/images/office-plant.jpg"
                   alt="Customer"
                   className={`w-14 h-14 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'}`}
                 />
@@ -1034,53 +1064,55 @@ export function LandingPage() {
             </div>
           </div>
 
-          {/* Additional row of satisfied customers */}
-          <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-16 border-t ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-200'}`}>
-            <div className="text-center space-y-3">
-              <img
-                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop&crop=faces"
-                alt="Satisfied customer"
-                className={`w-20 h-20 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} mx-auto`}
-              />
-              <div>
-                <div className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>Emma Wilson</div>
-                <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Risk Manager</div>
-              </div>
+          {/* Team collaboration showcase */}
+          <div className={`mt-16 pt-16 border-t ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-200'}`}>
+            <div className="text-center mb-10">
+              <h3 className={`text-xl font-semibold mb-2 ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>
+                Powering Collaboration Across Teams
+              </h3>
+              <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'}`}>
+                Join enterprise teams already transforming their strategic planning
+              </p>
             </div>
 
-            <div className="text-center space-y-3">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=faces"
-                alt="Satisfied customer"
-                className={`w-20 h-20 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} mx-auto`}
-              />
-              <div>
-                <div className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>James Parker</div>
-                <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Strategy Director</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="relative rounded-lg overflow-hidden h-64">
+                <img
+                  src="/images/team-collaboration.jpg"
+                  alt="Team collaboration"
+                  className="w-full h-full object-cover"
+                />
+                <div className={`absolute inset-0 ${resolvedTheme === 'dark' ? 'bg-gradient-to-t from-black/60' : 'bg-gradient-to-t from-white/60'}`} />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Cross-functional Planning</div>
+                  <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/70' : 'text-gray-600'}`}>Strategy, Risk & Finance aligned</div>
+                </div>
               </div>
-            </div>
 
-            <div className="text-center space-y-3">
-              <img
-                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=120&h=120&fit=crop&crop=faces"
-                alt="Satisfied customer"
-                className={`w-20 h-20 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} mx-auto`}
-              />
-              <div>
-                <div className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>Rachel Kim</div>
-                <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>Financial Analyst</div>
+              <div className="relative rounded-lg overflow-hidden h-64">
+                <img
+                  src="/images/team-meeting.jpg"
+                  alt="Team meeting"
+                  className="w-full h-full object-cover"
+                />
+                <div className={`absolute inset-0 ${resolvedTheme === 'dark' ? 'bg-gradient-to-t from-black/60' : 'bg-gradient-to-t from-white/60'}`} />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Executive Reviews</div>
+                  <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/70' : 'text-gray-600'}`}>Real-time scenario modeling</div>
+                </div>
               </div>
-            </div>
 
-            <div className="text-center space-y-3">
-              <img
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop&crop=faces"
-                alt="Satisfied customer"
-                className={`w-20 h-20 rounded-full object-cover border-2 ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} mx-auto`}
-              />
-              <div>
-                <div className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white/80' : 'text-gray-900'}`}>Alex Johnson</div>
-                <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'}`}>COO</div>
+              <div className="relative rounded-lg overflow-hidden h-64">
+                <img
+                  src="/images/team-meeting-casual.jpg"
+                  alt="Casual team discussion"
+                  className="w-full h-full object-cover"
+                />
+                <div className={`absolute inset-0 ${resolvedTheme === 'dark' ? 'bg-gradient-to-t from-black/60' : 'bg-gradient-to-t from-white/60'}`} />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Agile Workshops</div>
+                  <div className={`text-xs ${resolvedTheme === 'dark' ? 'text-white/70' : 'text-gray-600'}`}>Rapid iteration & feedback</div>
+                </div>
               </div>
             </div>
           </div>
@@ -1089,8 +1121,15 @@ export function LandingPage() {
 
       {/* Final CTA */}
       <section className="relative py-32 px-6 overflow-hidden">
-        {/* World Cities Skyline Background */}
-        <WorldCitiesSkyline theme={resolvedTheme} />
+        {/* Hero Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="/images/hero-background.jpg"
+            alt="Enterprise background"
+            className={`w-full h-full object-cover ${resolvedTheme === 'dark' ? 'opacity-30' : 'opacity-20'}`}
+          />
+          <div className={`absolute inset-0 ${resolvedTheme === 'dark' ? 'bg-gradient-to-t from-black via-black/80 to-black/90' : 'bg-gradient-to-t from-white via-white/80 to-white/90'}`} />
+        </div>
 
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <h2 className={`text-3xl md:text-4xl font-semibold mb-6 leading-tight tracking-tight ${resolvedTheme === 'dark' ? 'text-white/95' : 'text-gray-900'}`}>
