@@ -1,4 +1,4 @@
-import { ArrowRight, Shield, TrendingUp, BarChart3, ChevronRight, DollarSign, X, ZoomIn, ChevronLeft } from 'lucide-react'
+import { ArrowRight, Shield, TrendingUp, BarChart3, ChevronRight, X, ZoomIn, ChevronLeft } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -332,7 +332,20 @@ export function LandingPage() {
                   transition={{ duration: 0.2 }}
                   onClick={() => setSelectedImage(currentSlide)}
                 >
-                  <div className={`aspect-video bg-gradient-to-br ${dashboardPreviews[currentSlide].color} rounded-xl border border-white/20 flex items-center justify-center relative overflow-hidden`}>
+                  <div className={`aspect-video rounded-xl border border-white/20 relative overflow-hidden bg-black`}>
+                    {/* Real Dashboard Image */}
+                    <img
+                      src={
+                        currentSlide === 0
+                          ? 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop&q=80'
+                          : currentSlide === 1
+                          ? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop&q=80'
+                          : 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&h=675&fit=crop&q=80'
+                      }
+                      alt={dashboardPreviews[currentSlide].title}
+                      className="w-full h-full object-cover"
+                    />
+
                     {/* Hover overlay */}
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <div className="flex items-center gap-2 text-white">
@@ -341,23 +354,8 @@ export function LandingPage() {
                       </div>
                     </div>
 
-                    {/* Placeholder content */}
-                    <div className="text-center z-10">
-                      {(() => {
-                        const Icon = dashboardPreviews[currentSlide].icon
-                        return <Icon className={`w-16 h-16 ${dashboardPreviews[currentSlide].iconColor} mx-auto mb-3 opacity-60`} />
-                      })()}
-                      <div className="text-sm text-white/50">{dashboardPreviews[currentSlide].title}</div>
-                    </div>
-
-                    {/* Decorative grid overlay */}
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="grid grid-cols-12 grid-rows-6 h-full w-full">
-                        {Array.from({ length: 72 }).map((_, i) => (
-                          <div key={i} className="border border-white/20" />
-                        ))}
-                      </div>
-                    </div>
+                    {/* Subtle gradient overlay for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   </div>
 
                   {/* Interactive badge */}
@@ -428,11 +426,18 @@ export function LandingPage() {
                     : 'bg-white/[0.02] border-white/10 hover:bg-white/[0.04]'
                 }`}
               >
-                <div className={`aspect-video bg-gradient-to-br ${preview.color} rounded-lg border border-white/10 mb-4 flex items-center justify-center`}>
-                  {(() => {
-                    const Icon = preview.icon
-                    return <Icon className={`w-8 h-8 ${preview.iconColor} opacity-60`} />
-                  })()}
+                <div className={`aspect-video rounded-lg border border-white/10 mb-4 overflow-hidden bg-black`}>
+                  <img
+                    src={
+                      index === 0
+                        ? 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=225&fit=crop&q=80'
+                        : index === 1
+                        ? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=225&fit=crop&q=80'
+                        : 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=225&fit=crop&q=80'
+                    }
+                    alt={preview.title}
+                    className="w-full h-full object-cover opacity-90"
+                  />
                 </div>
                 <h4 className="text-sm font-semibold text-white/90 mb-1">{preview.title}</h4>
                 <p className="text-xs text-white/50 line-clamp-2">{preview.description}</p>
@@ -469,23 +474,23 @@ export function LandingPage() {
               </button>
 
               {/* Lightbox content */}
-              <div className={`aspect-video bg-gradient-to-br ${dashboardPreviews[selectedImage].color} rounded-xl border-2 border-white/30 flex items-center justify-center relative overflow-hidden`}>
-                <div className="text-center z-10">
-                  {(() => {
-                    const Icon = dashboardPreviews[selectedImage].icon
-                    return <Icon className={`w-24 h-24 ${dashboardPreviews[selectedImage].iconColor} mx-auto mb-4 opacity-60`} />
-                  })()}
-                  <div className="text-lg text-white/70 mb-2">{dashboardPreviews[selectedImage].title}</div>
-                  <div className="text-sm text-white/50">{dashboardPreviews[selectedImage].description}</div>
-                </div>
+              <div className={`aspect-video rounded-xl border-2 border-white/30 relative overflow-hidden bg-black`}>
+                <img
+                  src={
+                    selectedImage === 0
+                      ? 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=900&fit=crop&q=80'
+                      : selectedImage === 1
+                      ? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&h=900&fit=crop&q=80'
+                      : 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1600&h=900&fit=crop&q=80'
+                  }
+                  alt={dashboardPreviews[selectedImage].title}
+                  className="w-full h-full object-cover"
+                />
 
-                {/* Decorative grid overlay */}
-                <div className="absolute inset-0 opacity-10">
-                  <div className="grid grid-cols-16 grid-rows-9 h-full w-full">
-                    {Array.from({ length: 144 }).map((_, i) => (
-                      <div key={i} className="border border-white/20" />
-                    ))}
-                  </div>
+                {/* Info overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-8">
+                  <div className="text-xl text-white font-semibold mb-2">{dashboardPreviews[selectedImage].title}</div>
+                  <div className="text-sm text-white/70">{dashboardPreviews[selectedImage].description}</div>
                 </div>
               </div>
 
@@ -583,12 +588,13 @@ export function LandingPage() {
                           <div className="text-xs text-white/50">Annual savings</div>
                         </div>
                       </div>
-                      {/* Image placeholder */}
-                      <div className="mt-4 aspect-video bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                        <div className="text-center">
-                          <TrendingUp className="w-12 h-12 text-purple-400/40 mx-auto mb-2" />
-                          <div className="text-xs text-white/40">Strategy Dashboard</div>
-                        </div>
+                      {/* Real Dashboard Image */}
+                      <div className="mt-4 aspect-video rounded-lg border border-white/10 overflow-hidden">
+                        <img
+                          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop&q=80"
+                          alt="Strategy Dashboard showing KPIs and metrics"
+                          className="w-full h-full object-cover opacity-90"
+                        />
                       </div>
                     </div>
                     <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6 space-y-4">
@@ -642,12 +648,13 @@ export function LandingPage() {
                           </div>
                         </div>
                       </div>
-                      {/* Image placeholder */}
-                      <div className="aspect-video bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                        <div className="text-center">
-                          <Shield className="w-12 h-12 text-red-400/40 mx-auto mb-2" />
-                          <div className="text-xs text-white/40">Risk Analysis</div>
-                        </div>
+                      {/* Real Dashboard Image */}
+                      <div className="aspect-video rounded-lg border border-white/10 overflow-hidden">
+                        <img
+                          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop&q=80"
+                          alt="Risk Analysis Dashboard with exposure metrics"
+                          className="w-full h-full object-cover opacity-90"
+                        />
                       </div>
                     </div>
                     <div className="space-y-4 order-1 lg:order-2">
@@ -701,12 +708,13 @@ export function LandingPage() {
                           <div className="text-xs text-white/50">ROI improvement</div>
                         </div>
                       </div>
-                      {/* Image placeholder */}
-                      <div className="mt-4 aspect-video bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                        <div className="text-center">
-                          <DollarSign className="w-12 h-12 text-yellow-400/40 mx-auto mb-2" />
-                          <div className="text-xs text-white/40">Financial Forecast</div>
-                        </div>
+                      {/* Real Dashboard Image */}
+                      <div className="mt-4 aspect-video rounded-lg border border-white/10 overflow-hidden">
+                        <img
+                          src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&h=450&fit=crop&q=80"
+                          alt="Financial Forecast Dashboard with projections"
+                          className="w-full h-full object-cover opacity-90"
+                        />
                       </div>
                     </div>
                     <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6">
