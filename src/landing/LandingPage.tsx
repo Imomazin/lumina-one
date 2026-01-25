@@ -755,7 +755,7 @@ export function LandingPage() {
                       {/* Real Dashboard Image */}
                       <div className={`aspect-video rounded-lg border ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} overflow-hidden`}>
                         <img
-                          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop&q=80"
+                          src="/images/customer-financefirst-risk.jpg"
                           alt="Risk Analysis Dashboard with exposure metrics"
                           className="w-full h-full object-cover opacity-90"
                         />
@@ -815,7 +815,7 @@ export function LandingPage() {
                       {/* Real Dashboard Image */}
                       <div className={`mt-4 aspect-video rounded-lg border ${resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-300'} overflow-hidden`}>
                         <img
-                          src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&h=450&fit=crop&q=80"
+                          src="/images/customer-retailmax-forecast.jpg"
                           alt="Financial Forecast Dashboard with projections"
                           className="w-full h-full object-cover opacity-90"
                         />

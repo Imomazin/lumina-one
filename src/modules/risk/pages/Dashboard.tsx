@@ -117,7 +117,7 @@ const caseStudies = [
     challenge: 'Manual credit risk assessment causing $50M annual losses',
     solution: 'Implemented AI-powered KRI monitoring with real-time credit scoring',
     results: ['68% reduction in credit losses', '45% faster loan processing', 'ROI achieved in 8 months'],
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400',
+    image: '/images/dashboard-finance-preview.jpg',
   },
   {
     id: 2,
@@ -127,7 +127,7 @@ const caseStudies = [
     challenge: 'HIPAA violations resulting in $2M fines over 3 years',
     solution: 'Deployed comprehensive compliance tracking with automated KRIs',
     results: ['Zero violations post-implementation', '90% audit preparation time saved', '$1.5M annual savings'],
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400',
+    image: '/images/dashboard-risk-preview.jpg',
   },
   {
     id: 3,
@@ -137,7 +137,7 @@ const caseStudies = [
     challenge: 'COVID-19 exposed critical supplier dependencies',
     solution: 'Built multi-tier supplier risk monitoring with early warning KRIs',
     results: ['95% supply disruption prediction accuracy', '40% reduction in stockouts', 'Diversified supplier base by 3x'],
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400',
+    image: '/images/dashboard-strategy-preview.jpg',
   },
   {
     id: 4,
@@ -147,7 +147,7 @@ const caseStudies = [
     challenge: 'Increasing cyber threats with limited visibility',
     solution: 'Integrated cyber KRIs with threat intelligence and SIEM',
     results: ['85% faster threat detection', '60% reduction in incident response time', 'Zero breaches in 24 months'],
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400',
+    image: '/images/customer-techcorp-dashboard.jpg',
   },
   {
     id: 5,
@@ -157,7 +157,7 @@ const caseStudies = [
     challenge: 'Fragmented operational risk data across 50+ business units',
     solution: 'Unified risk register with automated RCSA and loss event tracking',
     results: ['360° risk visibility achieved', '$25M identified risk exposure', '30% OpEx reduction'],
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400',
+    image: '/images/customer-financefirst-risk.jpg',
   },
   {
     id: 6,
@@ -167,7 +167,7 @@ const caseStudies = [
     challenge: 'Investor pressure on ESG transparency and reporting',
     solution: 'Developed ESG risk framework with 50+ sustainability KRIs',
     results: ['ESG rating improved from B to AA', '$500M green bond issued', 'Carbon neutral by 2030 roadmap'],
-    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400',
+    image: '/images/customer-retailmax-forecast.jpg',
   },
 ];
 
