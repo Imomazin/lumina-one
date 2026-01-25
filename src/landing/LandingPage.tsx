@@ -337,10 +337,10 @@ export function LandingPage() {
                     <img
                       src={
                         currentSlide === 0
-                          ? 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop&q=80'
+                          ? '/images/dashboard-strategy-preview.jpg'
                           : currentSlide === 1
-                          ? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop&q=80'
-                          : 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&h=675&fit=crop&q=80'
+                          ? '/images/dashboard-risk-preview.jpg'
+                          : '/images/dashboard-finance-preview.jpg'
                       }
                       alt={dashboardPreviews[currentSlide].title}
                       className="w-full h-full object-cover"
@@ -430,10 +430,10 @@ export function LandingPage() {
                   <img
                     src={
                       index === 0
-                        ? 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=225&fit=crop&q=80'
+                        ? '/images/dashboard-strategy-preview.jpg'
                         : index === 1
-                        ? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=225&fit=crop&q=80'
-                        : 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=225&fit=crop&q=80'
+                        ? '/images/dashboard-risk-preview.jpg'
+                        : '/images/dashboard-finance-preview.jpg'
                     }
                     alt={preview.title}
                     className="w-full h-full object-cover opacity-90"
@@ -478,10 +478,10 @@ export function LandingPage() {
                 <img
                   src={
                     selectedImage === 0
-                      ? 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=900&fit=crop&q=80'
+                      ? '/images/dashboard-strategy-preview.jpg'
                       : selectedImage === 1
-                      ? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&h=900&fit=crop&q=80'
-                      : 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1600&h=900&fit=crop&q=80'
+                      ? '/images/dashboard-risk-preview.jpg'
+                      : '/images/dashboard-finance-preview.jpg'
                   }
                   alt={dashboardPreviews[selectedImage].title}
                   className="w-full h-full object-cover"
@@ -591,7 +591,7 @@ export function LandingPage() {
                       {/* Real Dashboard Image */}
                       <div className="mt-4 aspect-video rounded-lg border border-white/10 overflow-hidden">
                         <img
-                          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop&q=80"
+                          src="/images/customer-techcorp-dashboard.jpg"
                           alt="Strategy Dashboard showing KPIs and metrics"
                           className="w-full h-full object-cover opacity-90"
                         />
