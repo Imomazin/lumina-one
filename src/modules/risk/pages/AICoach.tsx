@@ -25,7 +25,7 @@ import {
   BookOpen,
   History,
   MessageSquare,
-, Sparkles as SparklesIcon } from 'lucide-react';
+} from 'lucide-react';
 
 interface Message {
   id: string;

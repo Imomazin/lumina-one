@@ -17,6 +17,7 @@ import {
   Monitor,
   Check,
   Circle,
+  Settings as SettingsIcon,
 } from 'lucide-react';
 
 const settingsSections = [

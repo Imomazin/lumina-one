@@ -15,7 +15,7 @@ import {
   X,
   Check,
   AlertTriangle,
-, Shield } from 'lucide-react';
+} from 'lucide-react';
 
 interface ManagedUser extends User {
   id: string;
