@@ -6,6 +6,7 @@ import { BuildStamp } from '../components/BuildStamp'
 import { LuminaOneWordmark } from '../components/LuminaOneLogo'
 import { ModuleCube } from '../components/ModuleCube'
 import { RevolvingDiamond } from '../components/RevolvingDiamond'
+import { Footer } from '../components/Footer'
 
 export function LandingPage() {
   const navigate = useNavigate()
@@ -67,11 +68,11 @@ export function LandingPage() {
               <h1 className="text-4xl md:text-5xl font-semibold leading-[1.15] tracking-tight text-white/95">
                 Unified intelligence across
                 <br />
-                <span className="text-purple-400">Strategy</span>
+                <span className="text-purple-600">Strategy</span>
                 <span className="text-white/95">, </span>
-                <span className="text-red-400">Risk</span>
+                <span className="text-red-700">Risk</span>
                 <span className="text-white/95">, and </span>
-                <span className="text-yellow-400">Finance</span>
+                <span className="text-amber-600">Finance</span>
               </h1>
 
               <p className="text-lg font-normal text-white/60 max-w-lg leading-relaxed">
@@ -552,6 +553,151 @@ export function LandingPage() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <div className="inline-block px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs font-medium text-white/60 uppercase tracking-wider mb-8">
+              Trusted by Leaders
+            </div>
+            <h2 className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight text-white/95">
+              What our customers say
+            </h2>
+            <p className="text-lg font-normal text-white/60 max-w-2xl mx-auto leading-relaxed">
+              Join thousands of satisfied professionals transforming their strategic planning process.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6 space-y-4">
+              <div className="flex items-center gap-4">
+                <img
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=faces"
+                  alt="Customer"
+                  className="w-14 h-14 rounded-full object-cover border-2 border-white/10"
+                />
+                <div>
+                  <div className="text-sm font-semibold text-white/90">Michael Chen</div>
+                  <div className="text-xs text-white/50">CFO, TechCorp</div>
+                </div>
+              </div>
+              <p className="text-sm text-white/70 leading-relaxed">
+                "Lumina ONE transformed our planning process. What used to take weeks now happens in days, with complete visibility across all departments."
+              </p>
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6 space-y-4">
+              <div className="flex items-center gap-4">
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=faces"
+                  alt="Customer"
+                  className="w-14 h-14 rounded-full object-cover border-2 border-white/10"
+                />
+                <div>
+                  <div className="text-sm font-semibold text-white/90">Sarah Martinez</div>
+                  <div className="text-xs text-white/50">VP Strategy, FinanceFirst</div>
+                </div>
+              </div>
+              <p className="text-sm text-white/70 leading-relaxed">
+                "The automatic risk derivation is a game-changer. Our compliance team now has real-time visibility into strategic decisions."
+              </p>
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6 space-y-4">
+              <div className="flex items-center gap-4">
+                <img
+                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=faces"
+                  alt="Customer"
+                  className="w-14 h-14 rounded-full object-cover border-2 border-white/10"
+                />
+                <div>
+                  <div className="text-sm font-semibold text-white/90">David Thompson</div>
+                  <div className="text-xs text-white/50">Head of Finance, RetailMax</div>
+                </div>
+              </div>
+              <p className="text-sm text-white/70 leading-relaxed">
+                "Financial forecasting is now seamlessly integrated with our strategy. The ROI improvement has been remarkable."
+              </p>
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Additional row of satisfied customers */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-16 border-t border-white/10">
+            <div className="text-center space-y-3">
+              <img
+                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop&crop=faces"
+                alt="Satisfied customer"
+                className="w-20 h-20 rounded-full object-cover border-2 border-white/10 mx-auto"
+              />
+              <div>
+                <div className="text-sm font-medium text-white/80">Emma Wilson</div>
+                <div className="text-xs text-white/50">Risk Manager</div>
+              </div>
+            </div>
+
+            <div className="text-center space-y-3">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=faces"
+                alt="Satisfied customer"
+                className="w-20 h-20 rounded-full object-cover border-2 border-white/10 mx-auto"
+              />
+              <div>
+                <div className="text-sm font-medium text-white/80">James Parker</div>
+                <div className="text-xs text-white/50">Strategy Director</div>
+              </div>
+            </div>
+
+            <div className="text-center space-y-3">
+              <img
+                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=120&h=120&fit=crop&crop=faces"
+                alt="Satisfied customer"
+                className="w-20 h-20 rounded-full object-cover border-2 border-white/10 mx-auto"
+              />
+              <div>
+                <div className="text-sm font-medium text-white/80">Rachel Kim</div>
+                <div className="text-xs text-white/50">Financial Analyst</div>
+              </div>
+            </div>
+
+            <div className="text-center space-y-3">
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop&crop=faces"
+                alt="Satisfied customer"
+                className="w-20 h-20 rounded-full object-cover border-2 border-white/10 mx-auto"
+              />
+              <div>
+                <div className="text-sm font-medium text-white/80">Alex Johnson</div>
+                <div className="text-xs text-white/50">COO</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-32 px-6">
         <div className="max-w-3xl mx-auto text-center">
@@ -582,27 +728,7 @@ export function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-12 px-6 bg-black">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-            <div className="flex flex-col md:flex-row items-center gap-6">
-              <LuminaOneWordmark />
-              <div className="flex items-center gap-6 text-sm text-white/60 font-medium">
-                <a href="#modules" className="hover:text-white transition-colors">Modules</a>
-                <a href="#customers" className="hover:text-white transition-colors">Customers</a>
-                <a href="#features" className="hover:text-white transition-colors">Features</a>
-                <button onClick={() => navigate(ROUTES.login)} className="hover:text-white transition-colors">
-                  Dashboard
-                </button>
-              </div>
-            </div>
-            <BuildStamp className="text-white/30" />
-          </div>
-          <div className="text-center md:text-left text-sm text-white/40 font-normal">
-            © 2026 Lumina One. Complete business intelligence platform.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
