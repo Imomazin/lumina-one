@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Zap, Shield, TrendingUp, BarChart3, Sparkles, Building2, Rocket, ChevronRight } from 'lucide-react'
+import { ArrowRight, Shield, TrendingUp, BarChart3, ChevronRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useStrategyStore } from '../store'
 import { ROUTES } from '../routes'
@@ -55,67 +55,52 @@ export function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-32 px-6 overflow-hidden">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-pink-600/10 animate-pulse" style={{ animationDuration: '8s' }} />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <section className="relative pt-40 pb-40 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             {/* Left: Copy */}
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full text-sm font-medium">
-                <Sparkles className="w-4 h-4 text-blue-400" />
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold">
-                  Complete Business Intelligence Platform
-                </span>
+            <div className="space-y-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs font-medium text-white/60 uppercase tracking-wider">
+                Enterprise Intelligence
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight">
-                One platform.
+              <h1 className="text-4xl md:text-5xl font-semibold leading-[1.15] tracking-tight text-white/95">
+                Unified intelligence across
                 <br />
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Every insight.
+                  Strategy, Risk, and Finance
                 </span>
               </h1>
 
-              <p className="text-lg font-normal text-white/70 max-w-lg leading-relaxed">
-                Strategy, Risk, and Finance in perfect sync. Auto-derived intelligence that updates in real-time.
-                No spreadsheets. No silos. Just clarity.
+              <p className="text-lg font-normal text-white/60 max-w-lg leading-relaxed">
+                Automatically derive risk and financial models from your strategic plans.
+                Maintain consistency across modules.
+                Reduce planning cycles.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={handleGetStarted}
-                  className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-xl transition-all flex items-center justify-center gap-2 shadow-2xl shadow-purple-500/20"
+                  className="px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
                 >
-                  Start Free Trial
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  View Demo
+                  <ArrowRight className="w-4 h-4" />
                 </button>
 
                 <button
                   onClick={() => navigate(ROUTES.login)}
-                  className="px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-xl hover:bg-white/10 transition-all"
+                  className="px-8 py-3.5 bg-white/5 border border-white/10 text-white/90 font-medium rounded-lg hover:bg-white/10 transition-colors"
                 >
-                  View Live Demo
+                  Sign In
                 </button>
               </div>
 
-              <div className="flex items-center gap-8 pt-4">
-                <div className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-emerald-400" />
-                  <span className="text-sm font-medium text-white/60">No credit card</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-emerald-400" />
-                  <span className="text-sm font-medium text-white/60">14-day free trial</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-emerald-400" />
-                  <span className="text-sm font-medium text-white/60">Cancel anytime</span>
-                </div>
+              <div className="flex items-center gap-6 pt-2 text-sm text-white/50">
+                <span>Enterprise-ready</span>
+                <span className="text-white/20">•</span>
+                <span>SOC 2 compliant</span>
+                <span className="text-white/20">•</span>
+                <span>Self-hosted available</span>
               </div>
             </div>
 
@@ -131,651 +116,321 @@ export function LandingPage() {
       </section>
 
       {/* Three Modules Section */}
-      <section id="modules" className="py-32 px-6 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/5 to-black" />
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-sm text-blue-400 font-semibold mb-6 tracking-wide">
-              THREE POWERFUL MODULES
+      <section id="modules" className="py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-24">
+            <div className="inline-block px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs font-medium text-white/60 uppercase tracking-wider mb-8">
+              Intelligence Modules
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
-              Click any module to explore
+            <h2 className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight text-white/95">
+              Three modules. One system.
             </h2>
-            <p className="text-lg font-normal text-white/60 max-w-3xl mx-auto leading-relaxed">
-              Each module is a complete platform on its own. Together, they create an unstoppable
-              intelligence system that keeps your entire organization aligned.
+            <p className="text-lg font-normal text-white/60 max-w-2xl mx-auto leading-relaxed">
+              Each module serves a distinct function. All modules share a single source of truth.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* Strategy Module */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-purple-600/5 blur-3xl group-hover:from-purple-500/10 group-hover:to-purple-600/10 transition-all duration-500 rounded-full" />
+            <div className="text-center space-y-6">
+              <ModuleCube
+                color="strategy"
+                size={200}
+                className="mx-auto"
+                href="https://ambi-sight-reloaded-git-claude-fi-184691-imos-projects-98c0794a.vercel.app/"
+              />
 
-              <div className="relative text-center space-y-6">
-                <ModuleCube
-                  color="strategy"
-                  size={220}
-                  className="mx-auto"
-                  href="https://ambi-sight-reloaded-git-claude-fi-184691-imos-projects-98c0794a.vercel.app/"
-                />
-
-                <div>
-                  <div className="inline-flex items-center gap-2 mb-3">
-                    <TrendingUp className="w-5 h-5 text-purple-400" />
-                    <h3 className="text-xl font-bold tracking-tight">Lumina S</h3>
-                  </div>
-                  <p className="text-white/60 mb-6 leading-relaxed font-normal">
-                    Strategic planning workspace. Define scenarios, set objectives, track KPIs.
-                    The source of truth for your entire organization.
-                  </p>
-
-                  <div className="space-y-2 mb-6">
-                    <div className="flex items-center gap-2 justify-center text-sm text-white/50 font-medium">
-                      <Check className="w-4 h-4 text-purple-400" />
-                      <span>Scenario modeling</span>
-                    </div>
-                    <div className="flex items-center gap-2 justify-center text-sm text-white/50 font-medium">
-                      <Check className="w-4 h-4 text-purple-400" />
-                      <span>KPI tracking</span>
-                    </div>
-                    <div className="flex items-center gap-2 justify-center text-sm text-white/50 font-medium">
-                      <Check className="w-4 h-4 text-purple-400" />
-                      <span>Assumption management</span>
-                    </div>
-                  </div>
-
-                  <a
-                    href="https://ambi-sight-reloaded-git-claude-fi-184691-imos-projects-98c0794a.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors text-sm font-semibold"
-                  >
-                    Launch Lumina S
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
+              <div>
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <TrendingUp className="w-4 h-4 text-purple-400" />
+                  <h3 className="text-lg font-semibold tracking-tight text-white/90">Lumina S</h3>
                 </div>
+                <p className="text-sm text-white/50 mb-6 leading-relaxed">
+                  Strategic planning and scenario modeling. Single source of truth.
+                </p>
+
+                <div className="space-y-1.5 mb-6 text-sm text-white/40">
+                  <div>Scenario modeling</div>
+                  <div>KPI tracking</div>
+                  <div>Assumption management</div>
+                </div>
+
+                <a
+                  href="https://ambi-sight-reloaded-git-claude-fi-184691-imos-projects-98c0794a.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-purple-400 hover:text-purple-300 transition-colors text-sm font-medium"
+                >
+                  Launch module
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
 
             {/* Risk Module */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-red-600/5 blur-3xl group-hover:from-red-500/10 group-hover:to-red-600/10 transition-all duration-500 rounded-full" />
+            <div className="text-center space-y-6">
+              <ModuleCube
+                color="risk"
+                size={200}
+                className="mx-auto"
+                href="https://risk-coach-mvp-git-claude-lumina-62a0d8-imos-projects-98c0794a.vercel.app/"
+              />
 
-              <div className="relative text-center space-y-6">
-                <ModuleCube
-                  color="risk"
-                  size={220}
-                  className="mx-auto"
-                  href="https://risk-coach-mvp-git-claude-lumina-62a0d8-imos-projects-98c0794a.vercel.app/"
-                />
-
-                <div>
-                  <div className="inline-flex items-center gap-2 mb-3">
-                    <Shield className="w-5 h-5 text-red-400" />
-                    <h3 className="text-xl font-bold tracking-tight">Lumina R</h3>
-                  </div>
-                  <p className="text-white/60 mb-6 leading-relaxed font-normal">
-                    Risk intelligence engine. Auto-derived threat analysis and exposure scoring
-                    based on your strategy.
-                  </p>
-
-                  <div className="space-y-2 mb-6">
-                    <div className="flex items-center gap-2 justify-center text-sm text-white/50 font-medium">
-                      <Check className="w-4 h-4 text-red-400" />
-                      <span>Auto-derived risks</span>
-                    </div>
-                    <div className="flex items-center gap-2 justify-center text-sm text-white/50 font-medium">
-                      <Check className="w-4 h-4 text-red-400" />
-                      <span>Exposure scoring</span>
-                    </div>
-                    <div className="flex items-center gap-2 justify-center text-sm text-white/50 font-medium">
-                      <Check className="w-4 h-4 text-red-400" />
-                      <span>Impact analysis</span>
-                    </div>
-                  </div>
-
-                  <a
-                    href="https://risk-coach-mvp-git-claude-lumina-62a0d8-imos-projects-98c0794a.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors text-sm font-semibold"
-                  >
-                    Launch Lumina R
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
+              <div>
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Shield className="w-4 h-4 text-red-400" />
+                  <h3 className="text-lg font-semibold tracking-tight text-white/90">Lumina R</h3>
                 </div>
+                <p className="text-sm text-white/50 mb-6 leading-relaxed">
+                  Automatically derived risk analysis from strategic plans.
+                </p>
+
+                <div className="space-y-1.5 mb-6 text-sm text-white/40">
+                  <div>Auto-derived risks</div>
+                  <div>Exposure scoring</div>
+                  <div>Impact analysis</div>
+                </div>
+
+                <a
+                  href="https://risk-coach-mvp-git-claude-lumina-62a0d8-imos-projects-98c0794a.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-red-400 hover:text-red-300 transition-colors text-sm font-medium"
+                >
+                  Launch module
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
 
             {/* Finance Module */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-yellow-600/5 blur-3xl group-hover:from-yellow-500/10 group-hover:to-yellow-600/10 transition-all duration-500 rounded-full" />
+            <div className="text-center space-y-6">
+              <ModuleCube
+                color="finance"
+                size={200}
+                className="mx-auto"
+                href="https://lumina-f-git-claude-nav-shell-2ep8j-imos-projects-98c0794a.vercel.app/"
+              />
 
-              <div className="relative text-center space-y-6">
-                <ModuleCube
-                  color="finance"
-                  size={220}
-                  className="mx-auto"
-                  href="https://lumina-f-git-claude-nav-shell-2ep8j-imos-projects-98c0794a.vercel.app/"
-                />
-
-                <div>
-                  <div className="inline-flex items-center gap-2 mb-3">
-                    <BarChart3 className="w-5 h-5 text-yellow-400" />
-                    <h3 className="text-xl font-bold tracking-tight">Lumina F</h3>
-                  </div>
-                  <p className="text-white/60 mb-6 leading-relaxed font-normal">
-                    Financial modeling suite. Risk-adjusted projections and multi-year forecasts
-                    derived from your strategy.
-                  </p>
-
-                  <div className="space-y-2 mb-6">
-                    <div className="flex items-center gap-2 justify-center text-sm text-white/50 font-medium">
-                      <Check className="w-4 h-4 text-yellow-400" />
-                      <span>Multi-year forecasts</span>
-                    </div>
-                    <div className="flex items-center gap-2 justify-center text-sm text-white/50 font-medium">
-                      <Check className="w-4 h-4 text-yellow-400" />
-                      <span>Risk adjustments</span>
-                    </div>
-                    <div className="flex items-center gap-2 justify-center text-sm text-white/50 font-medium">
-                      <Check className="w-4 h-4 text-yellow-400" />
-                      <span>Scenario comparison</span>
-                    </div>
-                  </div>
-
-                  <a
-                    href="https://lumina-f-git-claude-nav-shell-2ep8j-imos-projects-98c0794a.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors text-sm font-semibold"
-                  >
-                    Launch Lumina F
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
+              <div>
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <BarChart3 className="w-4 h-4 text-yellow-400" />
+                  <h3 className="text-lg font-semibold tracking-tight text-white/90">Lumina F</h3>
                 </div>
+                <p className="text-sm text-white/50 mb-6 leading-relaxed">
+                  Risk-adjusted financial models derived from strategy.
+                </p>
+
+                <div className="space-y-1.5 mb-6 text-sm text-white/40">
+                  <div>Multi-year forecasts</div>
+                  <div>Risk adjustments</div>
+                  <div>Scenario comparison</div>
+                </div>
+
+                <a
+                  href="https://lumina-f-git-claude-nav-shell-2ep8j-imos-projects-98c0794a.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-yellow-400 hover:text-yellow-300 transition-colors text-sm font-medium"
+                >
+                  Launch module
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Real Customer Stories */}
-      <section id="customers" className="py-40 px-6 bg-gradient-to-b from-black via-purple-950/5 to-black overflow-hidden">
-        <style>{`
-          @keyframes scrollRightToLeft {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-
-          @keyframes scrollLeftToRight {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-          }
-
-          .scroll-container-rtl {
-            animation: scrollRightToLeft 40s linear infinite;
-          }
-
-          .scroll-container-ltr {
-            animation: scrollLeftToRight 40s linear infinite;
-          }
-
-          .scroll-container-rtl:hover,
-          .scroll-container-ltr:hover {
-            animation-play-state: paused;
-          }
-        `}</style>
-
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-24">
-            <div className="inline-block px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-sm text-purple-400 font-semibold mb-6 tracking-wide">
-              CUSTOMER STORIES
+      {/* Customer Stories */}
+      <section id="customers" className="py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <div className="inline-block px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs font-medium text-white/60 uppercase tracking-wider mb-8">
+              Case Studies
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
-              Real results. Real companies.
+            <h2 className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight text-white/95">
+              Deployed at scale
             </h2>
-            <p className="text-lg font-normal text-white/60 max-w-3xl mx-auto leading-relaxed">
-              See how leading enterprises use Lumina ONE to transform complexity into clarity.
+            <p className="text-lg font-normal text-white/60 max-w-2xl mx-auto leading-relaxed">
+              Enterprise teams use Lumina ONE to maintain consistency across strategic planning, risk assessment, and financial modeling.
             </p>
           </div>
 
-          <div className="space-y-32">
-            {/* Story 1: TechCorp Global - Scrolling Right to Left */}
-            <div className="relative">
-              <div className="overflow-hidden">
-                <div className="scroll-container-rtl flex gap-8">
-                  {/* Duplicate content for seamless loop */}
-                  {[1, 2].map((iteration) => (
-                    <div key={iteration} className="flex-shrink-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center px-4">
-                      <div className="space-y-6">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs font-semibold text-blue-400 tracking-wide">
-                          <Building2 className="w-3.5 h-3.5" />
-                          ENTERPRISE SOFTWARE
-                        </div>
-                        <h3 className="text-2xl font-bold tracking-tight leading-tight">
-                          TechCorp slashed planning cycles from 6 weeks to 3 days
-                        </h3>
-                        <p className="text-base text-white/60 leading-relaxed font-normal">
-                          Before Lumina ONE, TechCorp's quarterly planning involved dozens of spreadsheets,
-                          endless email chains, and constant version conflicts. Now their executive team sees
-                          real-time intelligence across Strategy, Risk, and Finance in one unified view.
-                        </p>
-
-                        <div className="grid grid-cols-2 gap-6 pt-4">
-                          <div className="space-y-2">
-                            <div className="text-3xl font-bold text-blue-400">95%</div>
-                            <div className="text-sm font-medium text-white/60">Faster decision making</div>
-                          </div>
-                          <div className="space-y-2">
-                            <div className="text-3xl font-bold text-purple-400">$2.4M</div>
-                            <div className="text-sm font-medium text-white/60">Saved annually</div>
-                          </div>
-                        </div>
-
-                        <blockquote className="border-l-2 border-blue-500/50 pl-6 italic text-white/70 font-normal">
-                          "Lumina ONE eliminated our planning bottleneck. We make better decisions faster,
-                          and everyone works from the same source of truth."
-                          <footer className="mt-2 text-sm not-italic text-white/50 font-medium">
-                            — Sarah Chen, VP Strategy at TechCorp
-                          </footer>
-                        </blockquote>
-                      </div>
-
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-3xl rounded-3xl" />
-                        <div className="relative bg-gradient-to-br from-blue-950/40 to-purple-950/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 space-y-6">
-                          <div className="flex items-center gap-3 pb-4 border-b border-white/10">
-                            <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                              <TrendingUp className="w-5 h-5 text-blue-400" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="text-sm font-semibold text-white">Asia-Pacific Expansion</div>
-                              <div className="text-xs text-white/50 font-medium">5-year scenario • Active</div>
-                            </div>
-                            <div className="text-xs font-medium text-emerald-400 flex items-center gap-1">
-                              <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-                              Live
-                            </div>
-                          </div>
-
-                          <div className="space-y-4">
-                            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 space-y-2">
-                              <div className="text-xs font-semibold text-blue-400 mb-1 tracking-wide">STRATEGY INPUT</div>
-                              <div className="text-sm text-white/80 font-medium">$180M revenue target • 12 new markets</div>
-                              <div className="grid grid-cols-2 gap-2 mt-3">
-                                <div className="bg-blue-500/10 rounded px-2 py-1">
-                                  <div className="text-xs text-blue-300 font-medium">6 KPIs</div>
-                                </div>
-                                <div className="bg-blue-500/10 rounded px-2 py-1">
-                                  <div className="text-xs text-blue-300 font-medium">18 Assumptions</div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="flex items-center justify-center">
-                              <ChevronRight className="w-5 h-5 text-white/30" />
-                            </div>
-                            <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 space-y-2">
-                              <div className="text-xs font-semibold text-red-400 mb-1 tracking-wide">AUTO-DERIVED RISKS</div>
-                              <div className="text-sm text-white/80 font-medium mb-2">Currency: High • Regulatory: Medium</div>
-                              <div className="grid grid-cols-3 gap-2">
-                                <div className="bg-red-500/10 rounded px-2 py-1 text-center">
-                                  <div className="text-3xl font-bold text-red-400">47</div>
-                                  <div className="text-xs text-red-300">Risks</div>
-                                </div>
-                                <div className="bg-yellow-500/10 rounded px-2 py-1 text-center">
-                                  <div className="text-3xl font-bold text-yellow-400">$18M</div>
-                                  <div className="text-xs text-yellow-300">Exposure</div>
-                                </div>
-                                <div className="bg-emerald-500/10 rounded px-2 py-1 text-center">
-                                  <div className="text-sm font-bold text-emerald-400">12</div>
-                                  <div className="text-xs text-emerald-300">Mitigations</div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="flex items-center justify-center">
-                              <ChevronRight className="w-5 h-5 text-white/30" />
-                            </div>
-                            <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4 space-y-2">
-                              <div className="text-xs font-semibold text-yellow-400 mb-1 tracking-wide">FINANCIAL MODEL</div>
-                              <div className="text-sm text-white/80 font-medium mb-2">Risk-adjusted NPV: $142M • IRR: 22%</div>
-                              {/* Mini bar chart visualization */}
-                              <div className="flex items-end gap-1 h-12 mt-3">
-                                {[40, 65, 55, 80, 90].map((height, i) => (
-                                  <div key={i} className="flex-1 bg-gradient-to-t from-yellow-500/50 to-yellow-400/30 rounded-t" style={{ height: `${height}%` }} />
-                                ))}
-                              </div>
-                              <div className="text-xs text-white/50 text-center mt-1">5-year revenue projection</div>
-                            </div>
-                          </div>
-
-                          <div className="pt-4 border-t border-white/10">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-2 text-xs font-medium text-emerald-400">
-                                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                                Real-time sync across all modules
-                              </div>
-                              <div className="text-xs text-white/40">Updated 2 min ago</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+          <div className="space-y-16">
+            {/* Story 1 */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-xs font-medium text-white/50 uppercase tracking-wider">
+                  Enterprise Software
+                </div>
+                <h3 className="text-xl font-semibold tracking-tight text-white/90">
+                  TechCorp reduced planning cycles from 6 weeks to 3 days
+                </h3>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Quarterly planning now uses a single scenario model. Risk and finance update automatically from strategy changes.
+                </p>
+                <div className="grid grid-cols-2 gap-4 pt-2">
+                  <div>
+                    <div className="text-2xl font-semibold text-white/80">95%</div>
+                    <div className="text-xs text-white/50">Faster planning</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-semibold text-white/80">$2.4M</div>
+                    <div className="text-xs text-white/50">Annual savings</div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6 space-y-4">
+                <div className="text-xs text-white/50 uppercase tracking-wider">Scenario Flow</div>
+                <div className="space-y-3">
+                  <div className="bg-white/[0.02] border border-white/10 rounded p-3">
+                    <div className="text-xs text-white/50">Strategy Input</div>
+                    <div className="text-sm text-white/80">$180M revenue • 12 markets</div>
+                  </div>
+                  <div className="flex justify-center">
+                    <ChevronRight className="w-4 h-4 text-white/20" />
+                  </div>
+                  <div className="bg-white/[0.02] border border-white/10 rounded p-3">
+                    <div className="text-xs text-white/50">Auto-Derived Risks</div>
+                    <div className="text-sm text-white/80">47 risks • $18M exposure</div>
+                  </div>
+                  <div className="flex justify-center">
+                    <ChevronRight className="w-4 h-4 text-white/20" />
+                  </div>
+                  <div className="bg-white/[0.02] border border-white/10 rounded p-3">
+                    <div className="text-xs text-white/50">Financial Model</div>
+                    <div className="text-sm text-white/80">NPV: $142M • IRR: 22%</div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Story 2: FinanceFirst Bank - Scrolling Left to Right */}
-            <div className="relative">
-              <div className="overflow-hidden">
-                <div className="scroll-container-ltr flex gap-8">
-                  {/* Duplicate content for seamless loop */}
-                  {[1, 2].map((iteration) => (
-                    <div key={iteration} className="flex-shrink-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center px-4">
-                      <div className="order-2 lg:order-1 relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-yellow-500/20 blur-3xl rounded-3xl" />
-                        <div className="relative bg-gradient-to-br from-red-950/40 to-yellow-950/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
-                          <div className="space-y-6">
-                            <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                              <div className="text-sm font-semibold text-white tracking-wide">REGULATORY COMPLIANCE DASHBOARD</div>
-                              <div className="text-xs font-medium text-emerald-400 flex items-center gap-1">
-                                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-                                Monitoring
-                              </div>
-                            </div>
-
-                            <div className="grid grid-cols-3 gap-4">
-                              <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-center">
-                                <div className="text-3xl font-bold text-red-400 mb-1">148</div>
-                                <div className="text-xs text-white/60 font-medium">Risk factors</div>
-                                <div className="text-xs text-red-400/60 mt-1">↑ 12 new</div>
-                              </div>
-                              <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-center">
-                                <div className="text-3xl font-bold text-yellow-400 mb-1">$45M</div>
-                                <div className="text-xs text-white/60 font-medium">Impact range</div>
-                                <div className="text-xs text-yellow-400/60 mt-1">↓ $8M lower</div>
-                              </div>
-                              <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-center">
-                                <div className="text-sm font-bold text-emerald-400 mb-1">98%</div>
-                                <div className="text-xs text-white/60 font-medium">Confidence</div>
-                                <div className="text-xs text-emerald-400/60 mt-1">High</div>
-                              </div>
-                            </div>
-
-                            <div className="space-y-3">
-                              <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-2 h-2 bg-red-400 rounded-full" />
-                                  <span className="text-sm text-white/80 font-medium">Operational Risk</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <div className="flex-1 w-20 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                    <div className="h-full bg-red-400 rounded-full" style={{ width: '85%' }} />
-                                  </div>
-                                  <span className="text-sm font-semibold text-red-400">High</span>
-                                </div>
-                              </div>
-                              <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-2 h-2 bg-yellow-400 rounded-full" />
-                                  <span className="text-sm text-white/80 font-medium">Market Risk</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <div className="flex-1 w-20 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                    <div className="h-full bg-yellow-400 rounded-full" style={{ width: '60%' }} />
-                                  </div>
-                                  <span className="text-sm font-semibold text-yellow-400">Medium</span>
-                                </div>
-                              </div>
-                              <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-2 h-2 bg-emerald-400 rounded-full" />
-                                  <span className="text-sm text-white/80 font-medium">Compliance Risk</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <div className="flex-1 w-20 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                    <div className="h-full bg-emerald-400 rounded-full" style={{ width: '25%' }} />
-                                  </div>
-                                  <span className="text-sm font-semibold text-emerald-400">Low</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="pt-3 border-t border-white/10">
-                              <div className="grid grid-cols-2 gap-3">
-                                <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
-                                  <div className="text-xs text-blue-400 font-medium">Countries monitored</div>
-                                  <div className="text-sm font-bold text-white mt-1">47</div>
-                                </div>
-                                <div className="bg-purple-500/10 border border-purple-500/20 rounded-lg p-3">
-                                  <div className="text-xs text-purple-400 font-medium">Regulations tracked</div>
-                                  <div className="text-sm font-bold text-white mt-1">312</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="order-1 lg:order-2 space-y-6">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-xs font-semibold text-red-400 tracking-wide">
-                          <Shield className="w-3.5 h-3.5" />
-                          FINANCIAL SERVICES
-                        </div>
-                        <h3 className="text-2xl font-bold tracking-tight leading-tight">
-                          FinanceFirst automated risk compliance across 47 countries
-                        </h3>
-                        <p className="text-base text-white/60 leading-relaxed font-normal">
-                          Managing regulatory risk across multiple jurisdictions was a nightmare of
-                          manual tracking and constant updates. Lumina ONE's auto-derived risk analysis
-                          now flags potential compliance issues before they become problems.
-                        </p>
-
-                        <div className="grid grid-cols-2 gap-6 pt-4">
-                          <div className="space-y-2">
-                            <div className="text-3xl font-bold text-red-400">87%</div>
-                            <div className="text-sm font-medium text-white/60">Fewer compliance incidents</div>
-                          </div>
-                          <div className="space-y-2">
-                            <div className="text-3xl font-bold text-yellow-400">24hr</div>
-                            <div className="text-sm font-medium text-white/60">Risk assessment time</div>
-                          </div>
-                        </div>
-
-                        <blockquote className="border-l-2 border-red-500/50 pl-6 italic text-white/70 font-normal">
-                          "The auto-derived risk scoring changed everything. We catch issues weeks earlier
-                          and our audit process went from months to days."
-                          <footer className="mt-2 text-sm not-italic text-white/50 font-medium">
-                            — Marcus Reynolds, Chief Risk Officer
-                          </footer>
-                        </blockquote>
-                      </div>
+            {/* Story 2 */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              <div className="space-y-4 order-2 lg:order-1">
+                <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6">
+                  <div className="text-xs text-white/50 uppercase tracking-wider mb-4">Risk Dashboard</div>
+                  <div className="grid grid-cols-3 gap-3 mb-4">
+                    <div className="text-center">
+                      <div className="text-xl font-semibold text-white/80">148</div>
+                      <div className="text-xs text-white/40">Factors</div>
                     </div>
-                  ))}
+                    <div className="text-center">
+                      <div className="text-xl font-semibold text-white/80">$45M</div>
+                      <div className="text-xs text-white/40">Impact</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-xl font-semibold text-white/80">98%</div>
+                      <div className="text-xs text-white/40">Confidence</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-4 order-1 lg:order-2">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-xs font-medium text-white/50 uppercase tracking-wider">
+                  Financial Services
+                </div>
+                <h3 className="text-xl font-semibold tracking-tight text-white/90">
+                  FinanceFirst automated risk compliance across 47 countries
+                </h3>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Regulatory risk now tracked automatically. Compliance issues flagged before they escalate.
+                </p>
+                <div className="grid grid-cols-2 gap-4 pt-2">
+                  <div>
+                    <div className="text-2xl font-semibold text-white/80">87%</div>
+                    <div className="text-xs text-white/50">Fewer incidents</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-semibold text-white/80">24hr</div>
+                    <div className="text-xs text-white/50">Assessment time</div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Story 3: RetailMax - Scrolling Right to Left */}
-            <div className="relative">
-              <div className="overflow-hidden">
-                <div className="scroll-container-rtl flex gap-8">
-                  {/* Duplicate content for seamless loop */}
-                  {[1, 2].map((iteration) => (
-                    <div key={iteration} className="flex-shrink-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center px-4">
-                      <div className="space-y-6">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-purple-500/10 border border-purple-500/20 rounded-full text-xs font-semibold text-purple-400 tracking-wide">
-                          <Rocket className="w-3.5 h-3.5" />
-                          RETAIL & E-COMMERCE
-                        </div>
-                        <h3 className="text-2xl font-bold tracking-tight leading-tight">
-                          RetailMax launched 12 new product lines with perfect forecasts
-                        </h3>
-                        <p className="text-base text-white/60 leading-relaxed font-normal">
-                          Product launch planning used to involve gut feelings and historical data that
-                          was always outdated. Now RetailMax models every launch with integrated strategy,
-                          risk, and financial projections that update as market conditions change.
-                        </p>
-
-                        <div className="grid grid-cols-2 gap-6 pt-4">
-                          <div className="space-y-2">
-                            <div className="text-3xl font-bold text-purple-400">92%</div>
-                            <div className="text-sm font-medium text-white/60">Forecast accuracy</div>
-                          </div>
-                          <div className="space-y-2">
-                            <div className="text-3xl font-bold text-pink-400">3x</div>
-                            <div className="text-sm font-medium text-white/60">ROI improvement</div>
-                          </div>
-                        </div>
-
-                        <blockquote className="border-l-2 border-purple-500/50 pl-6 italic text-white/70 font-normal">
-                          "We went from hoping our launches would succeed to knowing they will. The
-                          risk-adjusted financial models are remarkably accurate."
-                          <footer className="mt-2 text-sm not-italic text-white/50 font-medium">
-                            — Jessica Park, Head of Product Strategy
-                          </footer>
-                        </blockquote>
-                      </div>
-
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 blur-3xl rounded-3xl" />
-                        <div className="relative bg-gradient-to-br from-purple-950/40 to-pink-950/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 space-y-6">
-                          <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                            <div className="text-sm font-semibold text-white tracking-wide">PRODUCT LAUNCH TIMELINE</div>
-                            <div className="text-xs font-medium text-purple-400 flex items-center gap-1">
-                              <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" />
-                              In Progress
-                            </div>
-                          </div>
-
-                          <div className="space-y-4">
-                            <div className="relative pl-6 pb-6 border-l-2 border-purple-500/30">
-                              <div className="absolute left-0 top-0 w-3 h-3 bg-purple-500 rounded-full -translate-x-[7px]" />
-                              <div className="flex items-center justify-between mb-2">
-                                <div className="text-xs font-semibold text-purple-400 tracking-wide">Q1 2026</div>
-                                <div className="px-2 py-0.5 bg-emerald-500/20 border border-emerald-500/30 rounded text-xs text-emerald-400 font-medium">Complete</div>
-                              </div>
-                              <div className="text-sm text-white/80 font-medium mb-2">Market research & strategy</div>
-                              <div className="text-xs text-white/50 font-normal mb-2">Identified 3 target segments • $12M opportunity</div>
-                              <div className="grid grid-cols-3 gap-2 mt-2">
-                                <div className="bg-purple-500/10 rounded px-2 py-1 text-center">
-                                  <div className="text-xs text-purple-300 font-medium">125K</div>
-                                  <div className="text-xs text-purple-400/60">TAM</div>
-                                </div>
-                                <div className="bg-purple-500/10 rounded px-2 py-1 text-center">
-                                  <div className="text-xs text-purple-300 font-medium">3</div>
-                                  <div className="text-xs text-purple-400/60">Segments</div>
-                                </div>
-                                <div className="bg-purple-500/10 rounded px-2 py-1 text-center">
-                                  <div className="text-xs text-purple-300 font-medium">$12M</div>
-                                  <div className="text-xs text-purple-400/60">Year 1</div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="relative pl-6 pb-6 border-l-2 border-red-500/30">
-                              <div className="absolute left-0 top-0 w-3 h-3 bg-red-500 rounded-full -translate-x-[7px]" />
-                              <div className="flex items-center justify-between mb-2">
-                                <div className="text-xs font-semibold text-red-400 tracking-wide">Q2 2026</div>
-                                <div className="px-2 py-0.5 bg-emerald-500/20 border border-emerald-500/30 rounded text-xs text-emerald-400 font-medium">Complete</div>
-                              </div>
-                              <div className="text-sm text-white/80 font-medium mb-2">Risk assessment</div>
-                              <div className="text-xs text-white/50 font-normal mb-2">Competitive threats: Medium • Supply chain: Low</div>
-                              <div className="space-y-1.5 mt-2">
-                                <div className="flex items-center justify-between text-xs">
-                                  <span className="text-white/60">Competition</span>
-                                  <div className="flex items-center gap-1">
-                                    <div className="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
-                                      <div className="h-full bg-yellow-400" style={{ width: '60%' }} />
-                                    </div>
-                                    <span className="text-yellow-400 font-medium">Med</span>
-                                  </div>
-                                </div>
-                                <div className="flex items-center justify-between text-xs">
-                                  <span className="text-white/60">Supply chain</span>
-                                  <div className="flex items-center gap-1">
-                                    <div className="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
-                                      <div className="h-full bg-emerald-400" style={{ width: '25%' }} />
-                                    </div>
-                                    <span className="text-emerald-400 font-medium">Low</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="relative pl-6">
-                              <div className="absolute left-0 top-0 w-3 h-3 bg-yellow-500 rounded-full -translate-x-[7px] animate-pulse" />
-                              <div className="flex items-center justify-between mb-2">
-                                <div className="text-xs font-semibold text-yellow-400 tracking-wide">Q3-Q4 2026</div>
-                                <div className="px-2 py-0.5 bg-yellow-500/20 border border-yellow-500/30 rounded text-xs text-yellow-400 font-medium">Active</div>
-                              </div>
-                              <div className="text-sm text-white/80 font-medium mb-2">Launch & scale</div>
-                              <div className="text-xs text-white/50 font-normal mb-2">Projected revenue: $8.2M • Margin: 34%</div>
-                              <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 mt-2">
-                                <div className="flex items-center justify-between mb-2">
-                                  <span className="text-xs text-yellow-300 font-medium">Revenue forecast</span>
-                                  <span className="text-xs text-white/60">Monthly</span>
-                                </div>
-                                <div className="flex items-end gap-0.5 h-8">
-                                  {[30, 45, 52, 68, 75, 82].map((height, i) => (
-                                    <div key={i} className="flex-1 bg-gradient-to-t from-yellow-500/60 to-yellow-400/40 rounded-t" style={{ height: `${height}%` }} />
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                            <span className="text-xs font-medium text-white/60">Overall confidence</span>
-                            <div className="flex items-center gap-2">
-                              <div className="w-24 h-2 bg-white/10 rounded-full overflow-hidden">
-                                <div className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full" style={{ width: '89%' }} />
-                              </div>
-                              <span className="text-sm font-bold text-emerald-400">High (89%)</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+            {/* Story 3 */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-xs font-medium text-white/50 uppercase tracking-wider">
+                  Retail
+                </div>
+                <h3 className="text-xl font-semibold tracking-tight text-white/90">
+                  RetailMax launched 12 product lines with integrated forecasts
+                </h3>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Product launches now model strategy, risk, and finance together. Market conditions update projections in real time.
+                </p>
+                <div className="grid grid-cols-2 gap-4 pt-2">
+                  <div>
+                    <div className="text-2xl font-semibold text-white/80">92%</div>
+                    <div className="text-xs text-white/50">Forecast accuracy</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-semibold text-white/80">3x</div>
+                    <div className="text-xs text-white/50">ROI improvement</div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6">
+                <div className="text-xs text-white/50 uppercase tracking-wider mb-4">Launch Timeline</div>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-white/40 rounded-full" />
+                    <div className="flex-1">
+                      <div className="text-xs text-white/50">Q1: Strategy</div>
+                      <div className="text-sm text-white/80">$12M opportunity</div>
                     </div>
-                  ))}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-white/40 rounded-full" />
+                    <div className="flex-1">
+                      <div className="text-xs text-white/50">Q2: Risk Assessment</div>
+                      <div className="text-sm text-white/80">Medium exposure</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-white/40 rounded-full" />
+                    <div className="flex-1">
+                      <div className="text-xs text-white/50">Q3-Q4: Launch</div>
+                      <div className="text-sm text-white/80">$8.2M projected</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
       {/* Stats Section */}
-      <section className="py-32 px-6 bg-gradient-to-b from-black via-blue-950/5 to-black">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="text-center space-y-4">
-              <div className="text-6xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent tracking-tight">
+      <section className="py-32 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div className="text-center space-y-3">
+              <div className="text-5xl font-semibold text-white/90 tracking-tight">
                 85%
               </div>
-              <div className="text-white/60 text-base leading-relaxed font-normal">
-                Faster planning cycles with automatic derivation
+              <div className="text-white/50 text-sm leading-relaxed">
+                Faster planning cycles
               </div>
             </div>
 
-            <div className="text-center space-y-4">
-              <div className="text-6xl font-bold bg-gradient-to-br from-red-400 to-red-600 bg-clip-text text-transparent tracking-tight">
+            <div className="text-center space-y-3">
+              <div className="text-5xl font-semibold text-white/90 tracking-tight">
                 100%
               </div>
-              <div className="text-white/60 text-base leading-relaxed font-normal">
-                Consistency across Strategy, Risk, and Finance
+              <div className="text-white/50 text-sm leading-relaxed">
+                Cross-module consistency
               </div>
             </div>
 
-            <div className="text-center space-y-4">
-              <div className="text-6xl font-bold bg-gradient-to-br from-yellow-400 to-yellow-600 bg-clip-text text-transparent tracking-tight">
-                24/7
+            <div className="text-center space-y-3">
+              <div className="text-5xl font-semibold text-white/90 tracking-tight">
+                Real-time
               </div>
-              <div className="text-white/60 text-base leading-relaxed font-normal">
-                Real-time updates as your strategy evolves
+              <div className="text-white/50 text-sm leading-relaxed">
+                Automatic updates
               </div>
             </div>
           </div>
@@ -783,116 +438,85 @@ export function LandingPage() {
       </section>
 
       {/* How It Works */}
-      <section id="features" className="py-32 px-6 bg-gradient-to-b from-black via-purple-950/10 to-black">
-        <div className="max-w-6xl mx-auto">
+      <section id="features" className="py-32 px-6">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight text-white/95">
               How it works
             </h2>
-            <p className="text-lg text-white/60 font-normal">
-              Intelligence that flows automatically. No manual data entry. No reconciliation.
+            <p className="text-base text-white/60">
+              Define strategy. Risk and finance derive automatically.
             </p>
           </div>
 
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-red-500/10 to-yellow-500/10 blur-3xl rounded-3xl" />
-
-            <div className="relative bg-white/[0.02] border border-white/10 rounded-3xl p-12 backdrop-blur-xl">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 mx-auto bg-purple-500/10 border border-purple-500/20 rounded-2xl flex items-center justify-center">
-                    <TrendingUp className="w-8 h-8 text-purple-400" />
-                  </div>
-                  <div className="text-3xl font-bold text-purple-400 tracking-tight">1</div>
-                  <h3 className="text-lg font-semibold tracking-tight">Define Strategy</h3>
-                  <p className="text-white/60 text-base leading-relaxed font-normal">
-                    Create your scenario with objectives, assumptions, and KPIs. This is your single source of truth.
-                  </p>
+          <div className="bg-white/[0.02] border border-white/10 rounded-lg p-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div className="space-y-3">
+                <div className="w-12 h-12 bg-white/5 border border-white/10 rounded flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-white/60" />
                 </div>
-
-                <div className="hidden md:flex items-center justify-center">
-                  <ArrowRight className="w-12 h-12 text-white/20" />
-                </div>
-
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 mx-auto bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center justify-center">
-                    <Shield className="w-8 h-8 text-red-400" />
-                  </div>
-                  <div className="text-3xl font-bold text-red-400 tracking-tight">2</div>
-                  <h3 className="text-lg font-semibold tracking-tight">Risk Auto-Derives</h3>
-                  <p className="text-white/60 text-base leading-relaxed font-normal">
-                    Lumina analyzes your strategy and automatically identifies risks, scores exposures, and calculates threat levels.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex justify-center my-8">
-                <ArrowRight className="w-12 h-12 text-white/20 rotate-90" />
-              </div>
-
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-yellow-500/10 border border-yellow-500/20 rounded-2xl flex items-center justify-center">
-                  <BarChart3 className="w-8 h-8 text-yellow-400" />
-                </div>
-                <div className="text-3xl font-bold text-yellow-400 tracking-tight">3</div>
-                <h3 className="text-lg font-semibold tracking-tight">Finance Models Build</h3>
-                <p className="text-white/60 text-sm leading-relaxed max-w-md mx-auto font-normal">
-                  Financial projections are generated from your strategy and adjusted for the identified risks. See year-by-year forecasts instantly.
+                <div className="text-lg font-semibold text-white/90">1. Define Strategy</div>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Create scenarios with objectives, assumptions, and KPIs.
                 </p>
               </div>
 
-              <div className="mt-12 pt-8 border-t border-white/10 text-center">
-                <p className="text-white/80 mb-6 text-sm font-normal">
-                  Change your strategy once. Watch everything update in real-time.
-                </p>
-                <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-xl">
-                  <Zap className="w-5 h-5 text-purple-400" />
-                  <span className="text-sm font-semibold text-purple-300">Real-time cascade across all modules</span>
+              <div className="space-y-3">
+                <div className="w-12 h-12 bg-white/5 border border-white/10 rounded flex items-center justify-center">
+                  <Shield className="w-5 h-5 text-white/60" />
                 </div>
+                <div className="text-lg font-semibold text-white/90">2. Risk Derives</div>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Risk analysis generates automatically from strategy inputs.
+                </p>
               </div>
+
+              <div className="space-y-3">
+                <div className="w-12 h-12 bg-white/5 border border-white/10 rounded flex items-center justify-center">
+                  <BarChart3 className="w-5 h-5 text-white/60" />
+                </div>
+                <div className="text-lg font-semibold text-white/90">3. Finance Builds</div>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Financial projections adjust for identified risks.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10 pt-8 border-t border-white/10 text-center">
+              <p className="text-sm text-white/50">
+                Strategy changes cascade automatically across all modules.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-40 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20" />
-        <div className="absolute inset-0 bg-black/60" />
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight tracking-tight">
-            Turn complexity into
-            <br />
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              crystal clarity
-            </span>
+      <section className="py-32 px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-6 leading-tight tracking-tight text-white/95">
+            Maintain consistency across<br />Strategy, Risk, and Finance
           </h2>
-          <p className="text-base text-white/70 mb-12 max-w-2xl mx-auto leading-relaxed font-normal">
-            Join forward-thinking enterprises using Lumina ONE to unify Strategy, Risk, and Finance
-            into a single source of truth.
+          <p className="text-base text-white/60 mb-10 max-w-xl mx-auto leading-relaxed">
+            Single source of truth. Automatic derivation. Real-time updates.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={handleGetStarted}
-              className="group px-10 py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white text-sm font-semibold rounded-xl transition-all inline-flex items-center justify-center gap-3 shadow-2xl shadow-purple-500/20"
+              className="px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors inline-flex items-center justify-center gap-2"
             >
-              Start Free Trial
-              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              View Demo
+              <ArrowRight className="w-4 h-4" />
             </button>
 
             <button
               onClick={() => navigate(ROUTES.login)}
-              className="px-10 py-5 bg-white/5 border border-white/10 text-white text-sm font-semibold rounded-xl hover:bg-white/10 transition-all"
+              className="px-8 py-3.5 bg-white/5 border border-white/10 text-white/90 font-medium rounded-lg hover:bg-white/10 transition-colors"
             >
-              View Live Demo
+              Sign In
             </button>
           </div>
-
-          <p className="text-sm text-white/50 font-medium">
-            No credit card required • 14-day free trial • Cancel anytime
-          </p>
         </div>
       </section>
 
