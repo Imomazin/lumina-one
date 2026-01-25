@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Card } from '../components/ui/Card';
+import { PageShell, Card } from '../../../components/ui';
 import { Button } from '../components/ui/Button';
 import {
   Sparkles,
@@ -25,7 +25,7 @@ import {
   BookOpen,
   History,
   MessageSquare,
-} from 'lucide-react';
+, Sparkles as SparklesIcon } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -402,7 +402,20 @@ Would you like me to:
   };
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 shadow-sm">
+          <Sparkles className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">AI Risk Advisor</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Intelligent assistant for risk analysis, mitigation planning, and insights
+          </p>
+        </div>
+      </div>
+
       {/* AI Capabilities Bar */}
       <div className="mb-6 overflow-x-auto">
         <div className="flex gap-4 min-w-max pb-2">
@@ -690,6 +703,6 @@ Would you like me to:
           </Button>
         </div>
       </div>
-    </>
+    </PageShell>
   );
 }

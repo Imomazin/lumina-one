@@ -5,7 +5,7 @@ import {
   RiskList,
   AICoachWidget,
 } from '../components/dashboard';
-import { Card, CardHeader, CardTitle } from '../components/ui/Card';
+import { PageShell, Card, Section } from '../../../components/ui';
 import { Button } from '../components/ui/Button';
 import { useStrategyStore, useRiskStore } from '../../../store';
 import {
@@ -614,7 +614,20 @@ export function Dashboard() {
   };
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 shadow-sm">
+          <Shield className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Risk Intelligence</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Auto-derived from Strategy • Comprehensive risk management dashboard
+          </p>
+        </div>
+      </div>
+
       {/* Dashboard Tabs */}
       <div className="mb-6 border-b border-slate-200 dark:border-slate-700">
         <nav className="flex gap-1 -mb-px overflow-x-auto scrollbar-hide">
@@ -718,25 +731,23 @@ export function Dashboard() {
           {/* Strategy-Derived Risks Section */}
           {strategyScenario && risk && (
             <Card className="mb-6">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle>Strategy-Derived Risk Exposure</CardTitle>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                      Automatically derived from Strategy assumptions
-                    </p>
-                  </div>
-                  <div className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    risk.overallExposure === 'High'
-                      ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
-                      : risk.overallExposure === 'Medium'
-                      ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400'
-                      : 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                  }`}>
-                    Overall Exposure: {risk.overallExposure}
-                  </div>
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Strategy-Derived Risk Exposure</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                    Automatically derived from Strategy assumptions
+                  </p>
                 </div>
-              </CardHeader>
+                <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+                  risk.overallExposure === 'High'
+                    ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
+                    : risk.overallExposure === 'Medium'
+                    ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400'
+                    : 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                }`}>
+                  Overall Exposure: {risk.overallExposure}
+                </div>
+              </div>
               <div className="space-y-3">
                 <div className="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
                   <p className="text-sm font-medium text-blue-800 dark:text-blue-300 mb-1">
@@ -808,9 +819,7 @@ export function Dashboard() {
 
               {/* Quick KRI Summary */}
               <Card>
-                <CardHeader>
-                  <CardTitle>KRI Status Summary</CardTitle>
-                </CardHeader>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">KRI Status Summary</h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/30">
                     <span className="text-sm font-medium text-emerald-700 dark:text-emerald-400">Within Tolerance</span>
@@ -829,9 +838,7 @@ export function Dashboard() {
 
               {/* Risk by Category */}
               <Card>
-                <CardHeader>
-                  <CardTitle>Risk by Category</CardTitle>
-                </CardHeader>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Risk by Category</h3>
                 <div className="space-y-3">
                   {Object.entries(riskStats.byCategory)
                     .filter(([, count]) => count > 0)
@@ -1154,9 +1161,7 @@ export function Dashboard() {
 
           {/* KRI Best Practices Info */}
           <Card className="mt-6">
-            <CardHeader>
-              <CardTitle>KRI Development Best Practices</CardTitle>
-            </CardHeader>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">KRI Development Best Practices</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/30">
                 <h4 className="font-semibold text-blue-700 dark:text-blue-400 mb-2">Predictive Nature</h4>
@@ -1199,9 +1204,7 @@ export function Dashboard() {
 
           {/* Overall Appetite Statement */}
           <Card className="mb-6">
-            <CardHeader>
-              <CardTitle>Enterprise Risk Appetite Statement</CardTitle>
-            </CardHeader>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Enterprise Risk Appetite Statement</h3>
             <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border-l-4 border-lumina-500">
               <p className="text-slate-700 dark:text-slate-300 italic">
                 "As an organization committed to sustainable growth, we maintain a <strong>Moderate</strong> overall
@@ -1259,9 +1262,7 @@ export function Dashboard() {
 
           {/* Appetite vs Tolerance Explanation */}
           <Card className="mt-6">
-            <CardHeader>
-              <CardTitle>Understanding Risk Appetite vs Tolerance</CardTitle>
-            </CardHeader>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Understanding Risk Appetite vs Tolerance</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="p-4 rounded-xl bg-lumina-50 dark:bg-lumina-900/30">
                 <h4 className="font-semibold text-lumina-700 dark:text-lumina-400 mb-2 flex items-center gap-2">
@@ -1411,9 +1412,7 @@ export function Dashboard() {
           </div>
           <div>
             <Card>
-              <CardHeader>
-                <CardTitle>Matrix Legend</CardTitle>
-              </CardHeader>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Matrix Legend</h3>
               <div className="space-y-4">
                 <div>
                   <p className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Risk Levels</p>
@@ -1452,9 +1451,7 @@ export function Dashboard() {
       {/* ==================== ACTIVITY TAB ==================== */}
       {activeTab === 'activity' && (
         <Card>
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-          </CardHeader>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Recent Activity</h3>
           <div className="divide-y divide-slate-100 dark:divide-slate-700">
             {getRiskActivity(20).length === 0 ? (
               <div className="py-12 text-center">
@@ -1499,9 +1496,7 @@ export function Dashboard() {
       {/* ==================== TIMELINE TAB ==================== */}
       {activeTab === 'timeline' && (
         <Card>
-          <CardHeader>
-            <CardTitle>Risk Timeline</CardTitle>
-          </CardHeader>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Risk Timeline</h3>
           <div className="space-y-8">
             {timelineEvents.map((month, idx) => (
               <div key={month.date} className="relative">
@@ -1605,6 +1600,6 @@ export function Dashboard() {
           )}
         </>
       )}
-    </>
+    </PageShell>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card } from '../components/ui/Card';
+import { PageShell, Card } from '../../../components/ui';
 import { Button } from '../components/ui/Button';
 import {
   Search,
@@ -8,6 +8,7 @@ import {
   Edit2,
   Trash2,
   UserPlus,
+  Users,
 } from 'lucide-react';
 
 interface TeamMember {
@@ -94,7 +95,20 @@ export function Team() {
   );
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 shadow-sm">
+          <Users className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Team Management</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Manage team members, roles, and risk ownership
+          </p>
+        </div>
+      </div>
+
       {/* Actions */}
       <div className="flex items-center justify-between mb-6">
         <div className="relative flex-1 max-w-md">
@@ -272,6 +286,6 @@ export function Team() {
           </table>
         </div>
       </Card>
-    </>
+    </PageShell>
   );
 }

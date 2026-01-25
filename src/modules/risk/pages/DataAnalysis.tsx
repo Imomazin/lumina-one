@@ -351,7 +351,21 @@ export function DataAnalysis() {
   };
 
   return (
-    <>
+        <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-sm">
+          <BarChart3 className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Data Analysis</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Upload and analyze risk data files with AI-powered insights
+          </p>
+        </div>
+      </div>
+
+
       <div className="space-y-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -731,6 +745,6 @@ export function DataAnalysis() {
           </div>
         </div>
       </div>
-    </>
+    </PageShell>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card } from '../components/ui/Card';
+import { PageShell, Card } from '../../../components/ui';
 import { Button } from '../components/ui/Button';
 import { useTheme } from '../contexts/ThemeContext';
 import {
@@ -52,7 +52,20 @@ export function Settings() {
   });
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-slate-500 to-gray-600 shadow-sm">
+          <SettingsIcon className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Settings</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Configure your risk management preferences and integrations
+          </p>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Navigation */}
         <div className="lg:col-span-1">
@@ -386,6 +399,6 @@ export function Settings() {
           )}
         </div>
       </div>
-    </>
+    </PageShell>
   );
 }
