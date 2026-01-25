@@ -1,10 +1,11 @@
 import { User, LogOut, LogIn, Sun, Moon, Monitor } from 'lucide-react'
 import { useAuth } from '../../auth/AuthContext'
-import { useLumina } from '../../context/LuminaContext'
+import { useStrategyStore } from '../../store'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../routes'
 import { useTheme, Theme } from '../theme'
+import { useLumina } from '../../context/LuminaContext'
 
 export default function Topbar() {
   const { user, signOut } = useAuth()

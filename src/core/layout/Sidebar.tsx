@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { LayoutGrid, Activity } from 'lucide-react'
 import { getAllModules } from '../../modules'
 import { ROUTES } from '../../routes'
+import { BuildStamp } from '../../components/BuildStamp'
 
 export default function Sidebar() {
   const modules = getAllModules()
@@ -83,6 +84,11 @@ export default function Sidebar() {
             })}
           </div>
         </nav>
+
+        {/* Footer with Build Stamp */}
+        <div className="p-4 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+          <BuildStamp className="text-gray-500 dark:text-gray-400" />
+        </div>
       </div>
     </aside>
   )

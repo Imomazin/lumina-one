@@ -1,9 +1,15 @@
-import { TrendingUp, Shield, DollarSign, AlertCircle, Activity } from 'lucide-react'
-import { useLumina } from '../context/LuminaContext'
+import { TrendingUp, Shield, DollarSign, AlertCircle, Activity, RefreshCw, ChevronDown } from 'lucide-react'
+import { useState } from 'react'
+import { useStrategyStore, useRiskStore, useFinanceStore } from '../store'
 import { PageContainer } from '../core/layout'
 
 export default function ControlPlane() {
-  const { strategyScenario, risk, finance } = useLumina()
+  const strategyScenario = useStrategyStore(state => state.scenario)
+  const risk = useRiskStore(state => state.profile)
+  const finance = useFinanceStore(state => state.model)
+  const allScenarios = useStrategyStore(state => state.getAllScenarios())
+  const setActiveScenario = useStrategyStore(state => state.setActiveScenario)
+  const [showScenarioDropdown, setShowScenarioDropdown] = useState(false)
 
   return (
     <PageContainer maxWidth="wide">
@@ -21,6 +27,71 @@ export default function ControlPlane() {
           </div>
         </div>
       </div>
+
+      {/* Scenario Controls */}
+      {allScenarios.length > 0 && (
+        <div className="mb-8 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Scenario Manager</h3>
+            <div className="px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-xs font-medium text-blue-700 dark:text-blue-400">
+              {allScenarios.length} scenario{allScenarios.length !== 1 ? 's' : ''}
+            </div>
+          </div>
+
+          <div className="relative">
+            <button
+              onClick={() => setShowScenarioDropdown(!showScenarioDropdown)}
+              className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <RefreshCw className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                <div className="text-left">
+                  <p className="text-sm font-medium text-gray-900 dark:text-white">
+                    {strategyScenario?.name || "No scenario selected"}
+                  </p>
+                  {strategyScenario && (
+                    <p className="text-xs text-gray-500 dark:text-gray-400 font-mono">
+                      {strategyScenario.id.slice(0, 8)}...
+                    </p>
+                  )}
+                </div>
+              </div>
+              <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${showScenarioDropdown ? 'rotate-180' : ''}`} />
+            </button>
+
+            {showScenarioDropdown && (
+              <div className="absolute z-10 w-full mt-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg">
+                {allScenarios.map((scenario) => (
+                  <button
+                    key={scenario.id}
+                    onClick={() => {
+                      setActiveScenario(scenario.id)
+                      setShowScenarioDropdown(false)
+                    }}
+                    className={`w-full px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors first:rounded-t-lg last:rounded-b-lg ${
+                      scenario.id === strategyScenario?.id ? 'bg-purple-50 dark:bg-purple-900/20' : ''
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-gray-900 dark:text-white">
+                          {scenario.name}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          {scenario.objective}
+                        </p>
+                      </div>
+                      {scenario.id === strategyScenario?.id && (
+                        <div className="flex-shrink-0 w-2 h-2 rounded-full bg-green-500" />
+                      )}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Scenario ID */}
       <div className="mb-8 px-4 py-3 bg-purple-50 dark:bg-purple-900/20 rounded-xl border border-purple-200 dark:border-purple-800">
@@ -196,6 +267,85 @@ export default function ControlPlane() {
                     </p>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* Flow Indicator */}
+          <div className="flex items-center justify-center">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
+                Derived ↓
+              </span>
+            </div>
+          </div>
+
+          {/* Alerts Section */}
+          {(risk || finance) && (
+            <div className="p-6 rounded-lg bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-800">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-amber-600 text-white">
+                  <AlertCircle className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-amber-900 dark:text-amber-300">System Alerts</h2>
+                  <p className="text-xs text-amber-700 dark:text-amber-400">Active warnings and notifications</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {risk && risk.overallExposure === 'High' && (
+                  <div className="p-3 rounded-lg bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-800">
+                    <div className="flex items-start gap-2">
+                      <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-red-900 dark:text-red-300">High Risk Exposure Detected</p>
+                        <p className="text-xs text-red-700 dark:text-red-400 mt-1">
+                          {risk.exposureCategories.filter(e => e.level === 'High').length} high-risk categories identified. Review risk mitigation strategies.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {finance && finance.pressureLevel === 'High' && (
+                  <div className="p-3 rounded-lg bg-orange-100 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-800">
+                    <div className="flex items-start gap-2">
+                      <DollarSign className="w-5 h-5 text-orange-600 dark:text-orange-400 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-orange-900 dark:text-orange-300">High Financial Pressure</p>
+                        <p className="text-xs text-orange-700 dark:text-orange-400 mt-1">
+                          Capital buffer requirement: {finance.capitalBufferRequirement}. Consider liquidity planning.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {strategyScenario && strategyScenario.timeHorizon > 5 && (
+                  <div className="p-3 rounded-lg bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800">
+                    <div className="flex items-start gap-2">
+                      <TrendingUp className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-blue-900 dark:text-blue-300">Long-Term Strategy</p>
+                        <p className="text-xs text-blue-700 dark:text-blue-400 mt-1">
+                          {strategyScenario.timeHorizon}-year horizon requires extended financial planning and quarterly reviews.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {(!risk || risk.overallExposure === 'Low') && (!finance || finance.pressureLevel === 'Low') && (
+                  <div className="p-3 rounded-lg bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800">
+                    <div className="flex items-start gap-2">
+                      <Shield className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-green-900 dark:text-green-300">All Systems Normal</p>
+                        <p className="text-xs text-green-700 dark:text-green-400 mt-1">
+                          Low risk exposure and financial pressure. Continue monitoring intelligence flow.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
