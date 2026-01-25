@@ -8,6 +8,7 @@ import { LuminaOneWordmark } from '../components/LuminaOneLogo'
 import { ModuleCube } from '../components/ModuleCube'
 import { RevolvingDiamond } from '../components/RevolvingDiamond'
 import { Footer } from '../components/Footer'
+import { WorldCitiesSkyline } from '../components/WorldCitiesSkyline'
 
 export function LandingPage() {
   const navigate = useNavigate()
@@ -89,8 +90,11 @@ export function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative pt-40 pb-40 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative pt-40 pb-40 px-6 overflow-hidden">
+        {/* World Cities Skyline Background */}
+        <WorldCitiesSkyline />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             {/* Left: Copy */}
             <div className="space-y-10">
@@ -972,8 +976,11 @@ export function LandingPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-32 px-6">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="relative py-32 px-6 overflow-hidden">
+        {/* World Cities Skyline Background */}
+        <WorldCitiesSkyline />
+
+        <div className="max-w-3xl mx-auto text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-semibold mb-6 leading-tight tracking-tight text-white/95">
             Maintain consistency across<br />Strategy, Risk, and Finance
           </h2>
