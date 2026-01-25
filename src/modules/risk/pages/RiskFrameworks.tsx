@@ -464,7 +464,7 @@ function BowTieAnalysis() {
       </div>
 
       {/* Bow-Tie Diagram */}
-      <Card padding="lg">
+      <Card className="p-8">
         <div className="grid grid-cols-5 gap-4 items-start">
           {/* Causes */}
           <div className="space-y-2">
@@ -709,7 +709,7 @@ function FMEAAnalysis() {
         </Button>
       </div>
 
-      <Card padding="none">
+      <Card className="p-0">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -933,8 +933,7 @@ function ScenarioAnalysis() {
           return (
             <Card
               key={scenario.id}
-              padding="none"
-              className={`overflow-hidden cursor-pointer ${isEditing ? 'ring-2 ring-lumina-500' : ''}`}
+              className={`overflow-hidden cursor-pointer p-0 ${isEditing ? 'ring-2 ring-lumina-500' : ''}`}
               onClick={() => setEditingId(isEditing ? null : scenario.id)}
             >
               <div className={`p-4 bg-${scenario.color}-500 text-white`}>

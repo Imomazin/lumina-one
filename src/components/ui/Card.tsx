@@ -1,6 +1,6 @@
-import { ReactNode } from 'react'
+import { ReactNode, HTMLAttributes } from 'react'
 
-interface CardProps {
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   className?: string
 }
@@ -14,9 +14,9 @@ interface CardProps {
  * - Border and subtle shadow
  * - Internal padding
  */
-export function Card({ children, className = '' }: CardProps) {
+export function Card({ children, className = '', ...props }: CardProps) {
   return (
-    <div className={`rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm p-6 ${className}`}>
+    <div className={`rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm p-6 ${className}`} {...props}>
       {children}
     </div>
   )

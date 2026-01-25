@@ -132,23 +132,23 @@ export function Team() {
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <Card padding="sm" className="flex items-center gap-3">
+        <Card className="flex items-center gap-3 p-4">
           <div className="text-3xl font-bold text-slate-900">{teamMembers.length}</div>
           <div className="text-sm text-slate-500">Total Members</div>
         </Card>
-        <Card padding="sm" className="flex items-center gap-3">
+        <Card className="flex items-center gap-3 p-4">
           <div className="text-3xl font-bold text-emerald-600">
             {teamMembers.filter((m) => m.status === 'active').length}
           </div>
           <div className="text-sm text-slate-500">Active</div>
         </Card>
-        <Card padding="sm" className="flex items-center gap-3">
+        <Card className="flex items-center gap-3 p-4">
           <div className="text-3xl font-bold text-amber-600">
             {teamMembers.filter((m) => m.status === 'pending').length}
           </div>
           <div className="text-sm text-slate-500">Pending</div>
         </Card>
-        <Card padding="sm" className="flex items-center gap-3">
+        <Card className="flex items-center gap-3 p-4">
           <div className="text-3xl font-bold text-lumina-600">
             {teamMembers.filter((m) => m.role === 'admin').length}
           </div>
@@ -210,7 +210,7 @@ export function Team() {
       )}
 
       {/* Team Table */}
-      <Card padding="none">
+      <Card className="p-0">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>

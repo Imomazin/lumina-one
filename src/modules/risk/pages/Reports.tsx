@@ -187,7 +187,7 @@ export function Reports() {
       )}
 
       {/* Reports List */}
-      <Card padding="none">
+      <Card className="p-0">
         <div className="p-4 border-b border-slate-100">
           <h3 className="font-medium text-slate-900">Recent Reports</h3>
         </div>

@@ -160,7 +160,7 @@ export function RiskRegister() {
       </div>
 
       {/* Risk Table */}
-      <Card padding="none" className="overflow-hidden">
+      <Card className="overflow-hidden p-0">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>

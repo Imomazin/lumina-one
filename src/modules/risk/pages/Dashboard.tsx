@@ -5,7 +5,7 @@ import {
   RiskList,
   AICoachWidget,
 } from '../components/dashboard';
-import { PageShell, Card, Section } from '../../../components/ui';
+import { PageShell, Card } from '../../../components/ui';
 import { Button } from '../components/ui/Button';
 import { useStrategyStore, useRiskStore } from '../../../store';
 import {
@@ -983,7 +983,7 @@ export function Dashboard() {
               {platformIntegrations.map((platform) => {
                 const Icon = platform.icon;
                 return (
-                  <Card key={platform.id} padding="none" className="group hover:shadow-lg transition-all cursor-pointer">
+                  <Card key={platform.id} className="group hover:shadow-lg transition-all cursor-pointer p-0">
                     <div className="p-4 text-center">
                       <div className={`w-12 h-12 mx-auto rounded-xl ${platform.color} text-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
                         <Icon className="w-6 h-6" />
@@ -1040,7 +1040,7 @@ export function Dashboard() {
             {filteredTools.map((tool) => {
               const Icon = tool.icon;
               return (
-                <Card key={tool.id} padding="none" className="group hover:shadow-lg transition-all cursor-pointer">
+                <Card key={tool.id} className="group hover:shadow-lg transition-all cursor-pointer p-0">
                   <div className="p-5">
                     <div className="flex items-start justify-between mb-4">
                       <div className={`p-3 rounded-xl ${tool.color} text-white`}>
@@ -1126,7 +1126,7 @@ export function Dashboard() {
             {kriCategories.map((cat) => {
               const Icon = cat.icon;
               return (
-                <Card key={cat.category} padding="none">
+                <Card key={cat.category} className="p-0">
                   <div className={`p-4 border-b border-slate-100 dark:border-slate-800 bg-${cat.color}-50 dark:bg-${cat.color}-900/20`}>
                     <div className="flex items-center gap-3">
                       <div className={`p-2 rounded-lg bg-${cat.color}-500 text-white`}>
@@ -1218,7 +1218,7 @@ export function Dashboard() {
           {/* Appetite Categories */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {riskAppetiteCategories.map((cat) => (
-              <Card key={cat.category} padding="none">
+              <Card key={cat.category} className="p-0">
                 <div className={`p-4 border-b border-slate-100 dark:border-slate-800`}>
                   <div className="flex items-center justify-between">
                     <h3 className="font-semibold text-slate-900 dark:text-white">{cat.category}</h3>
@@ -1374,7 +1374,7 @@ export function Dashboard() {
           <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">All Case Studies</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {caseStudies.map((study) => (
-              <Card key={study.id} padding="none" className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+              <Card key={study.id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer p-0">
                 <img
                   src={study.image}
                   alt={study.title}
@@ -1536,7 +1536,7 @@ export function Dashboard() {
 
       {/* ==================== MITIGATION TAB ==================== */}
       {activeTab === 'mitigation' && (
-        <Card padding="none">
+        <Card className="p-0">
           <div className="p-6 border-b border-slate-100 dark:border-slate-700">
             <h3 className="font-display font-semibold text-lg text-slate-900 dark:text-white">Mitigation Actions</h3>
             <p className="text-sm text-slate-500 dark:text-slate-400">Track progress on risk mitigation activities</p>

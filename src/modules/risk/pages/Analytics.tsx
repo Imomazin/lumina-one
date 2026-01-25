@@ -61,7 +61,7 @@ export function Analytics() {
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <Card padding="md">
+        <Card>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-500 mb-1">Total Risk Score</p>
@@ -77,7 +77,7 @@ export function Analytics() {
           </div>
         </Card>
 
-        <Card padding="md">
+        <Card>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-500 mb-1">Average Risk Score</p>
@@ -93,7 +93,7 @@ export function Analytics() {
           </div>
         </Card>
 
-        <Card padding="md">
+        <Card>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-500 mb-1">Mitigation Rate</p>
@@ -109,7 +109,7 @@ export function Analytics() {
           </div>
         </Card>
 
-        <Card padding="md">
+        <Card>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-500 mb-1">Risks Resolved</p>
