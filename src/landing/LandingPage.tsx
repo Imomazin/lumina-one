@@ -1,4 +1,4 @@
-import { ArrowRight, Shield, TrendingUp, BarChart3, ChevronRight } from 'lucide-react'
+import { ArrowRight, Shield, TrendingUp, BarChart3, ChevronRight, DollarSign } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useStrategyStore } from '../store'
 import { ROUTES } from '../routes'
@@ -67,9 +67,11 @@ export function LandingPage() {
               <h1 className="text-4xl md:text-5xl font-semibold leading-[1.15] tracking-tight text-white/95">
                 Unified intelligence across
                 <br />
-                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Strategy, Risk, and Finance
-                </span>
+                <span className="text-purple-400">Strategy</span>
+                <span className="text-white/95">, </span>
+                <span className="text-red-400">Risk</span>
+                <span className="text-white/95">, and </span>
+                <span className="text-yellow-400">Finance</span>
               </h1>
 
               <p className="text-lg font-normal text-white/60 max-w-lg leading-relaxed">
@@ -243,7 +245,27 @@ export function LandingPage() {
       </section>
 
       {/* Customer Stories */}
-      <section id="customers" className="py-32 px-6">
+      <section id="customers" className="py-32 px-6 overflow-hidden">
+        <style>{`
+          @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          @keyframes scrollRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+          }
+          .scroll-left {
+            animation: scrollLeft 30s linear infinite;
+          }
+          .scroll-right {
+            animation: scrollRight 30s linear infinite;
+          }
+          .scroll-left:hover, .scroll-right:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
             <div className="inline-block px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs font-medium text-white/60 uppercase tracking-wider mb-8">
@@ -257,147 +279,186 @@ export function LandingPage() {
             </p>
           </div>
 
-          <div className="space-y-16">
-            {/* Story 1 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-xs font-medium text-white/50 uppercase tracking-wider">
-                  Enterprise Software
-                </div>
-                <h3 className="text-xl font-semibold tracking-tight text-white/90">
-                  TechCorp reduced planning cycles from 6 weeks to 3 days
-                </h3>
-                <p className="text-sm text-white/60 leading-relaxed">
-                  Quarterly planning now uses a single scenario model. Risk and finance update automatically from strategy changes.
-                </p>
-                <div className="grid grid-cols-2 gap-4 pt-2">
-                  <div>
-                    <div className="text-2xl font-semibold text-white/80">95%</div>
-                    <div className="text-xs text-white/50">Faster planning</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-semibold text-white/80">$2.4M</div>
-                    <div className="text-xs text-white/50">Annual savings</div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6 space-y-4">
-                <div className="text-xs text-white/50 uppercase tracking-wider">Scenario Flow</div>
-                <div className="space-y-3">
-                  <div className="bg-white/[0.02] border border-white/10 rounded p-3">
-                    <div className="text-xs text-white/50">Strategy Input</div>
-                    <div className="text-sm text-white/80">$180M revenue • 12 markets</div>
-                  </div>
-                  <div className="flex justify-center">
-                    <ChevronRight className="w-4 h-4 text-white/20" />
-                  </div>
-                  <div className="bg-white/[0.02] border border-white/10 rounded p-3">
-                    <div className="text-xs text-white/50">Auto-Derived Risks</div>
-                    <div className="text-sm text-white/80">47 risks • $18M exposure</div>
-                  </div>
-                  <div className="flex justify-center">
-                    <ChevronRight className="w-4 h-4 text-white/20" />
-                  </div>
-                  <div className="bg-white/[0.02] border border-white/10 rounded p-3">
-                    <div className="text-xs text-white/50">Financial Model</div>
-                    <div className="text-sm text-white/80">NPV: $142M • IRR: 22%</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Story 2 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              <div className="space-y-4 order-2 lg:order-1">
-                <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6">
-                  <div className="text-xs text-white/50 uppercase tracking-wider mb-4">Risk Dashboard</div>
-                  <div className="grid grid-cols-3 gap-3 mb-4">
-                    <div className="text-center">
-                      <div className="text-xl font-semibold text-white/80">148</div>
-                      <div className="text-xs text-white/40">Factors</div>
+          <div className="space-y-24">
+            {/* Story 1 - Scrolls Left */}
+            <div className="relative">
+              <div className="scroll-left flex gap-8">
+                {[1, 2].map((i) => (
+                  <div key={i} className="flex-shrink-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    <div className="space-y-4">
+                      <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-xs font-medium text-white/50 uppercase tracking-wider">
+                        Enterprise Software
+                      </div>
+                      <h3 className="text-xl font-semibold tracking-tight text-white/90">
+                        TechCorp reduced planning cycles from 6 weeks to 3 days
+                      </h3>
+                      <p className="text-sm text-white/60 leading-relaxed">
+                        Quarterly planning now uses a single scenario model. Risk and finance update automatically from strategy changes.
+                      </p>
+                      <div className="grid grid-cols-2 gap-4 pt-2">
+                        <div>
+                          <div className="text-2xl font-semibold text-white/80">95%</div>
+                          <div className="text-xs text-white/50">Faster planning</div>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-semibold text-white/80">$2.4M</div>
+                          <div className="text-xs text-white/50">Annual savings</div>
+                        </div>
+                      </div>
+                      {/* Image placeholder */}
+                      <div className="mt-4 aspect-video bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-lg border border-white/10 flex items-center justify-center">
+                        <div className="text-center">
+                          <TrendingUp className="w-12 h-12 text-purple-400/40 mx-auto mb-2" />
+                          <div className="text-xs text-white/40">Strategy Dashboard</div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="text-center">
-                      <div className="text-xl font-semibold text-white/80">$45M</div>
-                      <div className="text-xs text-white/40">Impact</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-xl font-semibold text-white/80">98%</div>
-                      <div className="text-xs text-white/40">Confidence</div>
+                    <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6 space-y-4">
+                      <div className="text-xs text-white/50 uppercase tracking-wider">Scenario Flow</div>
+                      <div className="space-y-3">
+                        <div className="bg-white/[0.02] border border-white/10 rounded p-3">
+                          <div className="text-xs text-white/50">Strategy Input</div>
+                          <div className="text-sm text-white/80">$180M revenue • 12 markets</div>
+                        </div>
+                        <div className="flex justify-center">
+                          <ChevronRight className="w-4 h-4 text-white/20" />
+                        </div>
+                        <div className="bg-white/[0.02] border border-white/10 rounded p-3">
+                          <div className="text-xs text-white/50">Auto-Derived Risks</div>
+                          <div className="text-sm text-white/80">47 risks • $18M exposure</div>
+                        </div>
+                        <div className="flex justify-center">
+                          <ChevronRight className="w-4 h-4 text-white/20" />
+                        </div>
+                        <div className="bg-white/[0.02] border border-white/10 rounded p-3">
+                          <div className="text-xs text-white/50">Financial Model</div>
+                          <div className="text-sm text-white/80">NPV: $142M • IRR: 22%</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="space-y-4 order-1 lg:order-2">
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-xs font-medium text-white/50 uppercase tracking-wider">
-                  Financial Services
-                </div>
-                <h3 className="text-xl font-semibold tracking-tight text-white/90">
-                  FinanceFirst automated risk compliance across 47 countries
-                </h3>
-                <p className="text-sm text-white/60 leading-relaxed">
-                  Regulatory risk now tracked automatically. Compliance issues flagged before they escalate.
-                </p>
-                <div className="grid grid-cols-2 gap-4 pt-2">
-                  <div>
-                    <div className="text-2xl font-semibold text-white/80">87%</div>
-                    <div className="text-xs text-white/50">Fewer incidents</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-semibold text-white/80">24hr</div>
-                    <div className="text-xs text-white/50">Assessment time</div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
-            {/* Story 3 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-xs font-medium text-white/50 uppercase tracking-wider">
-                  Retail
-                </div>
-                <h3 className="text-xl font-semibold tracking-tight text-white/90">
-                  RetailMax launched 12 product lines with integrated forecasts
-                </h3>
-                <p className="text-sm text-white/60 leading-relaxed">
-                  Product launches now model strategy, risk, and finance together. Market conditions update projections in real time.
-                </p>
-                <div className="grid grid-cols-2 gap-4 pt-2">
-                  <div>
-                    <div className="text-2xl font-semibold text-white/80">92%</div>
-                    <div className="text-xs text-white/50">Forecast accuracy</div>
+            {/* Story 2 - Scrolls Right */}
+            <div className="relative">
+              <div className="scroll-right flex gap-8">
+                {[1, 2].map((i) => (
+                  <div key={i} className="flex-shrink-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    <div className="space-y-4 order-2 lg:order-1">
+                      <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6">
+                        <div className="text-xs text-white/50 uppercase tracking-wider mb-4">Risk Dashboard</div>
+                        <div className="grid grid-cols-3 gap-3 mb-4">
+                          <div className="text-center">
+                            <div className="text-xl font-semibold text-white/80">148</div>
+                            <div className="text-xs text-white/40">Factors</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-xl font-semibold text-white/80">$45M</div>
+                            <div className="text-xs text-white/40">Impact</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-xl font-semibold text-white/80">98%</div>
+                            <div className="text-xs text-white/40">Confidence</div>
+                          </div>
+                        </div>
+                      </div>
+                      {/* Image placeholder */}
+                      <div className="aspect-video bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-lg border border-white/10 flex items-center justify-center">
+                        <div className="text-center">
+                          <Shield className="w-12 h-12 text-red-400/40 mx-auto mb-2" />
+                          <div className="text-xs text-white/40">Risk Analysis</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="space-y-4 order-1 lg:order-2">
+                      <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-xs font-medium text-white/50 uppercase tracking-wider">
+                        Financial Services
+                      </div>
+                      <h3 className="text-xl font-semibold tracking-tight text-white/90">
+                        FinanceFirst automated risk compliance across 47 countries
+                      </h3>
+                      <p className="text-sm text-white/60 leading-relaxed">
+                        Regulatory risk now tracked automatically. Compliance issues flagged before they escalate.
+                      </p>
+                      <div className="grid grid-cols-2 gap-4 pt-2">
+                        <div>
+                          <div className="text-2xl font-semibold text-white/80">87%</div>
+                          <div className="text-xs text-white/50">Fewer incidents</div>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-semibold text-white/80">24hr</div>
+                          <div className="text-xs text-white/50">Assessment time</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-2xl font-semibold text-white/80">3x</div>
-                    <div className="text-xs text-white/50">ROI improvement</div>
-                  </div>
-                </div>
+                ))}
               </div>
-              <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6">
-                <div className="text-xs text-white/50 uppercase tracking-wider mb-4">Launch Timeline</div>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-white/40 rounded-full" />
-                    <div className="flex-1">
-                      <div className="text-xs text-white/50">Q1: Strategy</div>
-                      <div className="text-sm text-white/80">$12M opportunity</div>
+            </div>
+
+            {/* Story 3 - Scrolls Left */}
+            <div className="relative">
+              <div className="scroll-left flex gap-8">
+                {[1, 2].map((i) => (
+                  <div key={i} className="flex-shrink-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    <div className="space-y-4">
+                      <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-xs font-medium text-white/50 uppercase tracking-wider">
+                        Retail
+                      </div>
+                      <h3 className="text-xl font-semibold tracking-tight text-white/90">
+                        RetailMax launched 12 product lines with integrated forecasts
+                      </h3>
+                      <p className="text-sm text-white/60 leading-relaxed">
+                        Product launches now model strategy, risk, and finance together. Market conditions update projections in real time.
+                      </p>
+                      <div className="grid grid-cols-2 gap-4 pt-2">
+                        <div>
+                          <div className="text-2xl font-semibold text-white/80">92%</div>
+                          <div className="text-xs text-white/50">Forecast accuracy</div>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-semibold text-white/80">3x</div>
+                          <div className="text-xs text-white/50">ROI improvement</div>
+                        </div>
+                      </div>
+                      {/* Image placeholder */}
+                      <div className="mt-4 aspect-video bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-lg border border-white/10 flex items-center justify-center">
+                        <div className="text-center">
+                          <DollarSign className="w-12 h-12 text-yellow-400/40 mx-auto mb-2" />
+                          <div className="text-xs text-white/40">Financial Forecast</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-white/[0.02] border border-white/10 rounded-lg p-6">
+                      <div className="text-xs text-white/50 uppercase tracking-wider mb-4">Launch Timeline</div>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-white/40 rounded-full" />
+                          <div className="flex-1">
+                            <div className="text-xs text-white/50">Q1: Strategy</div>
+                            <div className="text-sm text-white/80">$12M opportunity</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-white/40 rounded-full" />
+                          <div className="flex-1">
+                            <div className="text-xs text-white/50">Q2: Risk Assessment</div>
+                            <div className="text-sm text-white/80">Medium exposure</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-white/40 rounded-full" />
+                          <div className="flex-1">
+                            <div className="text-xs text-white/50">Q3-Q4: Launch</div>
+                            <div className="text-sm text-white/80">$8.2M projected</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-white/40 rounded-full" />
-                    <div className="flex-1">
-                      <div className="text-xs text-white/50">Q2: Risk Assessment</div>
-                      <div className="text-sm text-white/80">Medium exposure</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-white/40 rounded-full" />
-                    <div className="flex-1">
-                      <div className="text-xs text-white/50">Q3-Q4: Launch</div>
-                      <div className="text-sm text-white/80">$8.2M projected</div>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>

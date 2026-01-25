@@ -6,7 +6,7 @@
  */
 
 // UI_REV: Increment this number with EVERY PR (001, 002, 003...)
-const UI_REV = '009'
+const UI_REV = '010'
 
 export function BuildStamp({ className = '' }: { className?: string }) {
   const commit = import.meta.env.VITE_VERCEL_GIT_COMMIT_SHA?.slice(0, 7) || 'local'
