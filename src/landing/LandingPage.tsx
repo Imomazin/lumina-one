@@ -1,6 +1,6 @@
-import { ArrowRight, Shield, TrendingUp, BarChart3, ChevronRight, X, ZoomIn, ChevronLeft } from 'lucide-react'
+import { ArrowRight, Shield, TrendingUp, BarChart3, ChevronRight, X, ZoomIn, ChevronLeft, Moon, Sun, Monitor } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useStrategyStore } from '../store'
 import { ROUTES } from '../routes'
@@ -10,11 +10,56 @@ import { RevolvingDiamond } from '../components/RevolvingDiamond'
 import { Footer } from '../components/Footer'
 import { WorldCitiesSkyline } from '../components/WorldCitiesSkyline'
 
+type LandingTheme = 'dark' | 'white' | 'system'
+
 export function LandingPage() {
   const navigate = useNavigate()
   const createScenario = useStrategyStore(state => state.createScenario)
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [landingTheme, setLandingTheme] = useState<LandingTheme>(() => {
+    const stored = localStorage.getItem('landing_theme') as LandingTheme
+    return stored || 'dark'
+  })
+  const [showThemeMenu, setShowThemeMenu] = useState(false)
+
+  // Resolve theme (system -> dark or white)
+  const resolvedTheme = landingTheme === 'system'
+    ? (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'white')
+    : landingTheme
+
+  // Update theme when changed
+  useEffect(() => {
+    localStorage.setItem('landing_theme', landingTheme)
+  }, [landingTheme])
+
+  // Listen for system theme changes
+  useEffect(() => {
+    if (landingTheme !== 'system') return
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const handler = () => {
+      // Force re-render when system theme changes
+      setLandingTheme('system')
+    }
+
+    mediaQuery.addEventListener('change', handler)
+    return () => mediaQuery.removeEventListener('change', handler)
+  }, [landingTheme])
+
+  const themeIcons = {
+    dark: Moon,
+    white: Sun,
+    system: Monitor,
+  }
+
+  const ThemeIcon = themeIcons[landingTheme]
+
+  // Dynamic styles based on theme
+  const bgClass = resolvedTheme === 'dark' ? 'bg-black' : 'bg-white'
+  const textClass = resolvedTheme === 'dark' ? 'text-white' : 'text-gray-900'
+  const borderClass = resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-200'
+  const headerBgClass = resolvedTheme === 'dark' ? 'bg-black/80' : 'bg-white/80'
 
   const dashboardPreviews = [
     {
@@ -63,25 +108,76 @@ export function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+    <div className={`min-h-screen ${bgClass} ${textClass} overflow-x-hidden`} style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-xl">
+      <header className={`fixed top-0 left-0 right-0 z-50 border-b ${borderClass} ${headerBgClass} backdrop-blur-xl`}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <LuminaOneWordmark />
 
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#modules" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
+            <a href="#modules" className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white/70 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors`}>
               Modules
             </a>
-            <a href="#customers" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
+            <a href="#customers" className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white/70 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors`}>
               Customers
             </a>
-            <a href="#features" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
+            <a href="#features" className={`text-sm font-medium ${resolvedTheme === 'dark' ? 'text-white/70 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors`}>
               Features
             </a>
+
+            {/* Theme Toggle */}
+            <div className="relative">
+              <button
+                onClick={() => setShowThemeMenu(!showThemeMenu)}
+                className={`p-2 rounded-lg ${resolvedTheme === 'dark' ? 'hover:bg-white/10' : 'hover:bg-gray-100'} transition-colors`}
+                aria-label="Toggle theme"
+              >
+                <ThemeIcon className={`w-5 h-5 ${resolvedTheme === 'dark' ? 'text-white/70' : 'text-gray-600'}`} />
+              </button>
+
+              {showThemeMenu && (
+                <>
+                  <div
+                    className="fixed inset-0 z-10"
+                    onClick={() => setShowThemeMenu(false)}
+                  />
+                  <div className={`absolute right-0 mt-2 w-40 ${resolvedTheme === 'dark' ? 'bg-gray-900 border-white/20' : 'bg-white border-gray-200'} border rounded-lg shadow-xl z-20 py-2`}>
+                    {(['dark', 'white', 'system'] as LandingTheme[]).map((themeOption) => {
+                      const Icon = themeIcons[themeOption]
+                      const label = themeOption === 'dark' ? 'Dark' : themeOption === 'white' ? 'White' : 'System'
+                      return (
+                        <button
+                          key={themeOption}
+                          onClick={() => {
+                            setLandingTheme(themeOption)
+                            setShowThemeMenu(false)
+                          }}
+                          className={`w-full flex items-center gap-3 px-4 py-2 text-sm transition-colors ${
+                            landingTheme === themeOption
+                              ? resolvedTheme === 'dark'
+                                ? 'bg-blue-500/20 text-blue-400'
+                                : 'bg-blue-50 text-blue-600'
+                              : resolvedTheme === 'dark'
+                              ? 'text-gray-300 hover:bg-white/10'
+                              : 'text-gray-700 hover:bg-gray-100'
+                          }`}
+                        >
+                          <Icon className="w-4 h-4" />
+                          <span>{label}</span>
+                          {landingTheme === themeOption && (
+                            <span className="ml-auto">✓</span>
+                          )}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </>
+              )}
+            </div>
+
             <button
               onClick={() => navigate(ROUTES.login)}
-              className="px-4 py-2 bg-white text-black text-sm font-semibold rounded-lg hover:bg-white/90 transition-all"
+              className={`px-4 py-2 ${resolvedTheme === 'dark' ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-black/90'} text-sm font-semibold rounded-lg transition-all`}
             >
               Dashboard
             </button>
@@ -92,27 +188,27 @@ export function LandingPage() {
       {/* Hero Section */}
       <section className="relative pt-40 pb-40 px-6 overflow-hidden">
         {/* World Cities Skyline Background */}
-        <WorldCitiesSkyline />
+        <WorldCitiesSkyline theme={resolvedTheme} />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             {/* Left: Copy */}
             <div className="space-y-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs font-medium text-white/60 uppercase tracking-wider">
+              <div className={`inline-flex items-center gap-2 px-3 py-1.5 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 text-white/60' : 'bg-gray-100 border-gray-300 text-gray-600'} border rounded-md text-xs font-medium uppercase tracking-wider`}>
                 Enterprise Intelligence
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-semibold leading-[1.15] tracking-tight text-white/95">
+              <h1 className={`text-4xl md:text-5xl font-semibold leading-[1.15] tracking-tight ${resolvedTheme === 'dark' ? 'text-white/95' : 'text-gray-900'}`}>
                 Unified intelligence across
                 <br />
                 <span className="text-purple-600">Strategy</span>
-                <span className="text-white/95">, </span>
+                <span className={resolvedTheme === 'dark' ? 'text-white/95' : 'text-gray-900'}>, </span>
                 <span className="text-red-700">Risk</span>
-                <span className="text-white/95">, and </span>
+                <span className={resolvedTheme === 'dark' ? 'text-white/95' : 'text-gray-900'}>, and </span>
                 <span className="text-amber-600">Finance</span>
               </h1>
 
-              <p className="text-lg font-normal text-white/60 max-w-lg leading-relaxed">
+              <p className={`text-lg font-normal ${resolvedTheme === 'dark' ? 'text-white/60' : 'text-gray-600'} max-w-lg leading-relaxed`}>
                 Automatically derive risk and financial models from your strategic plans.
                 Maintain consistency across modules.
                 Reduce planning cycles.
@@ -129,17 +225,17 @@ export function LandingPage() {
 
                 <button
                   onClick={() => navigate(ROUTES.login)}
-                  className="px-8 py-3.5 bg-white/5 border border-white/10 text-white/90 font-medium rounded-lg hover:bg-white/10 transition-colors"
+                  className={`px-8 py-3.5 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 text-white/90 hover:bg-white/10' : 'bg-gray-100 border-gray-300 text-gray-900 hover:bg-gray-200'} border font-medium rounded-lg transition-colors`}
                 >
                   Sign In
                 </button>
               </div>
 
-              <div className="flex items-center gap-6 pt-2 text-sm text-white/50">
+              <div className={`flex items-center gap-6 pt-2 text-sm ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-500'}`}>
                 <span>Enterprise-ready</span>
-                <span className="text-white/20">•</span>
+                <span className={resolvedTheme === 'dark' ? 'text-white/20' : 'text-gray-300'}>•</span>
                 <span>SOC 2 compliant</span>
-                <span className="text-white/20">•</span>
+                <span className={resolvedTheme === 'dark' ? 'text-white/20' : 'text-gray-300'}>•</span>
                 <span>Self-hosted available</span>
               </div>
             </div>
@@ -986,7 +1082,7 @@ export function LandingPage() {
       {/* Final CTA */}
       <section className="relative py-32 px-6 overflow-hidden">
         {/* World Cities Skyline Background */}
-        <WorldCitiesSkyline />
+        <WorldCitiesSkyline theme={resolvedTheme} />
 
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-semibold mb-6 leading-tight tracking-tight text-white/95">

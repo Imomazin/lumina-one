@@ -94,7 +94,7 @@ function CityImage({ city, index }: { city: CitySkyline; index: number }) {
   )
 }
 
-export function WorldCitiesSkyline() {
+export function WorldCitiesSkyline({ theme = 'dark' }: { theme?: 'dark' | 'white' }) {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <style>{`
@@ -111,13 +111,13 @@ export function WorldCitiesSkyline() {
       `}</style>
 
       {/* Gradient overlay at bottom for seamless blend */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-black/90 to-transparent z-10 pointer-events-none" />
+      <div className={`absolute bottom-0 left-0 right-0 h-40 ${theme === 'dark' ? 'bg-gradient-to-t from-black via-black/90 to-transparent' : 'bg-gradient-to-t from-white via-white/90 to-transparent'} z-10 pointer-events-none`} />
 
       {/* Top fade for seamless integration */}
-      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black via-black/50 to-transparent z-10 pointer-events-none" />
+      <div className={`absolute top-0 left-0 right-0 h-40 ${theme === 'dark' ? 'bg-gradient-to-b from-black via-black/50 to-transparent' : 'bg-gradient-to-b from-white via-white/50 to-transparent'} z-10 pointer-events-none`} />
 
       {/* Scrolling cities container */}
-      <div className="absolute bottom-12 left-0 right-0 flex items-end">
+      <div className="absolute -bottom-32 left-0 right-0 flex items-end">
         <div className="cities-scroll flex items-end gap-8 will-change-transform">
           {/* Render cities twice for seamless infinite loop */}
           {[...citySkylines, ...citySkylines].map((city, index) => (

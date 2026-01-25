@@ -1,15 +1,26 @@
-import { User, LogOut, LogIn } from 'lucide-react'
+import { User, LogOut, LogIn, Sun, Moon, Monitor } from 'lucide-react'
 import { useAuth } from '../../auth/AuthContext'
 import { useLumina } from '../../context/LuminaContext'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../routes'
+import { useTheme, Theme } from '../theme'
 
 export default function Topbar() {
   const { user, signOut } = useAuth()
   const { strategyScenario } = useLumina()
+  const { theme, setTheme } = useTheme()
   const [showMenu, setShowMenu] = useState(false)
+  const [showThemeMenu, setShowThemeMenu] = useState(false)
   const navigate = useNavigate()
+
+  const themeIcons = {
+    light: Sun,
+    dark: Moon,
+    system: Monitor,
+  }
+
+  const ThemeIcon = themeIcons[theme]
 
   return (
     <header className="h-16 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
@@ -26,6 +37,51 @@ export default function Topbar() {
         </div>
 
         <div className="flex items-center gap-4">
+          {/* Theme Toggle */}
+          <div className="relative">
+            <button
+              onClick={() => setShowThemeMenu(!showThemeMenu)}
+              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle theme"
+            >
+              <ThemeIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+            </button>
+
+            {showThemeMenu && (
+              <>
+                <div
+                  className="fixed inset-0 z-10"
+                  onClick={() => setShowThemeMenu(false)}
+                />
+                <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl z-20 py-2">
+                  {(['light', 'dark', 'system'] as Theme[]).map((themeOption) => {
+                    const Icon = themeIcons[themeOption]
+                    return (
+                      <button
+                        key={themeOption}
+                        onClick={() => {
+                          setTheme(themeOption)
+                          setShowThemeMenu(false)
+                        }}
+                        className={`w-full flex items-center gap-3 px-4 py-2 text-sm transition-colors ${
+                          theme === themeOption
+                            ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                        }`}
+                      >
+                        <Icon className="w-4 h-4" />
+                        <span className="capitalize">{themeOption}</span>
+                        {theme === themeOption && (
+                          <span className="ml-auto text-blue-600 dark:text-blue-400">✓</span>
+                        )}
+                      </button>
+                    )
+                  })}
+                </div>
+              </>
+            )}
+          </div>
+
           {/* User Menu */}
           <div className="relative">
             <button
