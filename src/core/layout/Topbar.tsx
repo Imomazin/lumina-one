@@ -1,6 +1,5 @@
 import { User, LogOut, LogIn, Sun, Moon, Monitor } from 'lucide-react'
 import { useAuth } from '../../auth/AuthContext'
-import { useStrategyStore } from '../../store'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../routes'
