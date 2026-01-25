@@ -2,7 +2,6 @@ import { ArrowRight, Shield, TrendingUp, BarChart3, ChevronRight, DollarSign } f
 import { useNavigate } from 'react-router-dom'
 import { useStrategyStore } from '../store'
 import { ROUTES } from '../routes'
-import { BuildStamp } from '../components/BuildStamp'
 import { LuminaOneWordmark } from '../components/LuminaOneLogo'
 import { ModuleCube } from '../components/ModuleCube'
 import { RevolvingDiamond } from '../components/RevolvingDiamond'
