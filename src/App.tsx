@@ -7,7 +7,7 @@ import { moduleRegistry } from './modules'
 import { LuminaProvider } from './context/LuminaContext'
 import { AuthProvider } from './auth/AuthContext'
 import { ProtectedRoute } from './auth/ProtectedRoute'
-import { LandingPage } from './landing/LandingPage'
+import { LandingPageNew } from './landing/LandingPageNew'
 import { LoginPage } from './auth/LoginPage'
 
 export default function App() {
@@ -17,7 +17,7 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             {/* Public routes */}
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={<LandingPageNew />} />
             <Route path="/login" element={<LoginPage />} />
 
             {/* Protected app routes */}
