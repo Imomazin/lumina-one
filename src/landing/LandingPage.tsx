@@ -197,7 +197,8 @@ export function LandingPage() {
                   subtitle: 'Strategy',
                   description: 'Define strategic objectives, time horizons, and key assumptions. Your strategy becomes the authoritative source of truth.',
                   features: ['Strategic objectives', 'Market assumptions', 'Time horizon planning'],
-                  gradient: 'from-blue-500 to-cyan-600'
+                  gradient: 'from-blue-500 to-cyan-600',
+                  link: null
                 },
                 {
                   step: '02',
@@ -206,7 +207,8 @@ export function LandingPage() {
                   subtitle: 'Risk',
                   description: 'Risk exposures automatically derive from strategic assumptions. No manual input required.',
                   features: ['Auto-derived exposures', 'Likelihood & impact', 'Mitigation tracking'],
-                  gradient: 'from-purple-500 to-indigo-600'
+                  gradient: 'from-red-500 to-rose-600',
+                  link: 'https://lumina-r.vercel.app/'
                 },
                 {
                   step: '03',
@@ -215,7 +217,8 @@ export function LandingPage() {
                   subtitle: 'Finance',
                   description: 'Financial projections react to strategy and risk in real-time. No spreadsheet reconciliation.',
                   features: ['Auto-generated projections', 'Capital requirements', 'Sensitivity analysis'],
-                  gradient: 'from-emerald-500 to-green-600'
+                  gradient: 'from-emerald-500 to-green-600',
+                  link: null
                 }
               ].map((module, idx) => {
                 const Icon = module.icon
@@ -235,7 +238,10 @@ export function LandingPage() {
                       </div>
                     )}
 
-                    <div className="relative p-8 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 hover:border-blue-500/50 transition-all group">
+                    <div
+                      className={`relative p-8 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 hover:border-blue-500/50 transition-all group ${module.link ? 'cursor-pointer hover:scale-105' : ''}`}
+                      onClick={() => module.link && window.open(module.link, '_blank')}
+                    >
                       {/* Step Number */}
                       <div className="absolute -top-4 -left-4 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center font-bold text-white shadow-lg">
                         {module.step}
@@ -258,6 +264,14 @@ export function LandingPage() {
                           </li>
                         ))}
                       </ul>
+
+                      {/* Link indicator for clickable cards */}
+                      {module.link && (
+                        <div className="mt-4 pt-4 border-t border-slate-700 flex items-center gap-2 text-sm text-blue-400 group-hover:text-blue-300">
+                          <span>Launch Lumina R</span>
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 )
