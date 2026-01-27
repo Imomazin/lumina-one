@@ -233,7 +233,7 @@ export function LandingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* Strategy Module */}
-            <div className="text-center space-y-6">
+            <div className="text-center space-y-10">
               <ModuleCube
                 color="strategy"
                 size={200}
@@ -243,14 +243,14 @@ export function LandingPage() {
 
               <div>
                 <div className="flex items-center justify-center gap-2 mb-2">
-                  <TrendingUp className="w-4 h-4 text-purple-400" />
-                  <h3 className={`text-lg font-semibold tracking-tight ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>Lumina S</h3>
+                  <TrendingUp className="w-4 h-4 text-purple-400 drop-shadow-lg" />
+                  <h3 className={`text-lg font-semibold tracking-tight ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`} style={{ textShadow: resolvedTheme === 'dark' ? '0 1px 2px rgba(0, 0, 0, 0.5), 0 -1px 1px rgba(255, 255, 255, 0.05)' : '0 1px 2px rgba(255, 255, 255, 0.8), 0 -1px 1px rgba(0, 0, 0, 0.1)' }}>Lumina S</h3>
                 </div>
-                <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} mb-6 leading-relaxed`}>
+                <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} mb-6 leading-relaxed`} style={{ textShadow: resolvedTheme === 'dark' ? '0 1px 2px rgba(0, 0, 0, 0.3)' : '0 1px 1px rgba(255, 255, 255, 0.5)' }}>
                   Strategic planning and scenario modeling. Single source of truth.
                 </p>
 
-                <div className={`space-y-1.5 mb-6 text-sm ${resolvedTheme === 'dark' ? 'text-white/40' : 'text-gray-500'}`}>
+                <div className={`space-y-1.5 mb-6 text-sm ${resolvedTheme === 'dark' ? 'text-white/40' : 'text-gray-500'}`} style={{ textShadow: resolvedTheme === 'dark' ? '0 1px 2px rgba(0, 0, 0, 0.3)' : '0 1px 1px rgba(255, 255, 255, 0.5)' }}>
                   <div>Scenario modeling</div>
                   <div>KPI tracking</div>
                   <div>Assumption management</div>
@@ -261,6 +261,7 @@ export function LandingPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-purple-400 hover:text-purple-300 transition-colors text-sm font-medium"
+                  style={{ textShadow: '0 0 10px rgba(168, 85, 247, 0.3)' }}
                 >
                   Launch module
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -269,7 +270,7 @@ export function LandingPage() {
             </div>
 
             {/* Risk Module */}
-            <div className="text-center space-y-6">
+            <div className="text-center space-y-10">
               <ModuleCube
                 color="risk"
                 size={200}
@@ -279,14 +280,14 @@ export function LandingPage() {
 
               <div>
                 <div className="flex items-center justify-center gap-2 mb-2">
-                  <Shield className="w-4 h-4 text-red-400" />
-                  <h3 className={`text-lg font-semibold tracking-tight ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>Lumina R</h3>
+                  <Shield className="w-4 h-4 text-red-400 drop-shadow-lg" />
+                  <h3 className={`text-lg font-semibold tracking-tight ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`} style={{ textShadow: resolvedTheme === 'dark' ? '0 1px 2px rgba(0, 0, 0, 0.5), 0 -1px 1px rgba(255, 255, 255, 0.05)' : '0 1px 2px rgba(255, 255, 255, 0.8), 0 -1px 1px rgba(0, 0, 0, 0.1)' }}>Lumina R</h3>
                 </div>
-                <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} mb-6 leading-relaxed`}>
+                <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} mb-6 leading-relaxed`} style={{ textShadow: resolvedTheme === 'dark' ? '0 1px 2px rgba(0, 0, 0, 0.3)' : '0 1px 1px rgba(255, 255, 255, 0.5)' }}>
                   Automatically derived risk analysis from strategic plans.
                 </p>
 
-                <div className={`space-y-1.5 mb-6 text-sm ${resolvedTheme === 'dark' ? 'text-white/40' : 'text-gray-500'}`}>
+                <div className={`space-y-1.5 mb-6 text-sm ${resolvedTheme === 'dark' ? 'text-white/40' : 'text-gray-500'}`} style={{ textShadow: resolvedTheme === 'dark' ? '0 1px 2px rgba(0, 0, 0, 0.3)' : '0 1px 1px rgba(255, 255, 255, 0.5)' }}>
                   <div>Auto-derived risks</div>
                   <div>Exposure scoring</div>
                   <div>Impact analysis</div>
@@ -297,6 +298,7 @@ export function LandingPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-red-400 hover:text-red-300 transition-colors text-sm font-medium"
+                  style={{ textShadow: '0 0 10px rgba(239, 68, 68, 0.3)' }}
                 >
                   Launch module
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -305,7 +307,7 @@ export function LandingPage() {
             </div>
 
             {/* Finance Module */}
-            <div className="text-center space-y-6">
+            <div className="text-center space-y-10">
               <ModuleCube
                 color="finance"
                 size={200}
@@ -315,14 +317,14 @@ export function LandingPage() {
 
               <div>
                 <div className="flex items-center justify-center gap-2 mb-2">
-                  <BarChart3 className="w-4 h-4 text-yellow-400" />
-                  <h3 className={`text-lg font-semibold tracking-tight ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`}>Lumina F</h3>
+                  <BarChart3 className="w-4 h-4 text-yellow-400 drop-shadow-lg" />
+                  <h3 className={`text-lg font-semibold tracking-tight ${resolvedTheme === 'dark' ? 'text-white/90' : 'text-gray-900'}`} style={{ textShadow: resolvedTheme === 'dark' ? '0 1px 2px rgba(0, 0, 0, 0.5), 0 -1px 1px rgba(255, 255, 255, 0.05)' : '0 1px 2px rgba(255, 255, 255, 0.8), 0 -1px 1px rgba(0, 0, 0, 0.1)' }}>Lumina F</h3>
                 </div>
-                <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} mb-6 leading-relaxed`}>
+                <p className={`text-sm ${resolvedTheme === 'dark' ? 'text-white/50' : 'text-gray-600'} mb-6 leading-relaxed`} style={{ textShadow: resolvedTheme === 'dark' ? '0 1px 2px rgba(0, 0, 0, 0.3)' : '0 1px 1px rgba(255, 255, 255, 0.5)' }}>
                   Risk-adjusted financial models derived from strategy.
                 </p>
 
-                <div className={`space-y-1.5 mb-6 text-sm ${resolvedTheme === 'dark' ? 'text-white/40' : 'text-gray-500'}`}>
+                <div className={`space-y-1.5 mb-6 text-sm ${resolvedTheme === 'dark' ? 'text-white/40' : 'text-gray-500'}`} style={{ textShadow: resolvedTheme === 'dark' ? '0 1px 2px rgba(0, 0, 0, 0.3)' : '0 1px 1px rgba(255, 255, 255, 0.5)' }}>
                   <div>Multi-year forecasts</div>
                   <div>Risk adjustments</div>
                   <div>Scenario comparison</div>
@@ -333,6 +335,7 @@ export function LandingPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-yellow-400 hover:text-yellow-300 transition-colors text-sm font-medium"
+                  style={{ textShadow: '0 0 10px rgba(251, 191, 36, 0.3)' }}
                 >
                   Launch module
                   <ArrowRight className="w-3.5 h-3.5" />
