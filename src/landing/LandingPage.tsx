@@ -309,7 +309,7 @@ export function LandingPage() {
                 color="risk"
                 size={200}
                 className="mx-auto"
-                href="https://risk-coach-mvp-git-claude-lumina-62a0d8-imos-projects-98c0794a.vercel.app/"
+                href="https://lumina-r-git-claude-setup-lumina-210dfe-imos-projects-98c0794a.vercel.app/"
               />
 
               <div>
@@ -328,7 +328,7 @@ export function LandingPage() {
                 </div>
 
                 <a
-                  href="https://risk-coach-mvp-git-claude-lumina-62a0d8-imos-projects-98c0794a.vercel.app/"
+                  href="https://lumina-r-git-claude-setup-lumina-210dfe-imos-projects-98c0794a.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-red-400 hover:text-red-300 transition-colors text-sm font-medium"
