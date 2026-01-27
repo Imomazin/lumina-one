@@ -34,12 +34,9 @@ export default function Overview() {
           const Icon = module.icon
           const StatusIcon = CheckCircle2
 
-          return (
-            <Link
-              key={module.id}
-              to={module.baseRoute}
-              className="group relative p-6 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-lg transition-all duration-200"
-            >
+          // Card content
+          const cardContent = (
+            <>
               {/* Header */}
               <div className="flex items-start justify-between mb-4">
                 <div className="p-3 rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-800 group-hover:from-blue-50 group-hover:to-indigo-50 dark:group-hover:from-blue-900/20 dark:group-hover:to-indigo-900/20 transition-all">
@@ -64,6 +61,32 @@ export default function Overview() {
                 Open module
                 <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
               </div>
+            </>
+          )
+
+          // If module has external URL, render as external link
+          if (module.externalUrl) {
+            return (
+              <a
+                key={module.id}
+                href={module.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-6 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-lg transition-all duration-200"
+              >
+                {cardContent}
+              </a>
+            )
+          }
+
+          // Otherwise render as internal Link
+          return (
+            <Link
+              key={module.id}
+              to={module.baseRoute}
+              className="group relative p-6 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-lg transition-all duration-200"
+            >
+              {cardContent}
             </Link>
           )
         })}

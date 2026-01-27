@@ -9,6 +9,7 @@ export interface ModuleMetadata {
   icon: LucideIcon;
   description?: string;
   enabled: boolean;
+  externalUrl?: string; // Optional external URL for module
 }
 
 export interface ModuleDefinition extends ModuleMetadata {
@@ -25,6 +26,7 @@ export const moduleRegistry: ModuleDefinition[] = [
     icon: Shield,
     description: 'Risk Intelligence & Management',
     enabled: true,
+    externalUrl: 'https://lumina-r-git-claude-setup-lumina-210dfe-imos-projects-98c0794a.vercel.app/',
     component: lazy(() => import('./risk').then(m => ({ default: m.RiskModule }))),
   },
   {
