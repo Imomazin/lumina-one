@@ -1,7 +1,7 @@
 import { ArrowRight, Shield, TrendingUp, BarChart3, ChevronRight, Moon, Sun, Monitor } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { useStrategyStore } from '../store'
+
 import { ROUTES } from '../routes'
 import { LuminaOneWordmark } from '../components/LuminaOneLogo'
 import { ModuleCube } from '../components/ModuleCube'
@@ -14,7 +14,7 @@ type LandingTheme = 'dark' | 'white' | 'system'
 
 export function LandingPage() {
   const navigate = useNavigate()
-  const createScenario = useStrategyStore(state => state.createScenario)
+
   const [landingTheme, setLandingTheme] = useState<LandingTheme>(() => {
     const stored = localStorage.getItem('landing_theme') as LandingTheme
     return stored || 'dark'
@@ -59,21 +59,6 @@ export function LandingPage() {
   const borderClass = resolvedTheme === 'dark' ? 'border-white/10' : 'border-gray-200'
   const headerBgClass = resolvedTheme === 'dark' ? 'bg-black/80' : 'bg-white/80'
 
-  const handleGetStarted = () => {
-    createScenario({
-      name: 'Demo: Asia-Pacific Expansion',
-      objective: 'Establish market leadership in APAC region through strategic partnerships and localized product offerings',
-      timeHorizon: 5,
-      assumptions: [
-        'APAC market will grow 12% annually over next 5 years',
-        'Strategic partnerships reduce market entry costs by 40%',
-        'Localized products increase customer acquisition by 60%',
-        'Competitive landscape remains stable with 3 major players',
-        'Regulatory environment favorable for foreign investment'
-      ]
-    })
-    navigate(ROUTES.app.overview)
-  }
 
   return (
     <div className={`min-h-screen ${bgClass} ${textClass} overflow-x-hidden`} style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
@@ -143,12 +128,6 @@ export function LandingPage() {
               )}
             </div>
 
-            <button
-              onClick={() => navigate(ROUTES.app.overview)}
-              className={`px-4 py-2 ${resolvedTheme === 'dark' ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-black/90'} text-sm font-semibold rounded-lg transition-all`}
-            >
-              Dashboard
-            </button>
           </nav>
         </div>
       </header>
@@ -181,16 +160,8 @@ export function LandingPage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={handleGetStarted}
-                  className="px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
-                >
-                  View Demo
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <button
                   onClick={() => navigate(ROUTES.login)}
-                  className={`px-8 py-3.5 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 text-white/90 hover:bg-white/10' : 'bg-gray-100 border-gray-300 text-gray-900 hover:bg-gray-200'} border font-medium rounded-lg transition-colors`}
+                  className={`px-8 py-3.5 ${resolvedTheme === 'dark' ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-black/90'} font-medium rounded-lg transition-colors`}
                 >
                   Sign In
                 </button>
@@ -896,16 +867,8 @@ export function LandingPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={handleGetStarted}
-              className="px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors inline-flex items-center justify-center gap-2"
-            >
-              View Demo
-              <ArrowRight className="w-4 h-4" />
-            </button>
-
-            <button
               onClick={() => navigate(ROUTES.login)}
-              className={`px-8 py-3.5 ${resolvedTheme === 'dark' ? 'bg-white/5 border-white/10 text-white/90 hover:bg-white/10' : 'bg-gray-100 border-gray-300 text-gray-900 hover:bg-gray-200'} border font-medium rounded-lg transition-colors`}
+              className={`px-8 py-3.5 ${resolvedTheme === 'dark' ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-black/90'} font-medium rounded-lg transition-colors`}
             >
               Sign In
             </button>
