@@ -144,7 +144,7 @@ export function LandingPage() {
             </div>
 
             <button
-              onClick={() => navigate(ROUTES.login)}
+              onClick={() => navigate(ROUTES.app.overview)}
               className={`px-4 py-2 ${resolvedTheme === 'dark' ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-black/90'} text-sm font-semibold rounded-lg transition-all`}
             >
               Dashboard
