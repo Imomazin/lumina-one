@@ -238,7 +238,7 @@ export function LandingPage() {
                 color="strategy"
                 size={200}
                 className="mx-auto"
-                href="https://ambi-sight-reloaded-git-claude-fi-184691-imos-projects-98c0794a.vercel.app/"
+                href="https://ambi-sight-reloaded-git-claude-re-3b514e-imos-projects-98c0794a.vercel.app/"
               />
 
               <div>
@@ -257,7 +257,7 @@ export function LandingPage() {
                 </div>
 
                 <a
-                  href="https://ambi-sight-reloaded-git-claude-fi-184691-imos-projects-98c0794a.vercel.app/"
+                  href="https://ambi-sight-reloaded-git-claude-re-3b514e-imos-projects-98c0794a.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-purple-400 hover:text-purple-300 transition-colors text-sm font-medium"
