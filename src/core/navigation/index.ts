@@ -5,28 +5,29 @@
  * Prevents hardcoded paths and enables module communication.
  */
 
-import { moduleRegistry } from '../../modules'
+import { moduleRegistry } from '../../modules';
+import { logger } from '../logging';
 
 export interface NavigationHelper {
-  getModulePath: (moduleId: string, subPath?: string) => string
-  jumpToModule: (moduleId: string) => void
-  jumpToRisk: (subPath?: string) => string
-  jumpToStrategy: (subPath?: string) => string
-  jumpToFinance: (subPath?: string) => string
+  getModulePath: (moduleId: string, subPath?: string) => string;
+  jumpToModule: (moduleId: string) => void;
+  jumpToRisk: (subPath?: string) => string;
+  jumpToStrategy: (subPath?: string) => string;
+  jumpToFinance: (subPath?: string) => string;
 }
 
 /**
  * Get the full path for a module (with optional subpath)
  */
 export function getModulePath(moduleId: string, subPath?: string): string {
-  const module = moduleRegistry.find((m) => m.id === moduleId)
+  const module = moduleRegistry.find(m => m.id === moduleId);
   if (!module) {
-    console.warn(`Module '${moduleId}' not found in registry`)
-    return '/'
+    logger.warn(`Module '${moduleId}' not found in registry`);
+    return '/';
   }
 
-  const base = module.baseRoute
-  return subPath ? `${base}/${subPath.replace(/^\//, '')}` : base
+  const base = module.baseRoute;
+  return subPath ? `${base}/${subPath.replace(/^\//, '')}` : base;
 }
 
 /**
@@ -34,7 +35,7 @@ export function getModulePath(moduleId: string, subPath?: string): string {
  * Usage: window.location.href = jumpToModule('risk')
  */
 export function jumpToModule(moduleId: string): string {
-  return getModulePath(moduleId)
+  return getModulePath(moduleId);
 }
 
 /**
@@ -42,7 +43,7 @@ export function jumpToModule(moduleId: string): string {
  * Usage: <Link to={jumpToRisk('alerts')}>Go to Risk Alerts</Link>
  */
 export function jumpToRisk(subPath?: string): string {
-  return getModulePath('risk', subPath)
+  return getModulePath('risk', subPath);
 }
 
 /**
@@ -50,7 +51,7 @@ export function jumpToRisk(subPath?: string): string {
  * Usage: <Link to={jumpToStrategy('planning')}>Go to Strategy Planning</Link>
  */
 export function jumpToStrategy(subPath?: string): string {
-  return getModulePath('strategy', subPath)
+  return getModulePath('strategy', subPath);
 }
 
 /**
@@ -58,12 +59,12 @@ export function jumpToStrategy(subPath?: string): string {
  * Usage: <Link to={jumpToFinance('analysis')}>Go to Finance Analysis</Link>
  */
 export function jumpToFinance(subPath?: string): string {
-  return getModulePath('finance', subPath)
+  return getModulePath('finance', subPath);
 }
 
 /**
  * Get all available modules for navigation
  */
 export function getAvailableModules() {
-  return moduleRegistry.filter((m) => m.enabled)
+  return moduleRegistry.filter(m => m.enabled);
 }
