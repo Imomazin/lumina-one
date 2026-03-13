@@ -1,4 +1,6 @@
 import { useState, useCallback, useRef } from 'react';
+import { PageShell } from '../../../components/ui';
+import { logger } from '../../../core/logging';
 import {
   Upload,
   FileSpreadsheet,
@@ -86,7 +88,9 @@ function analyzeColumn(data: Record<string, unknown>[], columnName: string): Dat
 
   if (nonNullValues.length > 0) {
     const allNumbers = nonNullValues.every(v => typeof v === 'number' || !isNaN(Number(v)));
-    const allBooleans = nonNullValues.every(v => typeof v === 'boolean' || v === 'true' || v === 'false');
+    const allBooleans = nonNullValues.every(
+      v => typeof v === 'boolean' || v === 'true' || v === 'false'
+    );
     const allDates = nonNullValues.every(v => !isNaN(Date.parse(String(v))));
 
     if (allBooleans) type = 'boolean';
@@ -107,7 +111,8 @@ function analyzeColumn(data: Record<string, unknown>[], columnName: string): Dat
     const sorted = [...numbers].sort((a, b) => a - b);
     const sum = numbers.reduce((a, b) => a + b, 0);
     const mean = sum / numbers.length;
-    const variance = numbers.reduce((acc, val) => acc + Math.pow(val - mean, 2), 0) / numbers.length;
+    const variance =
+      numbers.reduce((acc, val) => acc + Math.pow(val - mean, 2), 0) / numbers.length;
 
     column.stats = {
       min: Math.min(...numbers),
@@ -130,15 +135,19 @@ function generateInsights(file: UploadedFile): AnalysisResult[] {
 
   // Risk Distribution Analysis
   if (numericCols.length > 0) {
-    const riskCol = numericCols.find(c =>
-      c.name.toLowerCase().includes('risk') ||
-      c.name.toLowerCase().includes('score') ||
-      c.name.toLowerCase().includes('impact')
-    ) || numericCols[0];
+    const riskCol =
+      numericCols.find(
+        c =>
+          c.name.toLowerCase().includes('risk') ||
+          c.name.toLowerCase().includes('score') ||
+          c.name.toLowerCase().includes('impact')
+      ) || numericCols[0];
 
     if (riskCol.stats) {
       const highRiskThreshold = (riskCol.stats.mean || 0) + (riskCol.stats.stdDev || 0);
-      const highRiskCount = file.data.filter(row => Number(row[riskCol.name]) > highRiskThreshold).length;
+      const highRiskCount = file.data.filter(
+        row => Number(row[riskCol.name]) > highRiskThreshold
+      ).length;
       const highRiskPercentage = (highRiskCount / file.data.length) * 100;
 
       insights.push({
@@ -163,7 +172,12 @@ function generateInsights(file: UploadedFile): AnalysisResult[] {
       type: 'anomaly',
       title: 'Data Quality Alert',
       description: `${qualityIssues.length} column(s) have more than 10% missing values: ${qualityIssues.map(c => c.name).join(', ')}. This may affect analysis accuracy.`,
-      data: { columns: qualityIssues.map(c => ({ name: c.name, nullPercentage: (c.nullCount / file.data.length * 100).toFixed(1) })) },
+      data: {
+        columns: qualityIssues.map(c => ({
+          name: c.name,
+          nullPercentage: ((c.nullCount / file.data.length) * 100).toFixed(1),
+        })),
+      },
       severity: 'medium',
     });
   }
@@ -185,7 +199,10 @@ function generateInsights(file: UploadedFile): AnalysisResult[] {
     insights.push({
       type: 'correlation',
       title: 'Correlation Analysis Available',
-      description: `${numericCols.length} numeric columns found. Correlation analysis can reveal relationships between variables like ${numericCols.slice(0, 3).map(c => c.name).join(', ')}.`,
+      description: `${numericCols.length} numeric columns found. Correlation analysis can reveal relationships between variables like ${numericCols
+        .slice(0, 3)
+        .map(c => c.name)
+        .join(', ')}.`,
       data: { columns: numericCols.map(c => c.name) },
       severity: 'low',
     });
@@ -216,10 +233,10 @@ export function DataAnalysis() {
     setIsDragging(false);
   }, []);
 
-  const processFile = useCallback(async (file: File) => {
+  const processFile = useCallback((file: File) => {
     const reader = new FileReader();
 
-    reader.onload = (e) => {
+    reader.onload = e => {
       const content = e.target?.result as string;
       let fileType: 'csv' | 'excel' | 'json' = 'csv';
 
@@ -238,13 +255,14 @@ export function DataAnalysis() {
         columnNames = result.columns;
       } else if (fileType === 'json') {
         try {
-          const jsonData = JSON.parse(content);
-          parsedData = Array.isArray(jsonData) ? jsonData : [jsonData];
-          if (parsedData.length > 0) {
+          const jsonData: unknown = JSON.parse(content);
+          const dataArray = Array.isArray(jsonData) ? jsonData : [jsonData];
+          parsedData = dataArray as Record<string, unknown>[];
+          if (parsedData.length > 0 && parsedData[0]) {
             columnNames = Object.keys(parsedData[0]);
           }
-        } catch {
-          console.error('Invalid JSON');
+        } catch (error) {
+          logger.error('Invalid JSON', error);
           return;
         }
       }
@@ -271,25 +289,35 @@ export function DataAnalysis() {
     reader.readAsText(file);
   }, []);
 
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      setIsDragging(false);
 
-    const droppedFiles = Array.from(e.dataTransfer.files);
-    droppedFiles.forEach(file => {
-      if (file.name.endsWith('.csv') || file.name.endsWith('.json') || file.name.endsWith('.xlsx')) {
-        processFile(file);
+      const droppedFiles = Array.from(e.dataTransfer.files);
+      droppedFiles.forEach(file => {
+        if (
+          file.name.endsWith('.csv') ||
+          file.name.endsWith('.json') ||
+          file.name.endsWith('.xlsx')
+        ) {
+          processFile(file);
+        }
+      });
+    },
+    [processFile]
+  );
+
+  const handleFileSelect = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const selectedFiles = Array.from(e.target.files || []);
+      selectedFiles.forEach(file => processFile(file));
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
       }
-    });
-  }, [processFile]);
-
-  const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFiles = Array.from(e.target.files || []);
-    selectedFiles.forEach(file => processFile(file));
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
-  }, [processFile]);
+    },
+    [processFile]
+  );
 
   const runAnalysis = async () => {
     if (!selectedFile) return;
@@ -304,8 +332,8 @@ export function DataAnalysis() {
     setAnalysisResults(insights);
 
     // Mark file as analyzed
-    setFiles(prev => prev.map(f => f.id === selectedFile.id ? { ...f, analyzed: true } : f));
-    setSelectedFile(prev => prev ? { ...prev, analyzed: true } : null);
+    setFiles(prev => prev.map(f => (f.id === selectedFile.id ? { ...f, analyzed: true } : f)));
+    setSelectedFile(prev => (prev ? { ...prev, analyzed: true } : null));
 
     setIsAnalyzing(false);
   };
@@ -320,7 +348,7 @@ export function DataAnalysis() {
 
   const handleSort = (column: string) => {
     if (sortColumn === column) {
-      setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+      setSortDirection(prev => (prev === 'asc' ? 'desc' : 'asc'));
     } else {
       setSortColumn(column);
       setSortDirection('asc');
@@ -328,21 +356,23 @@ export function DataAnalysis() {
   };
 
   // Filter and sort data
-  const displayData = selectedFile ? [...selectedFile.data]
-    .filter(row => {
-      if (!searchQuery) return true;
-      return Object.values(row).some(val =>
-        String(val).toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    })
-    .sort((a, b) => {
-      if (!sortColumn) return 0;
-      const aVal = a[sortColumn];
-      const bVal = b[sortColumn];
-      const comparison = String(aVal).localeCompare(String(bVal), undefined, { numeric: true });
-      return sortDirection === 'asc' ? comparison : -comparison;
-    })
-    .slice(0, 100) : []; // Limit to 100 rows for display
+  const displayData = selectedFile
+    ? [...selectedFile.data]
+        .filter(row => {
+          if (!searchQuery) return true;
+          return Object.values(row).some(val =>
+            String(val).toLowerCase().includes(searchQuery.toLowerCase())
+          );
+        })
+        .sort((a, b) => {
+          if (!sortColumn) return 0;
+          const aVal = a[sortColumn];
+          const bVal = b[sortColumn];
+          const comparison = String(aVal).localeCompare(String(bVal), undefined, { numeric: true });
+          return sortDirection === 'asc' ? comparison : -comparison;
+        })
+        .slice(0, 100)
+    : []; // Limit to 100 rows for display
 
   const formatFileSize = (bytes: number) => {
     if (bytes < 1024) return `${bytes} B`;
@@ -351,14 +381,25 @@ export function DataAnalysis() {
   };
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-sm">
+          <BarChart3 className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Data Analysis</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Upload and analyze risk data files with AI-powered insights
+          </p>
+        </div>
+      </div>
+
       <div className="space-y-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
-              Data Analysis
-            </h1>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Data Analysis</h1>
             <p className="text-slate-600 dark:text-slate-400">
               Upload and analyze risk data from CSV, Excel, or JSON files
             </p>
@@ -392,14 +433,17 @@ export function DataAnalysis() {
               onDrop={handleDrop}
               className={`
                 p-6 border-2 border-dashed rounded-xl text-center transition-all cursor-pointer
-                ${isDragging
-                  ? 'border-lumina-500 bg-lumina-50 dark:bg-lumina-900/20'
-                  : 'border-slate-200 dark:border-slate-700 hover:border-lumina-400 hover:bg-slate-50 dark:hover:bg-slate-800'
+                ${
+                  isDragging
+                    ? 'border-lumina-500 bg-lumina-50 dark:bg-lumina-900/20'
+                    : 'border-slate-200 dark:border-slate-700 hover:border-lumina-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                 }
               `}
               onClick={() => fileInputRef.current?.click()}
             >
-              <Upload className={`w-8 h-8 mx-auto mb-2 ${isDragging ? 'text-lumina-500' : 'text-slate-400'}`} />
+              <Upload
+                className={`w-8 h-8 mx-auto mb-2 ${isDragging ? 'text-lumina-500' : 'text-slate-400'}`}
+              />
               <p className="text-sm text-slate-600 dark:text-slate-400">
                 {isDragging ? 'Drop files here' : 'Drag & drop or click to upload'}
               </p>
@@ -411,7 +455,9 @@ export function DataAnalysis() {
             {/* Uploaded Files */}
             <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
               <div className="p-3 border-b border-slate-200 dark:border-slate-700">
-                <h3 className="font-medium text-slate-900 dark:text-white text-sm">Uploaded Files</h3>
+                <h3 className="font-medium text-slate-900 dark:text-white text-sm">
+                  Uploaded Files
+                </h3>
               </div>
               <div className="max-h-80 overflow-y-auto">
                 {files.length === 0 ? (
@@ -425,20 +471,29 @@ export function DataAnalysis() {
                       onClick={() => setSelectedFile(file)}
                       className={`
                         p-3 flex items-center gap-3 cursor-pointer border-b border-slate-100 dark:border-slate-700 last:border-0
-                        ${selectedFile?.id === file.id
-                          ? 'bg-lumina-50 dark:bg-lumina-900/20'
-                          : 'hover:bg-slate-50 dark:hover:bg-slate-700/50'
+                        ${
+                          selectedFile?.id === file.id
+                            ? 'bg-lumina-50 dark:bg-lumina-900/20'
+                            : 'hover:bg-slate-50 dark:hover:bg-slate-700/50'
                         }
                       `}
                     >
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                        file.type === 'csv' ? 'bg-green-100 dark:bg-green-900/30 text-green-600' :
-                        file.type === 'json' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600' :
-                        'bg-purple-100 dark:bg-purple-900/30 text-purple-600'
-                      }`}>
-                        {file.type === 'csv' ? <FileText className="w-4 h-4" /> :
-                         file.type === 'json' ? <FileText className="w-4 h-4" /> :
-                         <FileSpreadsheet className="w-4 h-4" />}
+                      <div
+                        className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                          file.type === 'csv'
+                            ? 'bg-green-100 dark:bg-green-900/30 text-green-600'
+                            : file.type === 'json'
+                              ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600'
+                              : 'bg-purple-100 dark:bg-purple-900/30 text-purple-600'
+                        }`}
+                      >
+                        {file.type === 'csv' ? (
+                          <FileText className="w-4 h-4" />
+                        ) : file.type === 'json' ? (
+                          <FileText className="w-4 h-4" />
+                        ) : (
+                          <FileSpreadsheet className="w-4 h-4" />
+                        )}
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-slate-900 dark:text-white truncate">
@@ -452,7 +507,10 @@ export function DataAnalysis() {
                         <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
                       )}
                       <button
-                        onClick={(e) => { e.stopPropagation(); deleteFile(file.id); }}
+                        onClick={e => {
+                          e.stopPropagation();
+                          deleteFile(file.id);
+                        }}
                         className="p-1 text-slate-400 hover:text-red-500 rounded"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -472,22 +530,31 @@ export function DataAnalysis() {
                 <div className="p-4 border-b border-slate-200 dark:border-slate-700">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                        selectedFile.type === 'csv' ? 'bg-green-100 dark:bg-green-900/30 text-green-600' :
-                        selectedFile.type === 'json' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600' :
-                        'bg-purple-100 dark:bg-purple-900/30 text-purple-600'
-                      }`}>
+                      <div
+                        className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                          selectedFile.type === 'csv'
+                            ? 'bg-green-100 dark:bg-green-900/30 text-green-600'
+                            : selectedFile.type === 'json'
+                              ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600'
+                              : 'bg-purple-100 dark:bg-purple-900/30 text-purple-600'
+                        }`}
+                      >
                         <FileSpreadsheet className="w-5 h-5" />
                       </div>
                       <div>
-                        <h2 className="font-semibold text-slate-900 dark:text-white">{selectedFile.name}</h2>
+                        <h2 className="font-semibold text-slate-900 dark:text-white">
+                          {selectedFile.name}
+                        </h2>
                         <p className="text-sm text-slate-500 dark:text-slate-400">
-                          {selectedFile.rows.toLocaleString()} rows × {selectedFile.columns.length} columns
+                          {selectedFile.rows.toLocaleString()} rows × {selectedFile.columns.length}{' '}
+                          columns
                         </p>
                       </div>
                     </div>
                     <button
-                      onClick={runAnalysis}
+                      onClick={() => {
+                        void runAnalysis();
+                      }}
                       disabled={isAnalyzing}
                       className="flex items-center gap-2 px-4 py-2 bg-lumina-600 text-white rounded-lg hover:bg-lumina-700 transition-colors disabled:opacity-60"
                     >
@@ -503,15 +570,16 @@ export function DataAnalysis() {
 
                 {/* Tabs */}
                 <div className="flex border-b border-slate-200 dark:border-slate-700">
-                  {(['data', 'stats', 'insights'] as const).map((tab) => (
+                  {(['data', 'stats', 'insights'] as const).map(tab => (
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
                       className={`
                         px-4 py-3 text-sm font-medium transition-colors relative
-                        ${activeTab === tab
-                          ? 'text-lumina-600 dark:text-lumina-400'
-                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                        ${
+                          activeTab === tab
+                            ? 'text-lumina-600 dark:text-lumina-400'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                         }
                       `}
                     >
@@ -544,7 +612,7 @@ export function DataAnalysis() {
                           type="text"
                           placeholder="Search data..."
                           value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
+                          onChange={e => setSearchQuery(e.target.value)}
                           className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-lumina-500/20 text-sm text-slate-900 dark:text-white"
                         />
                       </div>
@@ -554,7 +622,7 @@ export function DataAnalysis() {
                         <table className="w-full text-sm">
                           <thead className="bg-slate-50 dark:bg-slate-900 sticky top-0">
                             <tr>
-                              {selectedFile.columns.map((col) => (
+                              {selectedFile.columns.map(col => (
                                 <th
                                   key={col.name}
                                   onClick={() => handleSort(col.name)}
@@ -570,12 +638,27 @@ export function DataAnalysis() {
                           </thead>
                           <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
                             {displayData.map((row, idx) => (
-                              <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/50">
-                                {selectedFile.columns.map((col) => (
-                                  <td key={col.name} className="px-4 py-2 text-slate-600 dark:text-slate-300 whitespace-nowrap">
-                                    {String(row[col.name] ?? '—')}
-                                  </td>
-                                ))}
+                              <tr
+                                key={idx}
+                                className="hover:bg-slate-50 dark:hover:bg-slate-900/50"
+                              >
+                                {selectedFile.columns.map(col => {
+                                  const value = row[col.name];
+                                  const displayValue =
+                                    value === null || value === undefined
+                                      ? '—'
+                                      : typeof value === 'object'
+                                        ? JSON.stringify(value)
+                                        : String(value);
+                                  return (
+                                    <td
+                                      key={col.name}
+                                      className="px-4 py-2 text-slate-600 dark:text-slate-300 whitespace-nowrap"
+                                    >
+                                      {displayValue}
+                                    </td>
+                                  );
+                                })}
                               </tr>
                             ))}
                           </tbody>
@@ -591,50 +674,70 @@ export function DataAnalysis() {
 
                   {activeTab === 'stats' && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {selectedFile.columns.map((col) => (
+                      {selectedFile.columns.map(col => (
                         <div
                           key={col.name}
                           className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700"
                         >
                           <div className="flex items-center justify-between mb-3">
-                            <h4 className="font-medium text-slate-900 dark:text-white">{col.name}</h4>
-                            <span className={`px-2 py-0.5 text-xs rounded-full ${
-                              col.type === 'number' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600' :
-                              col.type === 'date' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600' :
-                              col.type === 'boolean' ? 'bg-green-100 dark:bg-green-900/30 text-green-600' :
-                              'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
-                            }`}>
+                            <h4 className="font-medium text-slate-900 dark:text-white">
+                              {col.name}
+                            </h4>
+                            <span
+                              className={`px-2 py-0.5 text-xs rounded-full ${
+                                col.type === 'number'
+                                  ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600'
+                                  : col.type === 'date'
+                                    ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600'
+                                    : col.type === 'boolean'
+                                      ? 'bg-green-100 dark:bg-green-900/30 text-green-600'
+                                      : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
+                              }`}
+                            >
                               {col.type}
                             </span>
                           </div>
                           <div className="space-y-2 text-sm">
                             <div className="flex justify-between text-slate-600 dark:text-slate-400">
                               <span>Unique Values:</span>
-                              <span className="font-medium text-slate-900 dark:text-white">{col.uniqueCount}</span>
+                              <span className="font-medium text-slate-900 dark:text-white">
+                                {col.uniqueCount}
+                              </span>
                             </div>
                             <div className="flex justify-between text-slate-600 dark:text-slate-400">
                               <span>Missing:</span>
-                              <span className={`font-medium ${col.nullCount > 0 ? 'text-amber-600' : 'text-green-600'}`}>
-                                {col.nullCount} ({((col.nullCount / selectedFile.rows) * 100).toFixed(1)}%)
+                              <span
+                                className={`font-medium ${col.nullCount > 0 ? 'text-amber-600' : 'text-green-600'}`}
+                              >
+                                {col.nullCount} (
+                                {((col.nullCount / selectedFile.rows) * 100).toFixed(1)}%)
                               </span>
                             </div>
                             {col.stats && (
                               <>
                                 <div className="flex justify-between text-slate-600 dark:text-slate-400">
                                   <span>Min:</span>
-                                  <span className="font-medium text-slate-900 dark:text-white">{col.stats.min?.toFixed(2)}</span>
+                                  <span className="font-medium text-slate-900 dark:text-white">
+                                    {col.stats.min?.toFixed(2)}
+                                  </span>
                                 </div>
                                 <div className="flex justify-between text-slate-600 dark:text-slate-400">
                                   <span>Max:</span>
-                                  <span className="font-medium text-slate-900 dark:text-white">{col.stats.max?.toFixed(2)}</span>
+                                  <span className="font-medium text-slate-900 dark:text-white">
+                                    {col.stats.max?.toFixed(2)}
+                                  </span>
                                 </div>
                                 <div className="flex justify-between text-slate-600 dark:text-slate-400">
                                   <span>Mean:</span>
-                                  <span className="font-medium text-slate-900 dark:text-white">{col.stats.mean?.toFixed(2)}</span>
+                                  <span className="font-medium text-slate-900 dark:text-white">
+                                    {col.stats.mean?.toFixed(2)}
+                                  </span>
                                 </div>
                                 <div className="flex justify-between text-slate-600 dark:text-slate-400">
                                   <span>Std Dev:</span>
-                                  <span className="font-medium text-slate-900 dark:text-white">{col.stats.stdDev?.toFixed(2)}</span>
+                                  <span className="font-medium text-slate-900 dark:text-white">
+                                    {col.stats.stdDev?.toFixed(2)}
+                                  </span>
                                 </div>
                               </>
                             )}
@@ -651,8 +754,12 @@ export function DataAnalysis() {
                           <div className="w-16 h-16 rounded-full bg-lumina-100 dark:bg-lumina-900/30 flex items-center justify-center mb-4">
                             <RefreshCw className="w-8 h-8 text-lumina-600 animate-spin" />
                           </div>
-                          <p className="text-slate-600 dark:text-slate-400">Analyzing your data with AI...</p>
-                          <p className="text-sm text-slate-500 dark:text-slate-500 mt-1">This may take a moment</p>
+                          <p className="text-slate-600 dark:text-slate-400">
+                            Analyzing your data with AI...
+                          </p>
+                          <p className="text-sm text-slate-500 dark:text-slate-500 mt-1">
+                            This may take a moment
+                          </p>
                         </div>
                       ) : analysisResults.length > 0 ? (
                         analysisResults.map((result, idx) => (
@@ -662,39 +769,49 @@ export function DataAnalysis() {
                               result.severity === 'high'
                                 ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
                                 : result.severity === 'medium'
-                                ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800'
-                                : 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800'
+                                  ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800'
+                                  : 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800'
                             }`}
                           >
                             <div className="flex items-start gap-3">
-                              <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                                result.severity === 'high'
-                                  ? 'bg-red-100 dark:bg-red-900/30 text-red-600'
-                                  : result.severity === 'medium'
-                                  ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-600'
-                                  : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600'
-                              }`}>
-                                {result.type === 'risk_distribution' && <BarChart3 className="w-4 h-4" />}
+                              <div
+                                className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                                  result.severity === 'high'
+                                    ? 'bg-red-100 dark:bg-red-900/30 text-red-600'
+                                    : result.severity === 'medium'
+                                      ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-600'
+                                      : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600'
+                                }`}
+                              >
+                                {result.type === 'risk_distribution' && (
+                                  <BarChart3 className="w-4 h-4" />
+                                )}
                                 {result.type === 'trend' && <TrendingUp className="w-4 h-4" />}
                                 {result.type === 'anomaly' && <AlertTriangle className="w-4 h-4" />}
                                 {result.type === 'correlation' && <PieChart className="w-4 h-4" />}
                               </div>
                               <div className="flex-1">
                                 <div className="flex items-center gap-2 mb-1">
-                                  <h4 className="font-medium text-slate-900 dark:text-white">{result.title}</h4>
+                                  <h4 className="font-medium text-slate-900 dark:text-white">
+                                    {result.title}
+                                  </h4>
                                   {result.severity && (
-                                    <span className={`px-2 py-0.5 text-xs rounded-full font-medium ${
-                                      result.severity === 'high'
-                                        ? 'bg-red-100 dark:bg-red-900/30 text-red-600'
-                                        : result.severity === 'medium'
-                                        ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-600'
-                                        : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600'
-                                    }`}>
+                                    <span
+                                      className={`px-2 py-0.5 text-xs rounded-full font-medium ${
+                                        result.severity === 'high'
+                                          ? 'bg-red-100 dark:bg-red-900/30 text-red-600'
+                                          : result.severity === 'medium'
+                                            ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-600'
+                                            : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600'
+                                      }`}
+                                    >
                                       {result.severity}
                                     </span>
                                   )}
                                 </div>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">{result.description}</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">
+                                  {result.description}
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -704,7 +821,9 @@ export function DataAnalysis() {
                           <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center mb-4">
                             <Sparkles className="w-8 h-8 text-slate-400" />
                           </div>
-                          <p className="text-slate-600 dark:text-slate-400">No analysis results yet</p>
+                          <p className="text-slate-600 dark:text-slate-400">
+                            No analysis results yet
+                          </p>
                           <p className="text-sm text-slate-500 dark:text-slate-500 mt-1">
                             Click "Run AI Analysis" to get insights
                           </p>
@@ -723,14 +842,14 @@ export function DataAnalysis() {
                   No File Selected
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 max-w-md mx-auto">
-                  Upload a CSV, JSON, or Excel file to start analyzing your risk data.
-                  Drag and drop or click the upload button.
+                  Upload a CSV, JSON, or Excel file to start analyzing your risk data. Drag and drop
+                  or click the upload button.
                 </p>
               </div>
             )}
           </div>
         </div>
       </div>
-    </>
+    </PageShell>
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from '../components/ui/Button';
-import { Card } from '../components/ui/Card';
+import { PageShell, Card } from '../../../components/ui';
 import { RiskBadge } from '../components/ui/Badge';
 import { sampleRisks } from '../lib/sampleData';
 import type { RiskCategory, RiskLevel } from '../types';
@@ -21,6 +21,7 @@ import {
   Building,
   Leaf,
   Users,
+  Database,
 } from 'lucide-react';
 
 const categoryIcons: Record<RiskCategory, React.ElementType> = {
@@ -67,7 +68,20 @@ export function RiskRegister() {
     });
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-sm">
+          <Database className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Risk Register</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Comprehensive database of identified risks and their management
+          </p>
+        </div>
+      </div>
+
       {/* Toolbar */}
       <div className="flex flex-col sm:flex-row gap-4 mb-6">
         {/* Search */}
@@ -146,7 +160,7 @@ export function RiskRegister() {
       </div>
 
       {/* Risk Table */}
-      <Card padding="none" className="overflow-hidden">
+      <Card className="overflow-hidden p-0">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -258,6 +272,6 @@ export function RiskRegister() {
           </div>
         )}
       </Card>
-    </>
+    </PageShell>
   );
 }

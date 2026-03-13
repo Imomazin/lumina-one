@@ -4,13 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lumina One</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
-      // Dark mode boot logic - runs before React to prevent flash
+      // Theme boot logic - runs before React to prevent flash
       (function() {
         const theme = localStorage.getItem('theme') || 'dark';
-        if (theme === 'dark') {
+        if (theme === 'system') {
+          // Check system preference
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+          }
+        } else if (theme === 'dark') {
           document.documentElement.classList.add('dark');
         }
+        // For 'light' theme, don't add any class (default is light)
       })();
     </script>
   </head>

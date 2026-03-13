@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import type { User } from '../contexts/AuthContext';
+import { PageShell } from '../../../components/ui';
 import {
   Users,
   Shield,
@@ -202,7 +203,21 @@ export function Admin() {
 
   if (!isAdmin) {
     return (
-      <>
+          <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 shadow-sm">
+          <Shield className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Administration</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            User management, permissions, and system configuration
+          </p>
+        </div>
+      </div>
+
+
         <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
           <div className="w-20 h-20 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mb-6">
             <Shield className="w-10 h-10 text-red-500" />
@@ -218,19 +233,32 @@ export function Admin() {
             Tip: Login with an email containing "admin" to get admin access.
           </p>
         </div>
-      </>
-    );
+      </PageShell>
+  );
   }
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 shadow-sm">
+          <Shield className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Administration</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            User management, permissions, and system configuration
+          </p>
+        </div>
+      </div>
+
       <div className="space-y-6">
-        {/* Header */}
+        {/* Existing Header - can be removed or kept */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               Admin Dashboard
-            </h1>
+            </h2>
             <p className="text-slate-600 dark:text-slate-400">
               Manage users, permissions, and system settings
             </p>
@@ -683,7 +711,7 @@ export function Admin() {
           </Modal>
         )}
       </div>
-    </>
+    </PageShell>
   );
 }
 

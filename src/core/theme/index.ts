@@ -7,6 +7,8 @@
 
 export type Theme = 'light' | 'dark' | 'system'
 
+export { ThemeProvider, useTheme } from './ThemeProvider'
+
 export function getStoredTheme(): Theme {
   if (typeof window === 'undefined') return 'dark'
   return (localStorage.getItem('theme') as Theme) || 'dark'

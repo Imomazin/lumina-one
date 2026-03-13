@@ -5,7 +5,7 @@ import {
   RiskList,
   AICoachWidget,
 } from '../components/dashboard';
-import { Card, CardHeader, CardTitle } from '../components/ui/Card';
+import { PageShell, Card } from '../../../components/ui';
 import { Button } from '../components/ui/Button';
 import { useStrategyStore, useRiskStore } from '../../../store';
 import {
@@ -115,7 +115,7 @@ const caseStudies = [
     challenge: 'Manual credit risk assessment causing $50M annual losses',
     solution: 'Implemented AI-powered KRI monitoring with real-time credit scoring',
     results: ['68% reduction in credit losses', '45% faster loan processing', 'ROI achieved in 8 months'],
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400',
+    image: '/images/dashboard-finance-preview.jpg',
   },
   {
     id: 2,
@@ -125,7 +125,7 @@ const caseStudies = [
     challenge: 'HIPAA violations resulting in $2M fines over 3 years',
     solution: 'Deployed comprehensive compliance tracking with automated KRIs',
     results: ['Zero violations post-implementation', '90% audit preparation time saved', '$1.5M annual savings'],
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400',
+    image: '/images/dashboard-risk-preview.jpg',
   },
   {
     id: 3,
@@ -135,7 +135,7 @@ const caseStudies = [
     challenge: 'COVID-19 exposed critical supplier dependencies',
     solution: 'Built multi-tier supplier risk monitoring with early warning KRIs',
     results: ['95% supply disruption prediction accuracy', '40% reduction in stockouts', 'Diversified supplier base by 3x'],
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400',
+    image: '/images/dashboard-strategy-preview.jpg',
   },
   {
     id: 4,
@@ -145,7 +145,7 @@ const caseStudies = [
     challenge: 'Increasing cyber threats with limited visibility',
     solution: 'Integrated cyber KRIs with threat intelligence and SIEM',
     results: ['85% faster threat detection', '60% reduction in incident response time', 'Zero breaches in 24 months'],
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400',
+    image: '/images/customer-techcorp-dashboard.jpg',
   },
   {
     id: 5,
@@ -155,7 +155,7 @@ const caseStudies = [
     challenge: 'Fragmented operational risk data across 50+ business units',
     solution: 'Unified risk register with automated RCSA and loss event tracking',
     results: ['360° risk visibility achieved', '$25M identified risk exposure', '30% OpEx reduction'],
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400',
+    image: '/images/customer-financefirst-risk.jpg',
   },
   {
     id: 6,
@@ -165,7 +165,7 @@ const caseStudies = [
     challenge: 'Investor pressure on ESG transparency and reporting',
     solution: 'Developed ESG risk framework with 50+ sustainability KRIs',
     results: ['ESG rating improved from B to AA', '$500M green bond issued', 'Carbon neutral by 2030 roadmap'],
-    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400',
+    image: '/images/customer-retailmax-forecast.jpg',
   },
 ];
 
@@ -614,7 +614,20 @@ export function Dashboard() {
   };
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 shadow-sm">
+          <Shield className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Risk Intelligence</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Auto-derived from Strategy • Comprehensive risk management dashboard
+          </p>
+        </div>
+      </div>
+
       {/* Dashboard Tabs */}
       <div className="mb-6 border-b border-slate-200 dark:border-slate-700">
         <nav className="flex gap-1 -mb-px overflow-x-auto scrollbar-hide">
@@ -718,25 +731,23 @@ export function Dashboard() {
           {/* Strategy-Derived Risks Section */}
           {strategyScenario && risk && (
             <Card className="mb-6">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle>Strategy-Derived Risk Exposure</CardTitle>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                      Automatically derived from Strategy assumptions
-                    </p>
-                  </div>
-                  <div className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    risk.overallExposure === 'High'
-                      ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
-                      : risk.overallExposure === 'Medium'
-                      ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400'
-                      : 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                  }`}>
-                    Overall Exposure: {risk.overallExposure}
-                  </div>
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Strategy-Derived Risk Exposure</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                    Automatically derived from Strategy assumptions
+                  </p>
                 </div>
-              </CardHeader>
+                <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+                  risk.overallExposure === 'High'
+                    ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
+                    : risk.overallExposure === 'Medium'
+                    ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400'
+                    : 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                }`}>
+                  Overall Exposure: {risk.overallExposure}
+                </div>
+              </div>
               <div className="space-y-3">
                 <div className="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
                   <p className="text-sm font-medium text-blue-800 dark:text-blue-300 mb-1">
@@ -808,9 +819,7 @@ export function Dashboard() {
 
               {/* Quick KRI Summary */}
               <Card>
-                <CardHeader>
-                  <CardTitle>KRI Status Summary</CardTitle>
-                </CardHeader>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">KRI Status Summary</h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/30">
                     <span className="text-sm font-medium text-emerald-700 dark:text-emerald-400">Within Tolerance</span>
@@ -829,9 +838,7 @@ export function Dashboard() {
 
               {/* Risk by Category */}
               <Card>
-                <CardHeader>
-                  <CardTitle>Risk by Category</CardTitle>
-                </CardHeader>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Risk by Category</h3>
                 <div className="space-y-3">
                   {Object.entries(riskStats.byCategory)
                     .filter(([, count]) => count > 0)
@@ -976,7 +983,7 @@ export function Dashboard() {
               {platformIntegrations.map((platform) => {
                 const Icon = platform.icon;
                 return (
-                  <Card key={platform.id} padding="none" className="group hover:shadow-lg transition-all cursor-pointer">
+                  <Card key={platform.id} className="group hover:shadow-lg transition-all cursor-pointer p-0">
                     <div className="p-4 text-center">
                       <div className={`w-12 h-12 mx-auto rounded-xl ${platform.color} text-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
                         <Icon className="w-6 h-6" />
@@ -1033,7 +1040,7 @@ export function Dashboard() {
             {filteredTools.map((tool) => {
               const Icon = tool.icon;
               return (
-                <Card key={tool.id} padding="none" className="group hover:shadow-lg transition-all cursor-pointer">
+                <Card key={tool.id} className="group hover:shadow-lg transition-all cursor-pointer p-0">
                   <div className="p-5">
                     <div className="flex items-start justify-between mb-4">
                       <div className={`p-3 rounded-xl ${tool.color} text-white`}>
@@ -1119,7 +1126,7 @@ export function Dashboard() {
             {kriCategories.map((cat) => {
               const Icon = cat.icon;
               return (
-                <Card key={cat.category} padding="none">
+                <Card key={cat.category} className="p-0">
                   <div className={`p-4 border-b border-slate-100 dark:border-slate-800 bg-${cat.color}-50 dark:bg-${cat.color}-900/20`}>
                     <div className="flex items-center gap-3">
                       <div className={`p-2 rounded-lg bg-${cat.color}-500 text-white`}>
@@ -1154,9 +1161,7 @@ export function Dashboard() {
 
           {/* KRI Best Practices Info */}
           <Card className="mt-6">
-            <CardHeader>
-              <CardTitle>KRI Development Best Practices</CardTitle>
-            </CardHeader>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">KRI Development Best Practices</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/30">
                 <h4 className="font-semibold text-blue-700 dark:text-blue-400 mb-2">Predictive Nature</h4>
@@ -1199,9 +1204,7 @@ export function Dashboard() {
 
           {/* Overall Appetite Statement */}
           <Card className="mb-6">
-            <CardHeader>
-              <CardTitle>Enterprise Risk Appetite Statement</CardTitle>
-            </CardHeader>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Enterprise Risk Appetite Statement</h3>
             <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border-l-4 border-lumina-500">
               <p className="text-slate-700 dark:text-slate-300 italic">
                 "As an organization committed to sustainable growth, we maintain a <strong>Moderate</strong> overall
@@ -1215,7 +1218,7 @@ export function Dashboard() {
           {/* Appetite Categories */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {riskAppetiteCategories.map((cat) => (
-              <Card key={cat.category} padding="none">
+              <Card key={cat.category} className="p-0">
                 <div className={`p-4 border-b border-slate-100 dark:border-slate-800`}>
                   <div className="flex items-center justify-between">
                     <h3 className="font-semibold text-slate-900 dark:text-white">{cat.category}</h3>
@@ -1259,9 +1262,7 @@ export function Dashboard() {
 
           {/* Appetite vs Tolerance Explanation */}
           <Card className="mt-6">
-            <CardHeader>
-              <CardTitle>Understanding Risk Appetite vs Tolerance</CardTitle>
-            </CardHeader>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Understanding Risk Appetite vs Tolerance</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="p-4 rounded-xl bg-lumina-50 dark:bg-lumina-900/30">
                 <h4 className="font-semibold text-lumina-700 dark:text-lumina-400 mb-2 flex items-center gap-2">
@@ -1373,7 +1374,7 @@ export function Dashboard() {
           <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">All Case Studies</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {caseStudies.map((study) => (
-              <Card key={study.id} padding="none" className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+              <Card key={study.id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer p-0">
                 <img
                   src={study.image}
                   alt={study.title}
@@ -1411,9 +1412,7 @@ export function Dashboard() {
           </div>
           <div>
             <Card>
-              <CardHeader>
-                <CardTitle>Matrix Legend</CardTitle>
-              </CardHeader>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Matrix Legend</h3>
               <div className="space-y-4">
                 <div>
                   <p className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Risk Levels</p>
@@ -1452,9 +1451,7 @@ export function Dashboard() {
       {/* ==================== ACTIVITY TAB ==================== */}
       {activeTab === 'activity' && (
         <Card>
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-          </CardHeader>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Recent Activity</h3>
           <div className="divide-y divide-slate-100 dark:divide-slate-700">
             {getRiskActivity(20).length === 0 ? (
               <div className="py-12 text-center">
@@ -1499,9 +1496,7 @@ export function Dashboard() {
       {/* ==================== TIMELINE TAB ==================== */}
       {activeTab === 'timeline' && (
         <Card>
-          <CardHeader>
-            <CardTitle>Risk Timeline</CardTitle>
-          </CardHeader>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Risk Timeline</h3>
           <div className="space-y-8">
             {timelineEvents.map((month, idx) => (
               <div key={month.date} className="relative">
@@ -1541,7 +1536,7 @@ export function Dashboard() {
 
       {/* ==================== MITIGATION TAB ==================== */}
       {activeTab === 'mitigation' && (
-        <Card padding="none">
+        <Card className="p-0">
           <div className="p-6 border-b border-slate-100 dark:border-slate-700">
             <h3 className="font-display font-semibold text-lg text-slate-900 dark:text-white">Mitigation Actions</h3>
             <p className="text-sm text-slate-500 dark:text-slate-400">Track progress on risk mitigation activities</p>
@@ -1605,6 +1600,6 @@ export function Dashboard() {
           )}
         </>
       )}
-    </>
+    </PageShell>
   );
 }

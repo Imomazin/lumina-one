@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardTitle } from '../components/ui/Card';
+import { PageShell, Card } from '../../../components/ui';
 import { Button } from '../components/ui/Button';
 import { sampleRisks, riskStats } from '../lib/sampleData';
 import {
@@ -8,6 +8,7 @@ import {
   PieChart,
   Download,
   RefreshCw,
+  LineChart,
 } from 'lucide-react';
 
 export function Analytics() {
@@ -15,7 +16,20 @@ export function Analytics() {
   const avgScore = (totalScore / sampleRisks.length).toFixed(1);
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 shadow-sm">
+          <LineChart className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Risk Analytics</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Comprehensive analytics and trend analysis for risk metrics
+          </p>
+        </div>
+      </div>
+
       {/* Time Period Selector */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2 bg-slate-100 rounded-xl p-1">
@@ -47,7 +61,7 @@ export function Analytics() {
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <Card padding="md">
+        <Card>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-500 mb-1">Total Risk Score</p>
@@ -63,7 +77,7 @@ export function Analytics() {
           </div>
         </Card>
 
-        <Card padding="md">
+        <Card>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-500 mb-1">Average Risk Score</p>
@@ -79,7 +93,7 @@ export function Analytics() {
           </div>
         </Card>
 
-        <Card padding="md">
+        <Card>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-500 mb-1">Mitigation Rate</p>
@@ -95,7 +109,7 @@ export function Analytics() {
           </div>
         </Card>
 
-        <Card padding="md">
+        <Card>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-500 mb-1">Risks Resolved</p>
@@ -116,10 +130,10 @@ export function Analytics() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         {/* Risk Trend Chart */}
         <Card>
-          <CardHeader>
-            <CardTitle>Risk Score Trend</CardTitle>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Risk Score Trend</h3>
             <BarChart3 className="w-5 h-5 text-slate-400" />
-          </CardHeader>
+          </div>
           <div className="h-64 flex items-end justify-between gap-2 px-4">
             {[65, 72, 58, 80, 75, 68, 82, 70, 65, 78, 72, 68].map((value, i) => (
               <div key={i} className="flex-1 flex flex-col items-center gap-2">
@@ -137,10 +151,10 @@ export function Analytics() {
 
         {/* Risk by Category */}
         <Card>
-          <CardHeader>
-            <CardTitle>Risk Distribution</CardTitle>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Risk Distribution</h3>
             <PieChart className="w-5 h-5 text-slate-400" />
-          </CardHeader>
+          </div>
           <div className="flex items-center justify-center gap-8">
             {/* Simple Donut Visualization */}
             <div className="relative w-48 h-48">
@@ -201,9 +215,7 @@ export function Analytics() {
 
       {/* Risk Level Distribution */}
       <Card>
-        <CardHeader>
-          <CardTitle>Risk Level Distribution</CardTitle>
-        </CardHeader>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Risk Level Distribution</h3>
         <div className="grid grid-cols-4 gap-4">
           {[
             { level: 'Low', count: riskStats.byLevel.low, color: 'emerald', percentage: 25 },
@@ -226,6 +238,6 @@ export function Analytics() {
           ))}
         </div>
       </Card>
-    </>
+    </PageShell>
   );
 }

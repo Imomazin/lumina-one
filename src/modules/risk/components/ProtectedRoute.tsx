@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import type { ReactNode } from 'react';
+import { logger } from '../../../core/logging';
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -38,7 +39,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   if (!isAuthenticated) {
     // In Lumina One, auth is handled by AuthContext with auto-login
     // This should never trigger, but if it does, redirect to root
-    console.warn('ProtectedRoute: User not authenticated, redirecting to root');
+    logger.warn('ProtectedRoute: User not authenticated, redirecting to root');
     return <Navigate to="/" replace />;
   }
 

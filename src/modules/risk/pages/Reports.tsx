@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card } from '../components/ui/Card';
+import { PageShell, Card } from '../../../components/ui';
 import { Button } from '../components/ui/Button';
 import {
   FileText,
@@ -116,7 +116,20 @@ export function Reports() {
   );
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-sm">
+          <FileText className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Risk Reports</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Generate and manage comprehensive risk reports and documentation
+          </p>
+        </div>
+      </div>
+
       {/* Actions */}
       <div className="flex items-center justify-between mb-6">
         <div className="relative flex-1 max-w-md">
@@ -174,7 +187,7 @@ export function Reports() {
       )}
 
       {/* Reports List */}
-      <Card padding="none">
+      <Card className="p-0">
         <div className="p-4 border-b border-slate-100">
           <h3 className="font-medium text-slate-900">Recent Reports</h3>
         </div>
@@ -261,6 +274,6 @@ export function Reports() {
           </div>
         )}
       </Card>
-    </>
+    </PageShell>
   );
 }

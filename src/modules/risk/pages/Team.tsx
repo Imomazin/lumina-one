@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card } from '../components/ui/Card';
+import { PageShell, Card } from '../../../components/ui';
 import { Button } from '../components/ui/Button';
 import {
   Search,
@@ -8,6 +8,7 @@ import {
   Edit2,
   Trash2,
   UserPlus,
+  Users,
 } from 'lucide-react';
 
 interface TeamMember {
@@ -94,7 +95,20 @@ export function Team() {
   );
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 shadow-sm">
+          <Users className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Team Management</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Manage team members, roles, and risk ownership
+          </p>
+        </div>
+      </div>
+
       {/* Actions */}
       <div className="flex items-center justify-between mb-6">
         <div className="relative flex-1 max-w-md">
@@ -118,23 +132,23 @@ export function Team() {
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <Card padding="sm" className="flex items-center gap-3">
+        <Card className="flex items-center gap-3 p-4">
           <div className="text-3xl font-bold text-slate-900">{teamMembers.length}</div>
           <div className="text-sm text-slate-500">Total Members</div>
         </Card>
-        <Card padding="sm" className="flex items-center gap-3">
+        <Card className="flex items-center gap-3 p-4">
           <div className="text-3xl font-bold text-emerald-600">
             {teamMembers.filter((m) => m.status === 'active').length}
           </div>
           <div className="text-sm text-slate-500">Active</div>
         </Card>
-        <Card padding="sm" className="flex items-center gap-3">
+        <Card className="flex items-center gap-3 p-4">
           <div className="text-3xl font-bold text-amber-600">
             {teamMembers.filter((m) => m.status === 'pending').length}
           </div>
           <div className="text-sm text-slate-500">Pending</div>
         </Card>
-        <Card padding="sm" className="flex items-center gap-3">
+        <Card className="flex items-center gap-3 p-4">
           <div className="text-3xl font-bold text-lumina-600">
             {teamMembers.filter((m) => m.role === 'admin').length}
           </div>
@@ -196,7 +210,7 @@ export function Team() {
       )}
 
       {/* Team Table */}
-      <Card padding="none">
+      <Card className="p-0">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -272,6 +286,6 @@ export function Team() {
           </table>
         </div>
       </Card>
-    </>
+    </PageShell>
   );
 }

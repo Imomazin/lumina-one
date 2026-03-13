@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Card, CardHeader, CardTitle } from '../components/ui/Card';
+import { PageShell, Card } from '../../../components/ui';
 import { Button } from '../components/ui/Button';
 import {
   Play,
@@ -153,9 +153,7 @@ function MonteCarloSimulation() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Configuration Panel */}
         <Card>
-          <CardHeader>
-            <CardTitle>Input Parameters</CardTitle>
-          </CardHeader>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Input Parameters</h3>
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
@@ -297,9 +295,7 @@ function MonteCarloSimulation() {
               </div>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>Probability Distribution ({iterations.toLocaleString()} samples)</CardTitle>
-                </CardHeader>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Probability Distribution ({iterations.toLocaleString()} samples)</h3>
                 <div className="h-64 flex items-end gap-1">
                   {results.distribution.map((val, idx) => (
                     <div
@@ -321,9 +317,7 @@ function MonteCarloSimulation() {
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>Risk Analysis Summary</CardTitle>
-                </CardHeader>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Risk Analysis Summary</h3>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/30">
                     <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
@@ -470,7 +464,7 @@ function BowTieAnalysis() {
       </div>
 
       {/* Bow-Tie Diagram */}
-      <Card padding="lg">
+      <Card className="p-8">
         <div className="grid grid-cols-5 gap-4 items-start">
           {/* Causes */}
           <div className="space-y-2">
@@ -715,7 +709,7 @@ function FMEAAnalysis() {
         </Button>
       </div>
 
-      <Card padding="none">
+      <Card className="p-0">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -939,8 +933,7 @@ function ScenarioAnalysis() {
           return (
             <Card
               key={scenario.id}
-              padding="none"
-              className={`overflow-hidden cursor-pointer ${isEditing ? 'ring-2 ring-lumina-500' : ''}`}
+              className={`overflow-hidden cursor-pointer p-0 ${isEditing ? 'ring-2 ring-lumina-500' : ''}`}
               onClick={() => setEditingId(isEditing ? null : scenario.id)}
             >
               <div className={`p-4 bg-${scenario.color}-500 text-white`}>
@@ -1160,13 +1153,11 @@ function RiskAssessmentMatrix() {
         {/* Selected Cell Panel */}
         <div>
           <Card>
-            <CardHeader>
-              <CardTitle>
-                {selectedCell
-                  ? `Cell (${selectedCell.likelihood}, ${selectedCell.impact}) - Score: ${selectedCell.likelihood * selectedCell.impact}`
-                  : 'Select a Cell'}
-              </CardTitle>
-            </CardHeader>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              {selectedCell
+                ? `Cell (${selectedCell.likelihood}, ${selectedCell.impact}) - Score: ${selectedCell.likelihood * selectedCell.impact}`
+                : 'Select a Cell'}
+            </h3>
             {selectedCell ? (
               <div className="space-y-4">
                 <div>
@@ -1263,7 +1254,20 @@ export function RiskFrameworks() {
   const [activeFramework, setActiveFramework] = useState<FrameworkTab>('montecarlo');
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 shadow-sm">
+          <BarChart3 className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Risk Frameworks</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Advanced quantitative and qualitative risk analysis tools
+          </p>
+        </div>
+      </div>
+
       {/* Framework Selector */}
       <div className="mb-6 grid grid-cols-2 md:grid-cols-5 gap-4">
         {frameworks.map((framework) => {
@@ -1297,6 +1301,6 @@ export function RiskFrameworks() {
       {activeFramework === 'fmea' && <FMEAAnalysis />}
       {activeFramework === 'scenario' && <ScenarioAnalysis />}
       {activeFramework === 'matrix' && <RiskAssessmentMatrix />}
-    </>
+    </PageShell>
   );
 }

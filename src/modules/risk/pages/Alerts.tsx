@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card } from '../components/ui/Card';
+import { PageShell, Card } from '../../../components/ui';
 import { Button } from '../components/ui/Button';
 import { RiskBadge } from '../components/ui/Badge';
 import {
@@ -113,7 +113,20 @@ export function Alerts() {
   };
 
   return (
-    <>
+    <PageShell>
+      {/* Page Header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 shadow-sm">
+          <Bell className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Risk Alerts</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            Real-time notifications and escalations for critical risk events
+          </p>
+        </div>
+      </div>
+
       {/* Header Actions */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
@@ -157,7 +170,7 @@ export function Alerts() {
 
       {/* Alert Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <Card padding="sm" className="flex items-center gap-3">
+        <Card className="flex items-center gap-3 p-4">
           <div className="p-2 rounded-lg bg-red-50 text-red-600">
             <AlertTriangle className="w-5 h-5" />
           </div>
@@ -168,7 +181,7 @@ export function Alerts() {
             <p className="text-xs text-slate-500">Overdue Actions</p>
           </div>
         </Card>
-        <Card padding="sm" className="flex items-center gap-3">
+        <Card className="flex items-center gap-3 p-4">
           <div className="p-2 rounded-lg bg-amber-50 text-amber-600">
             <AlertTriangle className="w-5 h-5" />
           </div>
@@ -179,7 +192,7 @@ export function Alerts() {
             <p className="text-xs text-slate-500">Escalations</p>
           </div>
         </Card>
-        <Card padding="sm" className="flex items-center gap-3">
+        <Card className="flex items-center gap-3 p-4">
           <div className="p-2 rounded-lg bg-blue-50 text-blue-600">
             <Bell className="w-5 h-5" />
           </div>
@@ -190,7 +203,7 @@ export function Alerts() {
             <p className="text-xs text-slate-500">New Risks</p>
           </div>
         </Card>
-        <Card padding="sm" className="flex items-center gap-3">
+        <Card className="flex items-center gap-3 p-4">
           <div className="p-2 rounded-lg bg-lumina-50 text-lumina-600">
             <Clock className="w-5 h-5" />
           </div>
@@ -204,7 +217,7 @@ export function Alerts() {
       </div>
 
       {/* Alerts List */}
-      <Card padding="none">
+      <Card className="p-0">
         <div className="divide-y divide-slate-100">
           {filteredAlerts.map((alert) => {
             const Icon = alertIcons[alert.type];
@@ -270,6 +283,6 @@ export function Alerts() {
           </div>
         )}
       </Card>
-    </>
+    </PageShell>
   );
 }
